@@ -6,6 +6,8 @@ const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
 
 
     const gridBtnRef = useRef(null);
+    const infoRef = useRef(null);
+    const swissRef = useRef(null);
     const [showGrid, setShowGrid] = useState(false);
 
     const handleClick = () => {
@@ -14,6 +16,8 @@ const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
             onStart: () => {
                 gsap.to(gridBtnRef.current, { color: "white" });
                 gsap.to(titleRef.current, { marginTop: "200px" });
+                gsap.to(infoRef.current, { display: "none" });
+                gsap.to(swissRef.current, { display: "block" });
             },
         });
 
@@ -36,6 +40,8 @@ const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
             onStart: () => {
                 gsap.to(gridBtnRef.current, { color: "black" });
                 gsap.to(titleRef.current, { marginTop: "0" });
+                gsap.to(infoRef.current, { display: "block" });
+                gsap.to(swissRef.current, { display: "none" });
             },
         });
 
@@ -60,6 +66,7 @@ const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
 
                 <div>
                     <p
+                        ref={swissRef}
                         onClick={handleRevertClick}
                         className="p-small bold"
                         style={{
@@ -72,6 +79,7 @@ const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
                 </div>
                 <div style={{ display: 'flex', color: 'black' }}>
                     <p
+                        ref={infoRef}
                         onClick={handleClick}
                         className="p-small bold"
                         style={{

@@ -16,6 +16,8 @@ const GridOverlay = ({ show }) => {
                                 color: 'black',
                                 borderRight: '1px solid red',
                                 borderLeft: index === 0 ? '1px solid red' : '',
+                                zIndex: '200',
+
 
                                 // transition: "height 0.5s",
                                 // Posizionamento corretto dei div affiancati // Posizionamento corretto dei div affiancati
