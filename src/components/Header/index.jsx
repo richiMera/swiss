@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import { useRef, useState } from "react";
 import GridOverlay from "../GridOverlay";
+import GridLayout from "../GridLayout";
 
 const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
 
@@ -26,7 +27,7 @@ const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
             duration: 0.5,
             stagger: 0.1,
             ease: "power4.out",
-            start: "right bottom",
+
         });
 
 
@@ -50,61 +51,67 @@ const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
             duration: 0.5,
             stagger: 0.1,
             ease: "power4.out",
-            start: "left bottom", // Partenza dell'animazione da sinistra durante l'animazione di revert
+            // Partenza dell'animazione da sinistra durante l'animazione di revert
         });
 
 
     };
 
+    const elements = [{
+        columnNumber: 0,
+        zIndex: 401,
+        content: <p
+            ref={swissRef}
+            onClick={handleRevertClick}
+            className="p-small bold"
+            style={{
+                color: 'white',
+                cursor: "pointer",
 
+
+            }}
+        >
+            swiss style
+        </p>
+    },
+
+    {
+        columnNumber: 10,
+        zIndex: 401,
+        content: <p
+            ref={infoRef}
+            onClick={handleClick}
+            className="p-small bold"
+            style={{
+                cursor: "pointer",
+
+
+            }}
+        >
+            info
+        </p>
+    },
+    {
+        columnNumber: 11,
+        zIndex: 401,
+        content: <p ref={gridBtnRef}
+            onClick={() => { setShowGrid(!showGrid) }}
+            className="p-small bold"
+            style={{
+                cursor: "pointer",
+
+
+            }}
+        >
+            grid: {showGrid ? 'visible' : 'hidden'}
+        </p>
+    }]
 
 
 
     return (
         <>
-            <div style={{ position: 'fixed', top: 0, left: 0, width: ' 100%', zIndex: '200', display: 'flex', justifyContent: 'space-between', padding: isMobile ? '24px 14px 24px 24px' : '24px 58px 24px 24px', zIndex: '401' }}>
-
-                <div>
-                    <p
-                        ref={swissRef}
-                        onClick={handleRevertClick}
-                        className="p-small bold"
-                        style={{
-                            color: 'white',
-                            cursor: "pointer"
-                        }}
-                    >
-                        swiss style
-                    </p>
-                </div>
-                <div style={{ display: 'flex', color: 'black' }}>
-                    <p
-                        ref={infoRef}
-                        onClick={handleClick}
-                        className="p-small bold"
-                        style={{
-                            marginRight: '86px',
-                            cursor: "pointer"
-                        }}
-                    >
-                        info
-                    </p>
-                    <p ref={gridBtnRef}
-                        onClick={() => { setShowGrid(!showGrid) }}
-                        className="p-small bold"
-                        style={{
-                            cursor: "pointer",
-                            position: 'relative',
-                            paddingRight: '60px',
-
-                        }}
-                    >
-                        grid: <span style={{ position: 'absolute', right: '16pxpx' }}>{showGrid ? 'visible' : 'hidden'}</span>
-                    </p>
-                </div>
-            </div>
-
-
+            <GridLayout gridNumbers={12} childrens={elements} />
             <GridOverlay show={showGrid} />
         </>
     );

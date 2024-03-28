@@ -3,12 +3,18 @@ import { useRef, useState } from "react";
 import './App.css';
 import Header from "./components/Header";
 import { useMediaQuery } from '@react-hook/media-query'
+import GridLayout from "./components/GridLayout";
 
 const App = () => {
 
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [animationStartPosition, setAnimationStartPosition] = useState('right');
   const titleRef = useRef();
+
+  const homeElements = [{
+    columnNumber: 0,
+    content: <h1 ref={titleRef} className="title bold">swiss style</h1>
+  },]
 
 
 
@@ -28,8 +34,9 @@ const App = () => {
 
         <Header isMobile={isMobile} titleRef={titleRef} setAnimationStartPosition={setAnimationStartPosition} />
         <div style={{ width: ' 100%', height: '100%', backgroundColor: 'white', color: 'black', display: 'flex', alignItems: 'center' }}>
-          <h1 ref={titleRef} className="title bold">swiss style</h1>
+          <GridLayout gridNumbers={1} childrens={homeElements} />
         </div>
+
         {[...Array(5)].map((_, index) => (
           <div
             key={index}
