@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { useRef, useState } from "react";
 import GridOverlay from "../GridOverlay";
 
-const Header = ({ setAnimationStartPosition, titleRef }) => {
+const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
 
 
     const gridBtnRef = useRef(null);
@@ -56,7 +56,7 @@ const Header = ({ setAnimationStartPosition, titleRef }) => {
 
     return (
         <>
-            <div style={{ position: 'fixed', top: 0, left: 0, width: ' 100%', zIndex: '200', display: 'flex', justifyContent: 'space-between', padding: '24px 58px 24px 24px', zIndex: '401' }}>
+            <div style={{ position: 'fixed', top: 0, left: 0, width: ' 100%', zIndex: '200', display: 'flex', justifyContent: 'space-between', padding: isMobile ? '24px 14px 24px 24px' : '24px 58px 24px 24px', zIndex: '401' }}>
 
                 <div>
                     <p
