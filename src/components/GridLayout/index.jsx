@@ -7,13 +7,13 @@ const GridLayout = ({ childrens, gridNumbers }) => {
     return (
         <>
 
-            <div style={{ width: '100%', display: 'flex' }}>
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around' }}>
                 {[...Array(gridNumbers)].map((_, index) => (
                     <div
                         key={index}
 
                         style={{
-                            width: 'calc(100% /' + ' ' + gridNumbers + ')',
+                            width: `calc(100% / ${gridNumbers} - 8px)`,
                             height: "100%",
                             color: 'black',
                             borderRight: '1px solid red',
