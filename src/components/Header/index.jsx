@@ -2,14 +2,17 @@ import gsap from "gsap";
 import { useRef, useState } from "react";
 import GridOverlay from "../GridOverlay";
 import GridLayout from "../GridLayout";
+import Info from "../Info";
 
-const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
+const Header = ({ titleRef, isMobile }) => {
 
 
     const gridBtnRef = useRef(null);
     const infoRef = useRef(null);
     const swissRef = useRef(null);
+    const infoContainerRef = useRef(null);
     const [showGrid, setShowGrid] = useState(false);
+    const [animationStartPosition, setAnimationStartPosition] = useState('right');
 
     const handleClick = () => {
         setAnimationStartPosition('right');
@@ -19,6 +22,8 @@ const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
                 gsap.to(titleRef.current, { marginTop: "200px" });
                 gsap.to(infoRef.current, { display: "none" });
                 gsap.to(swissRef.current, { display: "block" });
+                gsap.to(infoContainerRef.current, { display: "block" });
+
             },
         });
 
@@ -43,6 +48,7 @@ const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
                 gsap.to(titleRef.current, { marginTop: "0" });
                 gsap.to(infoRef.current, { display: "block" });
                 gsap.to(swissRef.current, { display: "none" });
+                gsap.to(infoContainerRef.current, { display: "none" });
             },
         });
 
@@ -113,6 +119,8 @@ const Header = ({ setAnimationStartPosition, titleRef, isMobile }) => {
         <>
             <GridLayout gridNumbers={12} childrens={elements} />
             <GridOverlay show={showGrid} />
+            <Info infoContainerRef={infoContainerRef} animationStartPosition={animationStartPosition} />
+
         </>
     );
 }

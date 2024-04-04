@@ -1,28 +1,25 @@
 
-const GridLayout = ({ childrens, gridNumbers }) => {
+const GridLayout = ({ childrens, gridNumbers, customStyle, bottomGap, myRef }) => {
 
 
-    console.log(childrens);
+
 
     return (
         <>
 
-            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around' }}>
+            <div ref={myRef} style={{ ...{ width: '100%', display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }, ...customStyle }}>
                 {[...Array(gridNumbers)].map((_, index) => (
                     <div
                         key={index}
-
                         style={{
-                            width: `calc(100% / ${gridNumbers} - 8px)`,
-                            height: "100%",
+                            width: `calc(100% / ${childrens.find(item => item.columnNumber === index)?.columnWidth || gridNumbers} - 8px)`,
+                            height: "auto",
                             color: 'black',
                             borderRight: '1px solid red',
-                            borderLeft: index === 0 ? '1px solid red' : '',
+                            borderLeft: '1px solid red',
                             position: 'relative',
-                            zIndex: childrens.find(item => item.columnNumber === index)?.zIndex
-
-
-
+                            zIndex: childrens.find(item => item.columnNumber === index)?.zIndex,
+                            marginBottom: bottomGap ? bottomGap : ''
                             // transition: "height 0.5s",
                             // Posizionamento corretto dei div affiancati // Posizionamento corretto dei div affiancati
                         }}
@@ -30,7 +27,7 @@ const GridLayout = ({ childrens, gridNumbers }) => {
                         {childrens.find(item => item.columnNumber === index)?.content}
                     </div>
                 ))}
-            </div>
+            </div >
 
         </>
     );
