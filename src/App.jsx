@@ -1,44 +1,95 @@
 import { useRef, useState } from "react";
 // import ScrollSmoother from 'gsap/ScrollSmoother'
 import './App.css';
-import Header from "./components/Header";
 import { useMediaQuery } from '@react-hook/media-query'
-import GridLayout from "./components/GridLayout";
+import drSvg from './assets/dr.svg'
+import Card from "./components/Card";
+import { Grid } from "@mui/material";
+import Header from "./components/Header";
+
+
 
 
 const App = () => {
 
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const [moreInfo, setMoreInfo] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [columnWidth, setColumnWidth] = useState(4);
 
-  const titleRef = useRef();
+
+  const data = [
+    {
+      img: drSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: drSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: drSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: drSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: drSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: drSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+  ]
 
 
-  const homeElements = [{
-    columnNumber: 0,
-    content: <h1 ref={titleRef} className="title bold">swiss style</h1>
-  },]
 
 
 
   return (
-    <div>
-      <div
-        className="container"
-        style={{
-          height: "100vh",
-          backgroundColor: "white",
-          position: "relative",
-          overflow: "hidden",
-          padding: '24px'
-
-        }}
-      >
-
-        <Header isMobile={isMobile} titleRef={titleRef} />
-        <div style={{ width: ' 100%', height: '100%', backgroundColor: 'white', color: 'black', display: 'flex', alignItems: 'center' }}>
-          <GridLayout gridNumbers={1} childrens={homeElements} />
-        </div>
-
+    <div style={{ backgroundColor: darkMode ? 'black' : '', minHeight: '100vh' }}>
+      <div style={{ padding: '0 16px' }}>
+        <Header setColumnWidth={setColumnWidth} darkMode={darkMode} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
+        <Grid container spacing={2}>
+          {data.map((card, index) => {
+            return (
+              <Card width={columnWidth} darkMode={darkMode} moreInfo={moreInfo} key={index} item={card} />
+            )
+          })}
+        </Grid>
 
       </div>
     </div>

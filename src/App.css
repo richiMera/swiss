@@ -10,9 +10,12 @@ p.p-small {
 }
 
 p.p-regular {
-  font-size: 20px
+  font-size: 14px
 }
 
+.pointer {
+  cursor: pointer;
+}
 
 
 .bold {
