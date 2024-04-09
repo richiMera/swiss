@@ -24,11 +24,11 @@ const Header = ({ onClickMoreInfo, moreInfo, onClickDarkMode, darkMode, setColum
                         aria-label="Temperature"
                         defaultValue={3}
                         valueLabelDisplay="auto"
-                        shiftStep={6}
+                        shiftStep={5}
                         step={1}
                         marks
                         min={1}
-                        max={6}
+                        max={5}
                         onChange={(e) => { setColumnWidth(e.target.value) }}
                     />
                     <p onClick={onClickDarkMode} className='p-regular pointer'>switch</p>
