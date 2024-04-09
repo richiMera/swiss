@@ -65,7 +65,7 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
     return (
         <>
             <Grid item xs={xs}>
-                <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.4)' : '1px solid black', height: divWidthPx / 1.85 + 'px', padding: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px' }} >
+                <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.4)' : '1px solid black', height: divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 7%' }} >
 
                     <img style={{ height: '100%', width: '100%', filter: darkMode ? 'invert(99%) sepia(0%) saturate(3892%) hue-rotate(194deg) brightness(119%) contrast(85%)' : '' }} src={item.img} />
 

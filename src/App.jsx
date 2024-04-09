@@ -5,6 +5,12 @@ import { useMediaQuery } from '@react-hook/media-query'
 import drSvg from './assets/dr.svg';
 import coffeSvg from './assets/coffe.svg';
 import uccelloSvg from './assets/uccello.svg';
+import nakedSvg from './assets/naked.svg';
+import midnightSvg from './assets/midnight.svg';
+import videodromeSvg from './assets/videodrome.svg';
+import febbreSvg from './assets/febbre.svg';
+import halloweenSvg from './assets/halloween.svg';
+import dollariSvg from './assets/dollari.svg';
 import Card from "./components/Card";
 import { Grid } from "@mui/material";
 import Header from "./components/Header";
@@ -22,42 +28,6 @@ const App = () => {
 
   const data = [
     {
-      img: '/swiss/src/assets/dr.svg',
-      typeface: 'Custom',
-      designer: 'Pablo Ferro',
-      film_director: 'Jim Jarmusch',
-      year: '2003',
-      genre: 'Drama',
-      country: 'USA',
-    },
-    {
-      img: '/swiss/src/assets/coffe.svg',
-      typeface: 'Custom',
-      designer: 'Pablo Ferro',
-      film_director: 'Jim Jarmusch',
-      year: '2003',
-      genre: 'Drama',
-      country: 'USA',
-    },
-    {
-      img: '/swiss/src/assets/uccello.svg',
-      typeface: 'Custom',
-      designer: 'Pablo Ferro',
-      film_director: 'Jim Jarmusch',
-      year: '2003',
-      genre: 'Drama',
-      country: 'USA',
-    },
-    {
-      img: '/swiss/src/assets/naked.svg',
-      typeface: 'Custom',
-      designer: 'Pablo Ferro',
-      film_director: 'Jim Jarmusch',
-      year: '2003',
-      genre: 'Drama',
-      country: 'USA',
-    },
-    {
       img: drSvg,
       typeface: 'Custom',
       designer: 'Pablo Ferro',
@@ -67,7 +37,70 @@ const App = () => {
       country: 'USA',
     },
     {
-      img: drSvg,
+      img: coffeSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: uccelloSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: nakedSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: midnightSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: videodromeSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: febbreSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: halloweenSvg,
+      typeface: 'Custom',
+      designer: 'Pablo Ferro',
+      film_director: 'Jim Jarmusch',
+      year: '2003',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      img: dollariSvg,
       typeface: 'Custom',
       designer: 'Pablo Ferro',
       film_director: 'Jim Jarmusch',
