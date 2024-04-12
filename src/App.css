@@ -5,12 +5,23 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
-p.p-small {
-  font-size: 13px
+::-webkit-scrollbar {
+  display: none;
 }
 
-p.p-regular {
+
+
+p.p-small {
   font-size: 14px
+}
+
+p.p-big {
+  font-size: 24px
+}
+
+h1.p-regular,
+p.p-regular {
+  font-size: 16px;
 }
 
 .pointer {
@@ -21,6 +32,7 @@ p.p-regular {
 .bold {
   font-weight: bold
 }
+
 
 h1.title,
 .title {

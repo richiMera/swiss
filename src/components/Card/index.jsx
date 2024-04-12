@@ -65,40 +65,40 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
     return (
         <>
             <Grid item xs={xs}>
-                <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.4)' : '1px solid black', height: divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 7%' }} >
+                <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.6)' : '1px solid rgba(22, 22, 22, 0.6)', height: divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 7%' }} >
 
                     <img style={{ height: '100%', width: '100%', filter: darkMode ? 'invert(99%) sepia(0%) saturate(3892%) hue-rotate(194deg) brightness(119%) contrast(85%)' : '' }} src={item.img} />
 
                 </div>
                 {moreInfo ? <div style={{ color: darkMode ? '#ECECEC' : '' }}>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.4)' : '' }} className='card-info-box' >
-                        <p className='p-regular'>Typeface</p>
-                        <p className='p-regular'>{item.typeface}</p>
+                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                        <p className='p-small'>Typeface</p>
+                        <p className='p-small'>{item.typeface}</p>
                     </div>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.4)' : '' }} className='card-info-box' >
-                        <p className='p-regular'>Title designer</p>
-                        <p className='p-regular'>{item.designer}</p>
+                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                        <p className='p-small'>Title designer</p>
+                        <p className='p-small'>{item.designer}</p>
                     </div>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.4)' : '' }} className='card-info-box' >
-                        <p className='p-regular'>Film Director</p>
-                        <p className='p-regular'>{item.film_director}</p>
+                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                        <p className='p-small'>Film Director</p>
+                        <p className='p-small'>{item.film_director}</p>
                     </div>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.3)' : '' }} className='card-info-box' >
-                        <p className='p-regular'>Year</p>
-                        <p className='p-regular'>{item.year}</p>
+                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                        <p className='p-small'>Year</p>
+                        <p className='p-small'>{item.year}</p>
                     </div>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.4)' : '' }} className='card-info-box' >
-                        <p className='p-regular'>Genre</p>
-                        <p className='p-regular'>{item.genre}</p>
+                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                        <p className='p-small'>Genre</p>
+                        <p className='p-small'>{item.genre}</p>
                     </div>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.4)' : '' }} className='card-info-box' >
-                        <p className='p-regular'>Country</p>
-                        <p className='p-regular'>{item.country}</p>
+                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                        <p className='p-small'>Country</p>
+                        <p className='p-small'>{item.country}</p>
                     </div>
 
                 </div> : <div style={{ borderBottom: 'none', color: darkMode ? 'white' : '' }} className='card-info-box' >
-                    <p className='p-regular'>Typeface</p>
-                    <p className='p-regular'>{item.typeface}</p>
+                    <p className='p-small'>Typeface</p>
+                    <p className='p-small'>{item.typeface}</p>
                 </div>}
 
             </Grid >

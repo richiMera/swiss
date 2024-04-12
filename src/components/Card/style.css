@@ -1,7 +1,7 @@
 .card-info-box {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(22, 22, 22, 0.8);
+    border-bottom: 1px solid rgba(22, 22, 22, 0.16);
     padding: 8px 0 4px 0;
     width: 100%;
 }
