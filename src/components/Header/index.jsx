@@ -6,7 +6,7 @@ import Slider from '@mui/material/Slider';
 
 
 
-const Header = ({ onClickMoreInfo, moreInfo, onClickDarkMode, darkMode, setColumnWidth, setOpenFilters }) => {
+const Header = ({ onClickMoreInfo, moreInfo, onClickDarkMode, darkMode, setColumnWidth, setOpenFilters, isMobile }) => {
 
 
 
@@ -25,7 +25,7 @@ const Header = ({ onClickMoreInfo, moreInfo, onClickDarkMode, darkMode, setColum
                     <p onClick={() => { setOpenFilters(true) }} style={{ marginRight: '16px' }} className='p-regular pointer'>Filters</p>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <p style={{ marginRight: '16px' }} className='p-regular pointer'>Size:</p>
-                        <Slider
+                        {!isMobile && <Slider
                             style={{ width: '88px' }}
                             aria-label="Size"
                             defaultValue={3}
@@ -37,7 +37,7 @@ const Header = ({ onClickMoreInfo, moreInfo, onClickDarkMode, darkMode, setColum
                             min={1}
                             max={5}
                             onChange={(e) => { setColumnWidth(e.target.value) }}
-                        />
+                        />}
                     </div>
                 </Grid >
                 <Grid style={{ display: 'flex', justifyContent: 'flex-end' }} item xs={4}>

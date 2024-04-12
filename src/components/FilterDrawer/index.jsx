@@ -18,11 +18,12 @@ const FilterDrawer = ({ open, setOpenFilters, darkMode, data, setFilteredData, i
     const [innerFilters, setInnerFilters] = useState({});
     const drawerPaperStyle = {
         top: '61px',
-        width: '100%'// Sovrascrive la proprietà top del Drawer
+        width: isMobile ? '100%' : '427px'// Sovrascrive la proprietà top del Drawer
     };
 
 
 
+    console.log(isMobile);
 
 
 
@@ -135,10 +136,10 @@ const FilterDrawer = ({ open, setOpenFilters, darkMode, data, setFilteredData, i
 
     return (
         <>
-            <Drawer style={{ maxWidth: '100%' }} transitionDuration={{ enter: 500, exit: 1000 }} sx={{
+            <Drawer style={{ width: isMobile ? '100%' : '427px', }} transitionDuration={{ enter: 500, exit: 1000 }} sx={{
                 '& .MuiDrawer-paper': drawerPaperStyle,
             }} onClose={() => { setOpenFilters(false) }} open={open}>
-                <div style={{ overflow: 'hidden', minWidth: isMobile ? '100%' : '427px', height: '100%', padding: '24px', backgroundColor: darkMode ? 'black' : '', color: darkMode ? '#ECECEC' : '', borderRight: darkMode ? '1px solid #ECECEC' : '1px solid black' }}>
+                <div style={{ overflow: 'hidden', width: isMobile ? '100%' : '427px', height: '100%', padding: '24px', backgroundColor: darkMode ? 'black' : '', color: darkMode ? '#ECECEC' : '', borderRight: darkMode ? '1px solid #ECECEC' : '1px solid black' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '76px' }}>
                         <p onClick={clickFilter} className='p-big pointer'>Filter</p>
                         <p onClick={() => { setOpenFilters(false) }} className='p-big pointer'>Close</p>

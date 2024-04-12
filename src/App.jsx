@@ -130,11 +130,11 @@ const App = () => {
   return (
     <div style={{ backgroundColor: darkMode ? 'black' : '', minHeight: 'calc(100vh + 24px)' }}>
       <div style={{ padding: '0 16px 48px 16px' }}>
-        <Header setOpenFilters={setOpenFilters} setColumnWidth={setColumnWidth} darkMode={darkMode} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
+        <Header isMobile={isMobile} setOpenFilters={setOpenFilters} setColumnWidth={setColumnWidth} darkMode={darkMode} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
         <Grid style={{ paddingTop: '108px' }} container spacing={3}>
           {realData.map((card, index) => {
             return (
-              <Card width={columnWidth} darkMode={darkMode} moreInfo={moreInfo} key={index} item={card} />
+              <Card width={isMobile ? 5 : columnWidth} darkMode={darkMode} moreInfo={moreInfo} key={index} item={card} />
             )
           })}
         </Grid>
