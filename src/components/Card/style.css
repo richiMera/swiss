@@ -5,3 +5,14 @@
     padding: 8px 0 4px 0;
     width: 100%;
 }
+
+#more-info-box {
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+    overflow: hidden;
+}
+
+#more-info-box.open {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+}

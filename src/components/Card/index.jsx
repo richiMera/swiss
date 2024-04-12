@@ -70,36 +70,36 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
                     <img style={{ height: '100%', width: '100%', filter: darkMode ? 'invert(99%) sepia(0%) saturate(3892%) hue-rotate(194deg) brightness(119%) contrast(85%)' : '' }} src={item.img} />
 
                 </div>
-                {moreInfo ? <div style={{ color: darkMode ? '#ECECEC' : '' }}>
+                <div style={{ color: darkMode ? '#ECECEC' : '' }}>
                     <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
                         <p className='p-small'>Typeface</p>
                         <p className='p-small'>{item.typeface}</p>
                     </div>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
-                        <p className='p-small'>Title designer</p>
-                        <p className='p-small'>{item.designer}</p>
-                    </div>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
-                        <p className='p-small'>Film Director</p>
-                        <p className='p-small'>{item.film_director}</p>
-                    </div>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
-                        <p className='p-small'>Year</p>
-                        <p className='p-small'>{item.year}</p>
-                    </div>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
-                        <p className='p-small'>Genre</p>
-                        <p className='p-small'>{item.genre}</p>
-                    </div>
-                    <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
-                        <p className='p-small'>Country</p>
-                        <p className='p-small'>{item.country}</p>
+                    <div id={'more-info-box'} className={moreInfo ? 'open' : ''}>
+                        <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                            <p className='p-small'>Title designer</p>
+                            <p className='p-small'>{item.designer}</p>
+                        </div>
+                        <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                            <p className='p-small'>Film Director</p>
+                            <p className='p-small'>{item.film_director}</p>
+                        </div>
+                        <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                            <p className='p-small'>Year</p>
+                            <p className='p-small'>{item.year}</p>
+                        </div>
+                        <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                            <p className='p-small'>Genre</p>
+                            <p className='p-small'>{item.genre}</p>
+                        </div>
+                        <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
+                            <p className='p-small'>Country</p>
+                            <p className='p-small'>{item.country}</p>
+                        </div>
+
                     </div>
 
-                </div> : <div style={{ borderBottom: 'none', color: darkMode ? 'white' : '' }} className='card-info-box' >
-                    <p className='p-small'>Typeface</p>
-                    <p className='p-small'>{item.typeface}</p>
-                </div>}
+                </div>
 
             </Grid >
 

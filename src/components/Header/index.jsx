@@ -19,28 +19,31 @@ const Header = ({ onClickMoreInfo, moreInfo, onClickDarkMode, darkMode, setColum
 
                     </div>
                 </Grid >
-                <Grid style={{ display: 'flex', alignItems: 'center' }} item xs={4}>
+                <Grid style={{ display: 'flex', alignItems: 'center' }} item xs={6}>
 
                     <p onClick={onClickMoreInfo} style={{ marginRight: '16px' }} className='p-regular pointer'>{moreInfo ? 'Less info' : 'More info'}</p>
                     <p onClick={() => { setOpenFilters(true) }} style={{ marginRight: '16px' }} className='p-regular pointer'>Filters</p>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <p style={{ marginRight: '16px' }} className='p-regular pointer'>Size:</p>
-                        {!isMobile && <Slider
-                            style={{ width: '88px' }}
-                            aria-label="Size"
-                            defaultValue={3}
-                            // valueLabelDisplay="auto"
-                            shiftStep={5}
-                            step={1}
-                            marks
-                            size='small'
-                            min={1}
-                            max={5}
-                            onChange={(e) => { setColumnWidth(e.target.value) }}
-                        />}
+
+                        {!isMobile && <>
+                            <p style={{ marginRight: '16px' }} className='p-regular pointer'>Size:</p>
+                            <Slider
+                                style={{ width: '88px' }}
+                                aria-label="Size"
+                                defaultValue={3}
+                                // valueLabelDisplay="auto"
+                                shiftStep={5}
+                                step={1}
+                                marks
+                                size='small'
+                                min={1}
+                                max={5}
+                                onChange={(e) => { setColumnWidth(e.target.value) }}
+                            />
+                        </>}
                     </div>
                 </Grid >
-                <Grid style={{ display: 'flex', justifyContent: 'flex-end' }} item xs={4}>
+                <Grid style={{ display: 'flex', justifyContent: 'flex-end' }} item xs={2}>
 
 
                     <p onClick={onClickDarkMode} className='p-regular pointer'>switch</p>
