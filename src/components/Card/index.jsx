@@ -93,7 +93,7 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
                     borderRadius: '30px',
                     zIndex: '200',
                     color: '#ECECEC',
-                    backgroundColor: '#BB1F01',
+                    backgroundColor: '#E72A00',
                     pointerEvents: 'none',
                     display: 'inline-block', // Utilizzato per mantenere il div nella stessa riga del testo
                 }}
@@ -103,7 +103,7 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
             <Grid onMouseEnter={() => { setIsHovered(true) }}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={() => { setOpen(true) }}
-                style={{ position: open ? 'fixed' : '', top: open ? '0%' : '', left: '0', cursor: 'pointer', maxWidth: open ? '100%' : '', height: open ? '100vh' : '', zIndex: open ? '70000' : '' }} item xs={xs}>
+                style={{ position: open ? 'fixed' : '', top: open ? '0%' : '', left: '0', cursor: 'pointer', maxWidth: open ? '100%' : '', height: open ? '100vh' : '', zIndex: open ? '70000' : '', width: open ? '100%' : '' }} item xs={xs}>
                 <div style={{ outline: '1px solid #272727', backgroundColor: isHovered || open ? item.bgColor : '#0D0D0D', width: open ? '100%' : '', zIndex: open ? '6000' : '', height: open ? '100vh' : divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 7%', position: 'relative', overflow: 'hidden' }} >
                     {open && <div onClick={(e) => { e.stopPropagation(); setOpen(false); setIsHovered(false); }} style={{ zIndex: '6000', position: 'absolute', top: '24px', right: '24px', backgroundColor: '#1E1E1E', borderRadius: '50%', width: '24px', height: '24px', padding: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <img src={closeSvg} />
