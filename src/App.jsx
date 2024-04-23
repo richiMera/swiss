@@ -77,6 +77,32 @@ const App = () => {
       genre: 'Western',
       country: 'Italy',
     },
+    {
+      img: nakedSvg,
+      color: '#1A0406',
+      bgColor: '#FFDC4A',
+      textColor: '#000000',
+      typeface: 'Futura',
+      fontStyle: 'Sans Serif',
+      designer: 'Randall Balsmeyer, Mimi Everett',
+      film_director: 'David Cronenberg',
+      year: '1991',
+      genre: 'Horror',
+      country: 'Canada',
+    },
+    {
+      img: dollariSvg,
+      color: '#F7C886',
+      bgColor: '#BB1F01',
+      textColor: '#FFFFFF',
+      typeface: 'Custom',
+      fontStyle: 'Handwritten',
+      designer: 'Iginio Lardani',
+      film_director: 'Sergio Leone',
+      year: '1964',
+      genre: 'Western',
+      country: 'Italy',
+    },
   ]
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [moreInfo, setMoreInfo] = useState(false);

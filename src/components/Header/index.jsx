@@ -6,7 +6,7 @@ import './style.css';
 
 
 
-const Header = ({ onClickMoreInfo, moreInfo, onClickDarkMode, darkMode, setColumnWidth, setOpenFilters, isMobile }) => {
+const Header = ({ isMobile }) => {
 
 
 
@@ -21,12 +21,12 @@ const Header = ({ onClickMoreInfo, moreInfo, onClickDarkMode, darkMode, setColum
                 </Grid >
                 <Grid style={{ display: 'flex', alignItems: 'center' }} item xs={4}>
 
-                    <p className='p-regular'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi laudantium </p>
+                    <p style={{ opacity: ' 0.64' }} className='p-regular'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi laudantium </p>
                 </Grid >
                 <Grid style={{ display: 'flex', justifyContent: 'flex-end' }} item xs={4}>
 
 
-                    <p className='p-regular pointer'>info</p>
+                    <p style={{ opacity: ' 0.64' }} className='p-regular pointer'>Info</p>
 
                 </Grid >
             </Grid>

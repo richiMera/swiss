@@ -17,7 +17,7 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
 
     useEffect(() => {
         const handleMouseMove = (event) => {
-            setPosition({ x: event.clientX, y: event.clientY });
+            setPosition({ x: event.clientX, y: event.clientY + window.scrollY }); // Aggiungi lo scrollY
         };
 
         document.addEventListener('mousemove', handleMouseMove);
@@ -87,8 +87,8 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
             {isHovered && <div
                 style={{
                     position: 'absolute',
-                    left: position.x - 30, // Posiziona il div al centro del cursore
-                    top: position.y + 40,
+                    left: position.x - 10, // Posiziona il div al centro del cursore
+                    top: position.y + 30,
                     padding: '10px 16px',
                     borderRadius: '30px',
                     zIndex: '200',
@@ -108,8 +108,8 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
                     {open && <div onClick={(e) => { e.stopPropagation(); setOpen(false); setIsHovered(false); }} style={{ zIndex: '6000', position: 'absolute', top: '24px', right: '24px', backgroundColor: '#1E1E1E', borderRadius: '50%', width: '24px', height: '24px', padding: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <img src={closeSvg} />
                     </div>}
-                    <img style={{ transform: isHovered && !open ? 'scale(0.8)' : 'scale(1)', width: '100%', filter: isHovered || open ? item?.filter : 'invert(99%) sepia(0%) saturate(3892%) hue-rotate(194deg) brightness(119%) contrast(85%)', transition: 'transform 0.5s' }} src={item.img} />
-                    {!open ? <div style={{ position: 'absolute', bottom: isHovered ? '24px' : '-50px', left: '24px', transition: 'bottom 0.5s' }}>
+                    <img style={{ transform: isHovered && !open ? 'scale(0.95)' : 'scale(1)', width: '100%', filter: isHovered || open ? item?.filter : 'invert(99%) sepia(0%) saturate(3892%) hue-rotate(194deg) brightness(119%) contrast(85%)', transition: 'transform 0.5s' }} src={item.img} />
+                    {!open ? <div style={{ position: 'absolute', bottom: isHovered ? '16px' : '-50px', left: '24px', transition: 'bottom 0.5s' }}>
                         <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
                         <p className='p-small' style={{ color: item?.textColor }}>{item?.typeface}</p>
                     </div> :
