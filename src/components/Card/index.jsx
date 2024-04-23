@@ -1,7 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
-import './style.css'
+import './style.css';
+import closeSvg from '../../assets/close.svg';
 
 
 
@@ -10,6 +11,25 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
     const [divWidthPx, setDivWidthPx] = useState(0);
     const [divPercentage, setDivPercentage] = useState(0);
     const [xs, setXs] = useState(4);
+    const [isHovered, setIsHovered] = useState(false);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        const handleMouseMove = (event) => {
+            setPosition({ x: event.clientX, y: event.clientY });
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+        };
+
+    }, []);
+
+
+
 
     useEffect(() => {
         // Calcola la larghezza del div in pixel basandosi sulla larghezza della viewport
@@ -64,13 +84,65 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
 
     return (
         <>
-            <Grid item xs={xs}>
-                <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.6)' : '1px solid rgba(22, 22, 22, 0.6)', height: divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 7%' }} >
-
-                    <img style={{ height: '100%', width: '100%', filter: darkMode ? 'invert(99%) sepia(0%) saturate(3892%) hue-rotate(194deg) brightness(119%) contrast(85%)' : '' }} src={item.img} />
-
+            {isHovered && <div
+                style={{
+                    position: 'absolute',
+                    left: position.x - 30, // Posiziona il div al centro del cursore
+                    top: position.y + 40,
+                    padding: '10px 16px',
+                    borderRadius: '30px',
+                    zIndex: '200',
+                    color: '#ECECEC',
+                    backgroundColor: '#BB1F01',
+                    pointerEvents: 'none',
+                    display: 'inline-block', // Utilizzato per mantenere il div nella stessa riga del testo
+                }}
+            >
+                More
+            </div>}
+            <Grid onMouseEnter={() => { setIsHovered(true) }}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={() => { setOpen(true) }}
+                style={{ position: open ? 'fixed' : '', top: open ? '0%' : '', left: '0', cursor: 'pointer', maxWidth: open ? '100%' : '', height: open ? '100vh' : '', zIndex: open ? '70000' : '' }} item xs={xs}>
+                <div style={{ outline: '1px solid #272727', backgroundColor: isHovered || open ? item.bgColor : '#0D0D0D', width: open ? '100%' : '', zIndex: open ? '6000' : '', height: open ? '100vh' : divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 7%', position: 'relative', overflow: 'hidden' }} >
+                    {open && <div onClick={(e) => { e.stopPropagation(); setOpen(false); setIsHovered(false); }} style={{ zIndex: '6000', position: 'absolute', top: '24px', right: '24px', backgroundColor: '#1E1E1E', borderRadius: '50%', width: '24px', height: '24px', padding: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <img src={closeSvg} />
+                    </div>}
+                    <img style={{ transform: isHovered && !open ? 'scale(0.8)' : 'scale(1)', width: '100%', filter: isHovered || open ? item?.filter : 'invert(99%) sepia(0%) saturate(3892%) hue-rotate(194deg) brightness(119%) contrast(85%)', transition: 'transform 0.5s' }} src={item.img} />
+                    {!open ? <div style={{ position: 'absolute', bottom: isHovered ? '24px' : '-50px', left: '24px', transition: 'bottom 0.5s' }}>
+                        <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
+                        <p className='p-small' style={{ color: item?.textColor }}>{item?.typeface}</p>
+                    </div> :
+                        <div style={{ position: 'absolute', bottom: '24px', left: '50%', transition: 'bottom 0.5s', transform: 'translateX(-50%)', display: 'flex', gap: '3%', justifyContent: 'center', width: '200%' }}>
+                            <div>
+                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
+                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.typeface}</p>
+                            </div>
+                            <div>
+                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Title Designer / Studio</p>
+                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.designer}</p>
+                            </div>
+                            <div>
+                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Film Director</p>
+                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.film_director}</p>
+                            </div>
+                            <div>
+                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Year</p>
+                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.year}</p>
+                            </div>
+                            <div>
+                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Genre</p>
+                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.genre}</p>
+                            </div>
+                            <div>
+                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Country</p>
+                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.country}</p>
+                            </div>
+                        </div>
+                    }
                 </div>
-                <div style={{ color: darkMode ? '#ECECEC' : '' }}>
+
+                {/* <div style={{ color: darkMode ? '#ECECEC' : '' }}>
                     <div style={{ borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '' }} className='card-info-box' >
                         <p className='p-small'>Typeface</p>
                         <p className='p-small'>{item.typeface}</p>
@@ -99,7 +171,7 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
 
                     </div>
 
-                </div>
+                </div> */}
 
             </Grid >
 

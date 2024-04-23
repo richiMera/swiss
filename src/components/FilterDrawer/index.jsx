@@ -6,41 +6,37 @@ import { Drawer } from '@mui/material';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Chip from '../Chip';
 
 
 
 
 
 
-const FilterDrawer = ({ open, setOpenFilters, darkMode, data, setFilteredData, isMobile }) => {
+
+
+const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile }) => {
 
     const [filtersData, setFiltersData] = useState({});
     const [innerFilters, setInnerFilters] = useState({});
     const drawerPaperStyle = {
-        top: '61px',
-        width: isMobile ? '100%' : '427px'// Sovrascrive la proprietà top del Drawer
+        width: '100%',
+        height: '60%',
+        borderTopLeftRadius: '20px',
+        borderTopRightRadius: '20px',
+        backgroundColor: 'transparent'
     };
-
-
-
-    console.log(isMobile);
-
-
-
-
-
-
 
 
     useEffect(() => {
 
-        const countByTypeface = data.reduce((acc, curr) => {
-            acc[curr.typeface] = (acc[curr.typeface] || 0) + 1;
+        const countByFontStyle = data.reduce((acc, curr) => {
+            acc[curr.fontStyle] = (acc[curr.fontStyle] || 0) + 1;
             return acc;
         }, {});
 
         const countByDecade = data.reduce((acc, curr) => {
-            const decade = Math.ceil(curr.year / 10) * 10; // Arrotonda l'anno alla decade successiva
+            const decade = Math.floor(curr.year / 10) * 10; // Arrotonda l'anno alla decade precedente
             acc[decade] = (acc[decade] || 0) + 1;
             return acc;
         }, {});
@@ -50,11 +46,19 @@ const FilterDrawer = ({ open, setOpenFilters, darkMode, data, setFilteredData, i
             return acc;
         }, {});
 
+        const countByCountry = data.reduce((acc, curr) => {
+            acc[curr.country] = (acc[curr.country] || 0) + 1;
+            return acc;
+        }, {});
+
+
+
 
         const fData = {
-            classifications: countByTypeface,
+            classifications: countByFontStyle,
             decade: countByDecade,
             genres: countByGenre,
+            countries: countByCountry
 
         }
 
@@ -96,8 +100,6 @@ const FilterDrawer = ({ open, setOpenFilters, darkMode, data, setFilteredData, i
     const clickFilter = () => {
         const trueKeys = [];
         const copyArray = [...data]
-
-        // Ciclo attraverso ogni chiave dell'oggetto data
         for (const category in innerFilters) {
             // Verifica se il valore della categoria corrente è un oggetto
             if (typeof innerFilters[category] === 'object') {
@@ -106,8 +108,8 @@ const FilterDrawer = ({ open, setOpenFilters, darkMode, data, setFilteredData, i
                     // Se il valore della chiave corrente è true e la categoria è 'decade'
                     if (innerFilters[category][key] === true && category === 'decade') {
                         // Estrai l'inizio e la fine della decade
-                        const decadeEnd = parseInt(key); // Fine della decade
-                        const decadeStart = decadeEnd - 9; // Inizio della decade (10 anni prima)
+                        const decadeStart = parseInt(key.substring(0, 3) + '0');
+                        const decadeEnd = decadeStart + 9;
 
                         // Aggiungi tutte le chiavi comprese tra l'inizio e la fine della decade
                         for (let i = decadeStart; i <= decadeEnd; i++) {
@@ -133,74 +135,62 @@ const FilterDrawer = ({ open, setOpenFilters, darkMode, data, setFilteredData, i
 
     };
 
-
+    //transitionDuration={{ enter: 500, exit: 1000 }}
     return (
         <>
-            <Drawer style={{ width: isMobile ? '100%' : '427px', }} transitionDuration={{ enter: 500, exit: 1000 }} sx={{
+            <Drawer style={{ width: '100%' }} sx={{
                 '& .MuiDrawer-paper': drawerPaperStyle,
-            }} onClose={() => { setOpenFilters(false) }} open={open}>
-                <div style={{ overflow: 'hidden', width: isMobile ? '100%' : '427px', height: '100%', padding: '24px', backgroundColor: darkMode ? 'black' : '', color: darkMode ? '#ECECEC' : '', borderRight: darkMode ? '1px solid #ECECEC' : '1px solid black' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '76px' }}>
-                        <p onClick={clickFilter} className='p-big pointer'>Filter</p>
-                        <p onClick={() => { setOpenFilters(false) }} className='p-big pointer'>Close</p>
+            }} anchor='bottom' onClose={() => { setOpenFilters(false) }} open={open}>
+                <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: '24px', color: '#ECECEC' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+                        <p className='p-regular'>Filter</p>
                     </div>
-                    <div style={{ overflowY: 'auto', height: 'calc(100% - 110px)' }}>
-                        <div style={{ marginBottom: '40px' }} >
-                            <p style={{ marginBottom: '16px' }} className='p-big'>Classification</p>
-                            <FormGroup>
-                                {(filtersData.classifications) && Object.entries(filtersData.classifications).map(([typeface, count]) => {
-                                    console.log(innerFilters['classifications'][typeface]); return (
-                                        <div key={typeface} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '1px solid rgba(22, 22, 22, 0.16)', padding: '8px 0' }}>
-                                            <FormControlLabel control={<Checkbox sx={{
-                                                '& .MuiSvgIcon-root path': {
-                                                    stroke: 'white', // Imposta il colore del bordo bianco intorno al path
-                                                    strokeWidth: '0.5px', // Imposta lo spessore del bordo
-                                                },
-                                            }} checked={innerFilters['classifications'][typeface]} onChange={handleChange('classifications', typeface)} />} label={typeface} />
-                                            {/* <p className='p-regular'>{typeface}</p> */}
-                                            <p className='p-regular'>{count}</p>
-                                        </div>
-                                    )
-                                })}
+                    <div style={{ overflowY: 'auto', height: 'calc(100% - 110px)', display: 'flex' }}>
+                        <div style={{ width: '50%' }}>
+                            <div style={{ marginBottom: '40px' }} >
+                                <p style={{ marginBottom: '16px' }} className='p-regular'>Font style</p>
+                                <div className='chip-container'>
+                                    {(filtersData.classifications) && Object.entries(filtersData.classifications).map(([font, count]) => {
+                                        console.log(innerFilters['classifications'][font]); return (
+                                            <Chip key={font} text={font} />
+                                        )
+                                    })}
 
 
-                            </FormGroup>
+                                </div>
 
 
+                            </div>
+                            <div style={{ marginBottom: '40px' }} >
+                                <p style={{ marginBottom: '16px' }} className='p-regular'>Film period</p>
+                                <div className='chip-container'>
+                                    {filtersData.decade && Object.entries(filtersData.decade).map(([year, count]) => (
+                                        <Chip key={year} text={year} />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                        <div style={{ marginBottom: '40px' }} >
-                            <p style={{ marginBottom: '16px' }} className='p-big'>Decade</p>
-                            <FormGroup>
-                                {filtersData.decade && Object.entries(filtersData.decade).map(([year, count]) => (
-                                    <div key={year} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '1px solid rgba(22, 22, 22, 0.16)', padding: '8px 0' }}>
-                                        <FormControlLabel control={<Checkbox sx={{
-                                            '& .MuiSvgIcon-root path': {
-                                                stroke: 'white', // Imposta il colore del bordo bianco intorno al path
-                                                strokeWidth: '0.5px', // Imposta lo spessore del bordo
-                                            },
-                                        }} checked={innerFilters['decade'][year]} onChange={handleChange('decade', year)} />} label={year} />
-                                        <p className='p-regular'>{count}</p>
-                                    </div>
-                                ))}
-                            </FormGroup>
-                        </div>
-                        <div style={{ marginBottom: '40px' }} >
-                            <p style={{ marginBottom: '16px' }} className='p-big'>Film genre</p>
-                            <FormGroup>
-                                {filtersData.genres && Object.entries(filtersData.genres).map(([genre, count]) => (
-                                    <div key={genre} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: darkMode ? '1px solid rgba(236, 236, 236, 0.16)' : '1px solid rgba(22, 22, 22, 0.16)', padding: '8px 0' }}>
-                                        <FormControlLabel control={<Checkbox sx={{
-                                            '& .MuiSvgIcon-root path': {
-                                                stroke: 'white', // Imposta il colore del bordo bianco intorno al path
-                                                strokeWidth: '0.5px', // Imposta lo spessore del bordo
-                                            },
-                                        }} checked={innerFilters['genres'][genre]} onChange={handleChange('genres', genre)} />} label={genre} />
-                                        <p className='p-regular'>{count}</p>
-                                    </div>
-                                ))}
-                            </FormGroup>
+                        <div style={{ width: '50%' }}>
+                            <div style={{ marginBottom: '40px' }} >
+                                <p style={{ marginBottom: '16px' }} className='p-regular'>Film genre</p>
+                                <div className='chip-container'>
+                                    {filtersData.genres && Object.entries(filtersData.genres).map(([genre, count]) => (
+                                        <Chip key={genre} text={genre} />
+                                    ))}
+                                </div>
 
 
+                            </div>
+                            <div style={{ marginBottom: '40px' }} >
+                                <p style={{ marginBottom: '16px' }} className='p-regular'>Country</p>
+                                <div className='chip-container'>
+                                    {filtersData.countries && Object.entries(filtersData.countries).map(([country, count]) => (
+                                        <Chip key={country} text={country} />
+                                    ))}
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
 
