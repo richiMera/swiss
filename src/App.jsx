@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 // import ScrollSmoother from 'gsap/ScrollSmoother'
 import './App.css';
 import { useMediaQuery } from '@react-hook/media-query'
@@ -25,6 +25,8 @@ import Slider from '@mui/material/Slider';
 
 const App = () => {
 
+
+
   const data = [
     {
       title: 'The Long Goodbye',
@@ -43,7 +45,7 @@ const App = () => {
     {
       title: 'Coffee and Cigarettes',
       img: coffeeSvg,
-      filter: 'invert(0%) sepia(12%) saturate(2060%) hue-rotate(329deg) brightness(82%) contrast(108%)',
+      filter: 'brightness(0) saturate(100%) invert(0%) sepia(1%) saturate(7495%) hue-rotate(126deg) brightness(98%) contrast(102%)',
       bgColor: '#FFFFFF',
       textColor: '#000000',
       typeface: 'Arial',
@@ -57,7 +59,7 @@ const App = () => {
     {
       title: 'Halloween',
       img: halloweenSvg,
-      filter: 'invert(81%) sepia(49%) saturate(4872%) hue-rotate(355deg) brightness(102%) contrast(102%)',
+      filter: 'brightness(0) saturate(100%) invert(80%) sepia(31%) saturate(6487%) hue-rotate(355deg) brightness(103%) contrast(103%)',
       bgColor: '#100200',
       textColor: '#FFFFFF',
       typeface: 'ITC Serif Gothic',
@@ -166,6 +168,175 @@ const App = () => {
       genre: 'Comedy',
       country: 'UK',
     },
+    {
+      title: 'Febbre da cavallo',
+      img: febbreSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Estro (customized)',
+      fontStyle: 'Serif',
+      designer: 'Uncredited',
+      film_director: 'Steno',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'Italy',
+    },
+    {
+      title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+      img: drSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Custom',
+      fontStyle: 'Handwritten',
+      designer: 'Pablo Ferro',
+      film_director: 'Stanley Kubrick',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'UK',
+    },
+    {
+      title: 'Febbre da cavallo',
+      img: febbreSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Estro (customized)',
+      fontStyle: 'Serif',
+      designer: 'Uncredited',
+      film_director: 'Steno',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'Italy',
+    },
+    {
+      title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+      img: drSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Custom',
+      fontStyle: 'Handwritten',
+      designer: 'Pablo Ferro',
+      film_director: 'Stanley Kubrick',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'UK',
+    },
+    {
+      title: 'Febbre da cavallo',
+      img: febbreSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Estro (customized)',
+      fontStyle: 'Serif',
+      designer: 'Uncredited',
+      film_director: 'Steno',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'Italy',
+    },
+    {
+      title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+      img: drSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Custom',
+      fontStyle: 'Handwritten',
+      designer: 'Pablo Ferro',
+      film_director: 'Stanley Kubrick',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'UK',
+    },
+    {
+      title: 'Febbre da cavallo',
+      img: febbreSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Estro (customized)',
+      fontStyle: 'Serif',
+      designer: 'Uncredited',
+      film_director: 'Steno',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'Italy',
+    },
+    {
+      title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+      img: drSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Custom',
+      fontStyle: 'Handwritten',
+      designer: 'Pablo Ferro',
+      film_director: 'Stanley Kubrick',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'UK',
+    },
+    {
+      title: 'Febbre da cavallo',
+      img: febbreSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Estro (customized)',
+      fontStyle: 'Serif',
+      designer: 'Uncredited',
+      film_director: 'Steno',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'Italy',
+    },
+    {
+      title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+      img: drSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Custom',
+      fontStyle: 'Handwritten',
+      designer: 'Pablo Ferro',
+      film_director: 'Stanley Kubrick',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'UK',
+    },
+    {
+      title: 'Febbre da cavallo',
+      img: febbreSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Estro (customized)',
+      fontStyle: 'Serif',
+      designer: 'Uncredited',
+      film_director: 'Steno',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'Italy',
+    },
+    {
+      title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+      img: drSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Custom',
+      fontStyle: 'Handwritten',
+      designer: 'Pablo Ferro',
+      film_director: 'Stanley Kubrick',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'UK',
+    },
+
   ]
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [moreInfo, setMoreInfo] = useState(false);
@@ -189,10 +360,15 @@ const App = () => {
 
   }, [filteredData]);
 
-  console.log('realData', realData);
+
 
   return (
-    <div style={{ backgroundColor: '#0D0D0D', minHeight: '100vh' }}>
+    <div style={{
+      backgroundColor: '#0D0D0D',
+      // overflowY: 'scroll',/* Abilita lo scroll verticale */
+      // scrollBehavior: 'smooth',
+      // transition: ' scroll-behavior 7.5s ease',  /* Applica un'animazione di scorrimento */
+    }}>
 
       <Header isMobile={isMobile} setOpenFilters={setOpenFilters} setColumnWidth={setColumnWidth} darkMode={darkMode} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
       <div style={{ padding: ' 0 16px 16px 16px' }}>
