@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import './App.css';
 import { useMediaQuery } from '@react-hook/media-query'
 import drSvg from './assets/dr.svg';
-import coffeeSvg from './assets/coffe.svg';
+import coffeeSvg from './assets/coffee.svg';
 import uccelloSvg from './assets/uccello.svg';
 import nakedSvg from './assets/naked.svg';
 import midnightSvg from './assets/midnight.svg';
@@ -11,6 +11,7 @@ import videodromeSvg from './assets/videodrome.svg';
 import febbreSvg from './assets/febbre.svg';
 import halloweenSvg from './assets/halloween.svg';
 import dollariSvg from './assets/dollari.svg';
+import goodbyeSvg from './assets/goodbye.svg';
 import Card from "./components/Card";
 import { Grid } from "@mui/material";
 import Header from "./components/Header";
@@ -26,6 +27,21 @@ const App = () => {
 
   const data = [
     {
+      title: 'The Long Goodbye',
+      img: goodbyeSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Blippo',
+      fontStyle: 'Sans Serif',
+      designer: 'Uncredited',
+      film_director: 'Robert Altman',
+      year: '1973',
+      genre: 'Drama',
+      country: 'USA',
+    },
+    {
+      title: 'Coffee and Cigarettes',
       img: coffeeSvg,
       filter: 'invert(0%) sepia(12%) saturate(2060%) hue-rotate(329deg) brightness(82%) contrast(108%)',
       bgColor: '#FFFFFF',
@@ -39,6 +55,21 @@ const App = () => {
       country: 'USA',
     },
     {
+      title: 'Halloween',
+      img: halloweenSvg,
+      filter: 'invert(81%) sepia(49%) saturate(4872%) hue-rotate(355deg) brightness(102%) contrast(102%)',
+      bgColor: '#100200',
+      textColor: '#FFFFFF',
+      typeface: 'ITC Serif Gothic',
+      fontStyle: 'Serif',
+      designer: 'Uncredited',
+      film_director: 'John Carpenter',
+      year: '1978',
+      genre: 'Horror',
+      country: 'USA',
+    },
+    {
+      title: 'Videodrome',
       img: videodromeSvg,
       filter: 'brightness(0) saturate(100%) invert(58%) sepia(30%) saturate(3688%) hue-rotate(341deg) brightness(98%) contrast(94%)',
       bgColor: '#020101',
@@ -52,8 +83,9 @@ const App = () => {
       country: 'Canada',
     },
     {
+      title: 'Naked Lunch',
       img: nakedSvg,
-      color: '#1A0406',
+      filter: 'brightness(0) saturate(100%) invert(6%) sepia(71%) saturate(254%) hue-rotate(334deg) brightness(102%) contrast(104%)',
       bgColor: '#FFDC4A',
       textColor: '#000000',
       typeface: 'Futura',
@@ -65,8 +97,9 @@ const App = () => {
       country: 'Canada',
     },
     {
+      title: 'Per un pugno di dollari',
       img: dollariSvg,
-      color: '#F7C886',
+      filter: 'brightness(0) saturate(100%) invert(92%) sepia(87%) saturate(1119%) hue-rotate(303deg) brightness(110%) contrast(93%)',
       bgColor: '#BB1F01',
       textColor: '#FFFFFF',
       typeface: 'Custom',
@@ -78,30 +111,60 @@ const App = () => {
       country: 'Italy',
     },
     {
-      img: nakedSvg,
-      color: '#1A0406',
-      bgColor: '#FFDC4A',
-      textColor: '#000000',
-      typeface: 'Futura',
+      title: 'Midnight Cowboy',
+      img: midnightSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Britannic Ultra',
       fontStyle: 'Sans Serif',
-      designer: 'Randall Balsmeyer, Mimi Everett',
-      film_director: 'David Cronenberg',
-      year: '1991',
-      genre: 'Horror',
-      country: 'Canada',
+      designer: 'Uncredited',
+      film_director: 'John Schlesinger',
+      year: '1969',
+      genre: 'Drama',
+      country: 'USA',
     },
     {
-      img: dollariSvg,
-      color: '#F7C886',
-      bgColor: '#BB1F01',
+      title: 'L’uccello dalle piume di cristallo',
+      img: uccelloSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Helvetica Black extended with alternate R',
+      fontStyle: 'Sans Serif',
+      designer: 'Uncredited',
+      film_director: 'Dario Argento',
+      year: '1970',
+      genre: 'Thriller',
+      country: 'Italy',
+    },
+    {
+      title: 'Febbre da cavallo',
+      img: febbreSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
+      textColor: '#FFFFFF',
+      typeface: 'Estro (customized)',
+      fontStyle: 'Serif',
+      designer: 'Uncredited',
+      film_director: 'Steno',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'Italy',
+    },
+    {
+      title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+      img: drSvg,
+      filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+      bgColor: '#000000',
       textColor: '#FFFFFF',
       typeface: 'Custom',
       fontStyle: 'Handwritten',
-      designer: 'Iginio Lardani',
-      film_director: 'Sergio Leone',
-      year: '1964',
-      genre: 'Western',
-      country: 'Italy',
+      designer: 'Pablo Ferro',
+      film_director: 'Stanley Kubrick',
+      year: '1976',
+      genre: 'Comedy',
+      country: 'UK',
     },
   ]
   const isMobile = useMediaQuery('(max-width: 768px)');
@@ -126,6 +189,8 @@ const App = () => {
 
   }, [filteredData]);
 
+  console.log('realData', realData);
+
   return (
     <div style={{ backgroundColor: '#0D0D0D', minHeight: '100vh' }}>
 
@@ -135,7 +200,7 @@ const App = () => {
 
       </div>
       <Grid container >
-        {realData.map((card, index) => {
+        {realData?.map((card, index) => {
           return (
             <Card width={isMobile ? 5 : columnWidth} darkMode={darkMode} moreInfo={moreInfo} key={index} item={card} />
           )
@@ -143,7 +208,7 @@ const App = () => {
       </Grid>
       <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
       <FixedFilters>
-        <Input setData={setRealData} data={data} style={{ width: '313px' }} placeholder={'Search for movies, font, director ...'} />
+        <Input setData={setRealData} data={data} style={{ width: '275px' }} placeholder={'Search for movies, font, director ...'} />
         <div onClick={() => { setOpenFilters(true) }} className="input-box">
           Filter
         </div>
@@ -156,9 +221,9 @@ const App = () => {
               aria-label="Size"
               defaultValue={3}
               // valueLabelDisplay="auto"
-              shiftStep={5}
+
               step={1}
-              marks
+
               size='small'
               min={1}
               max={5}

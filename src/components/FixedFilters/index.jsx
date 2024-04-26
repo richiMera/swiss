@@ -9,7 +9,6 @@ import './style.css';
 const FixedFilters = ({ children }) => {
 
 
-
     return (
         <div className='fixed-end-filter'>
 

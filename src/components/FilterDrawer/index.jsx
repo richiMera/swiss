@@ -3,10 +3,8 @@ import React, { useEffect, useState } from 'react';
 
 import './style.css'
 import { Drawer } from '@mui/material';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Chip from '../Chip';
+import closeS from '../../assets/close-s.svg';
 
 
 
@@ -19,6 +17,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
 
     const [filtersData, setFiltersData] = useState({});
     const [innerFilters, setInnerFilters] = useState({});
+
     const drawerPaperStyle = {
         width: '100%',
         height: '60%',
@@ -80,60 +79,140 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
 
     }, []);
 
+    const [myFilter, setMyFilter] = useState([{
+        type: 'fontStyle',
+        values: [],
+        data: []
+    }, {
+        type: 'dedace',
+        values: [],
+        data: []
+    },
+    {
+        type: 'genre',
+        values: [],
+        data: []
+    },
+    {
+        type: 'country',
+        values: [],
+        data: []
+    }
+    ]);
 
+    // clicco du uno, si riempie a quel punto cerco tutti gli elementi che hanno quello, 
+    console.log('myFilter', myFilter);
+    const fillMyFilter = (type, value) => {
+        const lozz = [...myFilter];
 
-    const handleChange = (category, option) => (event) => {
-        const checked = event.target.checked;
-        console.log('checked', checked);
-        setInnerFilters(prevOptions => ({
-            ...prevOptions,
-            [category]: {
-                ...prevOptions[category],
-                [option]: checked ? checked : false
-            }
-        }));
+        const obj = lozz.find((f) => f.type === type);
+        const filtered = data.filter((f) => f[type] === value);
+        if (!obj.values.includes(value)) {
+            obj.values.push(value);
+            obj.data = [...obj.data, ...filtered];
 
+        } else {
+            obj.values = obj.values.filter((v) => v !== value);
+        }
+        setMyFilter(lozz);
 
-    };
+    }
 
+    Object.compare = function (obj1, obj2) {
+        // Loop attraverso le proprietà dell'oggetto 1
+        for (var p in obj1) {
+            // Verifica se la proprietà esiste in entrambi gli oggetti
+            if (obj1.hasOwnProperty(p) !== obj2.hasOwnProperty(p)) return false;
 
-    const clickFilter = () => {
-        const trueKeys = [];
-        const copyArray = [...data]
-        for (const category in innerFilters) {
-            // Verifica se il valore della categoria corrente è un oggetto
-            if (typeof innerFilters[category] === 'object') {
-                // Cicla attraverso ogni chiave all'interno della categoria corrente
-                for (const key in innerFilters[category]) {
-                    // Se il valore della chiave corrente è true e la categoria è 'decade'
-                    if (innerFilters[category][key] === true && category === 'decade') {
-                        // Estrai l'inizio e la fine della decade
-                        const decadeStart = parseInt(key.substring(0, 3) + '0');
-                        const decadeEnd = decadeStart + 9;
-
-                        // Aggiungi tutte le chiavi comprese tra l'inizio e la fine della decade
-                        for (let i = decadeStart; i <= decadeEnd; i++) {
-                            trueKeys.push(i.toString()); // Converti in stringa se necessario
-                        }
-                    } else if (innerFilters[category][key] === true) {
-                        // Se il valore della chiave corrente è true, pushalo nell'array trueKeys
-                        trueKeys.push(key);
-                    }
-                }
+            // Confronta il tipo di proprietà
+            switch (typeof (obj1[p])) {
+                // Confronto profondo degli oggetti
+                case 'object':
+                    if (!Object.compare(obj1[p], obj2[p])) return false;
+                    break;
+                // Confronto del codice della funzione
+                case 'function':
+                    if (typeof (obj2[p]) == 'undefined' || (p !== 'compare' && obj1[p].toString() !== obj2[p].toString())) return false;
+                    break;
+                // Confronto dei valori
+                default:
+                    if (obj1[p] !== obj2[p]) return false;
             }
         }
 
-        const filteredDataX = copyArray.filter(item =>
-            // Verificare se almeno una delle proprietà dell'elemento corrente è presente in trueKeys
-            Object.keys(item).some(key => trueKeys.includes(item[key]))
-        );
-
-        console.log('trueKeys', trueKeys, filteredDataX);
-
-        setFilteredData(filteredDataX);
-        setOpenFilters(false);
-
+        // Verifica se ci sono proprietà extra nell'oggetto 2
+        for (var p in obj2) {
+            if (typeof (obj1[p]) === 'undefined') return false;
+        }
+        return true;
     };
+
+    useEffect(() => {
+
+        let count = 0;
+
+        for (const item of myFilter) {
+            if (item.values.length > 0) {
+                count++;
+            }
+        }
+
+        if (count >= 2) {
+
+            console.log("Almeno due values.length sono maggiori di 0");
+
+
+            const allDataObjects = [];
+
+            // Concateniamo tutti gli oggetti presenti negli array data
+            for (const item of myFilter) {
+                allDataObjects.push(...item.data);
+            }
+
+            console.log('filteredMyFilterALL', allDataObjects);
+            // Filtriamo gli oggetti identici
+            const filteredIdenticalObjects = allDataObjects.filter((obj, index, self) => {
+                // Cerchiamo se ci sono altri oggetti identici a quello corrente
+                return self.findIndex((o) => Object.compare(o, obj)) !== index;
+            });
+
+            if (filteredIdenticalObjects.length === 0) {
+                // Se non ci sono duplicati, restituisci un array vuoto
+
+                setFilteredData([]);
+                return [];
+            } else {
+                // Altrimenti, restituisci l'array di oggetti duplicati
+
+                setFilteredData(filteredIdenticalObjects);
+
+            }
+
+
+
+
+
+
+
+        } else if (count === 1) {
+            console.log("Solo uno values.length è maggiore di 0");
+            const allDataObjects = [];
+            for (const item of myFilter) {
+                allDataObjects.push(...item.data);
+            }
+            setFilteredData(allDataObjects);
+        } else {
+            console.log("Nessun values.length è maggiore di 0");
+            setFilteredData(data);
+        }
+
+
+    }, [myFilter]);
+
+    //fare filtro || su stesso type, am && con altri type
+
+
+
 
     //transitionDuration={{ enter: 500, exit: 1000 }}
     return (
@@ -144,6 +223,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                 <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: '24px', color: '#ECECEC' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
                         <p className='p-regular'>Filter</p>
+                        <img style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} src={closeS} />
                     </div>
                     <div style={{ overflowY: 'auto', height: 'calc(100% - 110px)', display: 'flex' }}>
                         <div style={{ width: '50%' }}>
@@ -152,7 +232,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                                 <div className='chip-container'>
                                     {(filtersData.classifications) && Object.entries(filtersData.classifications).map(([font, count]) => {
                                         console.log(innerFilters['classifications'][font]); return (
-                                            <Chip key={font} text={font} />
+                                            <Chip onClick={() => { fillMyFilter('fontStyle', font) }} key={font} text={font} />
                                         )
                                     })}
 
@@ -165,7 +245,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                                 <p style={{ marginBottom: '16px' }} className='p-regular'>Film period</p>
                                 <div className='chip-container'>
                                     {filtersData.decade && Object.entries(filtersData.decade).map(([year, count]) => (
-                                        <Chip key={year} text={year} />
+                                        <Chip key={year} text={year + 's'} />
                                     ))}
                                 </div>
                             </div>
@@ -175,7 +255,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                                 <p style={{ marginBottom: '16px' }} className='p-regular'>Film genre</p>
                                 <div className='chip-container'>
                                     {filtersData.genres && Object.entries(filtersData.genres).map(([genre, count]) => (
-                                        <Chip key={genre} text={genre} />
+                                        <Chip onClick={() => { fillMyFilter('genre', genre) }} key={genre} text={genre} />
                                     ))}
                                 </div>
 
@@ -185,7 +265,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                                 <p style={{ marginBottom: '16px' }} className='p-regular'>Country</p>
                                 <div className='chip-container'>
                                     {filtersData.countries && Object.entries(filtersData.countries).map(([country, count]) => (
-                                        <Chip key={country} text={country} />
+                                        <Chip onClick={() => { fillMyFilter('country', country) }} key={country} text={country} />
                                     ))}
                                 </div>
 

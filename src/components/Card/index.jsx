@@ -94,6 +94,7 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
                     zIndex: '200',
                     color: '#ECECEC',
                     backgroundColor: '#E72A00',
+                    transition: 'all 0.2 ease',
                     pointerEvents: 'none',
                     display: 'inline-block', // Utilizzato per mantenere il div nella stessa riga del testo
                 }}
@@ -104,39 +105,39 @@ const Card = ({ item, width, moreInfo, darkMode }) => {
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={() => { setOpen(true) }}
                 style={{ position: open ? 'fixed' : '', top: open ? '0%' : '', left: '0', cursor: 'pointer', maxWidth: open ? '100%' : '', height: open ? '100vh' : '', zIndex: open ? '70000' : '', width: open ? '100%' : '' }} item xs={xs}>
-                <div style={{ outline: '1px solid #272727', backgroundColor: isHovered || open ? item.bgColor : '#0D0D0D', width: open ? '100%' : '', zIndex: open ? '6000' : '', height: open ? '100vh' : divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 7%', position: 'relative', overflow: 'hidden' }} >
-                    {open && <div onClick={(e) => { e.stopPropagation(); setOpen(false); setIsHovered(false); }} style={{ zIndex: '6000', position: 'absolute', top: '24px', right: '24px', backgroundColor: '#1E1E1E', borderRadius: '50%', width: '24px', height: '24px', padding: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ outline: '1px solid #272727', backgroundColor: isHovered || open ? item.bgColor : '#0D0D0D', width: open ? '100%' : '', zIndex: open ? '6000' : '', height: open ? '100vh' : divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 12%', position: 'relative', overflow: 'hidden' }} >
+                    {open && <div onClick={(e) => { e.stopPropagation(); setOpen(false); setIsHovered(false); }} style={{ zIndex: '6000', position: 'absolute', top: '24px', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <img src={closeSvg} />
                     </div>}
-                    <img style={{ transform: isHovered && !open ? 'scale(0.95)' : 'scale(1)', width: '100%', filter: isHovered || open ? item?.filter : 'invert(99%) sepia(0%) saturate(3892%) hue-rotate(194deg) brightness(119%) contrast(85%)', transition: 'transform 0.5s' }} src={item.img} />
+                    <img style={{ transform: isHovered && !open ? 'scale(0.95)' : 'scale(1)', width: '100%', filter: isHovered || open ? item?.filter : '', transition: 'transform 0.5s' }} src={item.img} />
                     {!open ? <div style={{ position: 'absolute', bottom: isHovered ? '16px' : '-50px', left: '24px', transition: 'bottom 0.5s' }}>
                         <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
                         <p className='p-small' style={{ color: item?.textColor }}>{item?.typeface}</p>
                     </div> :
                         <div style={{ position: 'absolute', bottom: '24px', left: '50%', transition: 'bottom 0.5s', transform: 'translateX(-50%)', display: 'flex', gap: '3%', justifyContent: 'center', width: '200%' }}>
                             <div>
-                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
-                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.typeface}</p>
+                                <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
+                                <p className='p-big' style={{ color: item?.textColor }}>{item?.typeface}</p>
                             </div>
                             <div>
-                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Title Designer / Studio</p>
-                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.designer}</p>
+                                <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Title Designer / Studio</p>
+                                <p className='p-big' style={{ color: item?.textColor }}>{item?.designer}</p>
                             </div>
                             <div>
-                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Film Director</p>
-                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.film_director}</p>
+                                <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Film Director</p>
+                                <p className='p-big' style={{ color: item?.textColor }}>{item?.film_director}</p>
                             </div>
                             <div>
-                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Year</p>
-                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.year}</p>
+                                <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Year</p>
+                                <p className='p-big' style={{ color: item?.textColor }}>{item?.year}</p>
                             </div>
                             <div>
-                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Genre</p>
-                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.genre}</p>
+                                <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Genre</p>
+                                <p className='p-big' style={{ color: item?.textColor }}>{item?.genre}</p>
                             </div>
                             <div>
-                                <p className='p-regular' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Country</p>
-                                <p className='p-regular' style={{ color: item?.textColor }}>{item?.country}</p>
+                                <p className='p-smalls' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Country</p>
+                                <p className='p-big' style={{ color: item?.textColor }}>{item?.country}</p>
                             </div>
                         </div>
                     }

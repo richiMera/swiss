@@ -22,7 +22,7 @@ p.p-small {
 }
 
 p.p-big {
-  font-size: 24px
+  font-size: 18px
 }
 
 h1.p-regular,
@@ -58,6 +58,7 @@ h1.title,
   display: flex;
   align-items: center;
   transition: background-color 0.3s ease-out;
+  line-height: 100%;
 }
 
 
@@ -82,11 +83,14 @@ h1.title,
 .filter-chip {
   padding: 10px 16px;
   background-color: #2D2D2D;
-  color: #ECECEC;
+  color: #BBBBBB;
   width: fit-content;
   border-radius: 30px;
+  border: 1px solid #404040;
   cursor: pointer;
   transition: background-color 0.3s ease-out;
+  display: flex;
+  align-items: center;
 }
 
 .filter-chip:hover {
@@ -107,5 +111,5 @@ h1.title,
 
 .chip-container {
   display: flex;
-  gap: 1%;
+  gap: 8px;
 }

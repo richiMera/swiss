@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import closeXs from '../../assets/close-xs.svg'
 
 
 
@@ -8,11 +9,18 @@ const Chip = ({ text, onClick }) => {
 
 
     const [selected, setSelected] = useState(false);
+    const handleClick = () => {
+        setSelected(!selected);
+        if (onClick) {
+            onClick(); // Chiamare la funzione onClick passata come props, se presente
+        }
+    };
 
     return (
         <>
-            <div onClick={() => { setSelected(true); onClick }} className={selected ? 'filter-chip selected' : 'filter-chip'}>
-                <p>{text} {selected && <span onClick={(e) => { e.stopPropagation(); setSelected(false) }}>X</span>}</p>
+            <div onClick={handleClick} className={selected ? 'filter-chip selected' : 'filter-chip'}>
+                <p style={{ marginRight: '10px' }}>{text} </p>
+                {selected && <img src={closeXs} />}
             </div>
 
         </>
