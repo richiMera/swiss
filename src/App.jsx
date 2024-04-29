@@ -384,7 +384,9 @@ const App = () => {
       </Grid>
       <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
       <FixedFilters>
-        <Input setData={setRealData} data={data} style={{ width: '275px' }} placeholder={'Search for movies, font, director ...'} />
+        <Input type={'search'} setData={setRealData} data={data} style={{ width: '313px' }} placeholder={'Search for movies, font, director ...'} />
+        <Input type={'sort'} setData={setRealData} data={data} style={{ width: '313px' }} placeholder={'Search for movies, font, director ...'} />
+
         <div onClick={() => { setOpenFilters(true) }} className="input-box">
           Filter
         </div>
@@ -394,6 +396,9 @@ const App = () => {
             <p style={{ marginRight: '16px' }} className='p-regular pointer'>Size:</p>
             <Slider
               style={{ width: '88px', padding: 0, color: '#ECECEC' }}
+              classes={{
+                thumb: "thumb"
+              }}
               aria-label="Size"
               defaultValue={3}
               // valueLabelDisplay="auto"

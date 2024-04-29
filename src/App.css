@@ -33,6 +33,11 @@ p.p-regular {
   line-height: 100%;
 }
 
+p.p-regular {
+  font-weight: 200;
+}
+
+
 .pointer {
   cursor: pointer;
 }
@@ -46,6 +51,7 @@ p.p-regular {
 h1.title,
 .title {
   font-size: 32px;
+  font-weight: 200;
 }
 
 .input-box {
@@ -60,6 +66,8 @@ h1.title,
   align-items: center;
   transition: background-color 0.3s ease-out;
   line-height: 100%;
+  letter-spacing: 0.1px;
+  font-weight: 200;
 }
 
 
@@ -73,7 +81,9 @@ h1.title,
 }
 
 .input-container:focus-within #search-icon {
-  filter: invert(36%) sepia(87%) saturate(7497%) hue-rotate(11deg) brightness(97%) contrast(101%);
+  opacity: 1 !important;
+  /* filter: invert(36%) sepia(87%) saturate(7497%) hue-rotate(11deg) brightness(97%) contrast(101%); */
+  /* filter: brightness(0) saturate(100%) invert(98%) sepia(27%) saturate(140%) hue-rotate(182deg) brightness(118%) contrast(85%); */
 }
 
 .MuiSlider-thumb {
@@ -92,6 +102,7 @@ h1.title,
   transition: background-color 0.3s ease-out;
   display: flex;
   align-items: center;
+  font-weight: 200;
 }
 
 .filter-chip:hover {
@@ -101,6 +112,7 @@ h1.title,
 .filter-chip.selected,
 .filter-chip.selected:hover {
   background-color: #E72A00;
+  border: 1px solid #E72A00;
 }
 
 .filter-chip.disabled,
@@ -113,4 +125,32 @@ h1.title,
 .chip-container {
   display: flex;
   gap: 8px;
+}
+
+.thumb:hover,
+.thumb.Mui-focusVisible {
+  box-shadow: none !important;
+}
+
+#sort-menu {
+  width: 240px;
+  position: absolute;
+  top: -282px;
+  background-color: #1E1E1E;
+  border-radius: 30px;
+  padding: 12px;
+}
+
+.sort-item {
+  padding: 16px;
+  border-radius: 30px;
+  color: #ECECEC;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: 200;
+}
+
+.sort-item:hover {
+  background-color: rgba(236, 236, 236, 0.08);
 }

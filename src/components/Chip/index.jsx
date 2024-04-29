@@ -19,7 +19,7 @@ const Chip = ({ text, onClick }) => {
     return (
         <>
             <div onClick={handleClick} className={selected ? 'filter-chip selected' : 'filter-chip'}>
-                <p style={{ marginRight: '10px' }}>{text} </p>
+                <p style={{ marginRight: selected ? '10px' : '', color: selected ? '#ececec' : '' }}>{text} </p>
                 {selected && <img src={closeXs} />}
             </div>
 

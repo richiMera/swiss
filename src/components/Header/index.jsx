@@ -15,7 +15,7 @@ const Header = ({ isMobile }) => {
             <Grid padding={{ width: '100%', marginTop: '0', marginLeft: '0', alignItems: 'center' }} container >
                 <Grid style={{ paddingLeft: '0' }} item xs={4}>
                     <div>
-                        <h1 style={{ fontWeight: '400' }} onClick={() => { window.location.reload(); }} className='p-regular pointer'>Cinema<span style={{ color: '#E72A00' }}>Typography</span></h1>
+                        <h1 style={{ fontWeight: '200' }} onClick={() => { window.location.reload(); }} className='p-regular pointer'>Cinema<span style={{ color: '#E72A00', fontWeight: '400' }}>Typography</span></h1>
 
                     </div>
                 </Grid >
