@@ -372,7 +372,7 @@ const App = () => {
 
       <Header isMobile={isMobile} setOpenFilters={setOpenFilters} setColumnWidth={setColumnWidth} darkMode={darkMode} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
       <div style={{ padding: ' 0 16px 16px 16px' }}>
-        <p style={{ color: '#272727' }} className="p-regular">Entries ({realData.length})</p>
+        <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
 
       </div>
       <Grid container >
@@ -385,11 +385,11 @@ const App = () => {
       <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
       <FixedFilters>
         <Input type={'search'} setData={setRealData} data={data} style={{ width: '313px' }} placeholder={'Search for movies, font, director ...'} />
-        <Input type={'sort'} setData={setRealData} data={data} style={{ width: '313px' }} placeholder={'Search for movies, font, director ...'} />
 
         <div onClick={() => { setOpenFilters(true) }} className="input-box">
           Filter
         </div>
+        <Input type={'sort'} setData={setRealData} data={data} style={{ width: '320px' }} placeholder={'Search for movies, font, director ...'} />
 
         {!isMobile &&
           <div className="input-box">

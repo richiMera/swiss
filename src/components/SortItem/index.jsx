@@ -15,7 +15,7 @@ const SortItem = ({ active, text, onClick }) => {
     return (
 
         <div onClick={onClick} className='sort-item'>
-            {active && <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#E72A00', marginRight: '10px' }}></div>}
+            {active && <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#E72A00', marginRight: '10px' }}></div>}
             <p>{text}</p>
         </div>
 

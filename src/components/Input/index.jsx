@@ -59,9 +59,9 @@ const Input = ({ isMobile, setFilter, placeholder, style, data, setData, type })
                         )
                     })}
                 </div>}
-                <img id={'arrow-sort'} style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)' }} src={arrowRed} />
+                <img id={'arrow-sort'} style={{ position: 'absolute', right: '20px', top: '50%', transform: openSort ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)' }} src={arrowRed} />
 
-                <div style={{ width: '240px' }} onClick={() => { setOpenSort(true) }} className="input-box">
+                <div style={{ width: '240px', backgroundColor: openSort ? '#161616' : '' }} onClick={() => { setOpenSort(true) }} className="input-box">
                     Sort by: {sort}
                 </div>
             </div>}

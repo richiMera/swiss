@@ -137,13 +137,13 @@ h1.title,
   position: absolute;
   top: -282px;
   background-color: #1E1E1E;
-  border-radius: 30px;
+  border-radius: 24px;
   padding: 12px;
 }
 
 .sort-item {
   padding: 16px;
-  border-radius: 30px;
+  border-radius: 16px;
   color: #ECECEC;
   cursor: pointer;
   display: flex;
