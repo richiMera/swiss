@@ -23,7 +23,8 @@ p.p-small {
 }
 
 p.p-big {
-  font-size: 18px
+  font-size: 18px;
+  font-weight: 200;
 }
 
 h1.p-regular,

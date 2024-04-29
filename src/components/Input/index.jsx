@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import searchIcon from '../../assets/search.svg';
 import arrowRed from '../../assets/arrow-down-red.svg'
+import closeXs from '../../assets/close-xs.svg'
 import SortItem from '../SortItem';
 
 
@@ -50,6 +51,7 @@ const Input = ({ isMobile, setFilter, placeholder, style, data, setData, type })
             {type === 'search' && <>
                 <img id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4' }} src={searchIcon} />
                 <input style={{ paddingLeft: '45px', fontSize: '16px', letterSpacing: '.1px', ...style }} className='input-box' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
+                {value && <img onClick={() => { setValue('') }} id={'search-icon'} style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)' }} src={closeXs} />}
             </>}
             {type === 'sort' && <div>
                 {openSort && <div id='sort-menu'>
