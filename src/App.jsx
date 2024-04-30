@@ -19,13 +19,14 @@ import FilterDrawer from "./components/FilterDrawer";
 import Input from "./components/Input";
 import FixedFilters from "./components/FixedFilters";
 import Slider from '@mui/material/Slider';
+import Lenis from 'lenis';
 
 
 
 
 const App = () => {
 
-
+  const lenis = new Lenis()
 
   const data = [
     {
@@ -359,6 +360,21 @@ const App = () => {
 
   }, [filteredData]);
 
+  useEffect(() => {
+    lenis.on('scroll', (e) => {
+      console.log(e)
+    })
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+  }, []);
+
+
+
 
 
   return (
@@ -383,12 +399,14 @@ const App = () => {
       </Grid>
       <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
       <FixedFilters>
-        <Input type={'search'} setData={setRealData} data={data} style={{ width: '313px' }} placeholder={'Search for movies, font, director ...'} />
+        <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: '313px' }} placeholder={'Search for movies, font, director ...'} />
 
-        <div onClick={() => { setOpenFilters(true) }} className="input-box">
-          Filter
+        <div style={{ width: isMobile ? '100%' : '' }}>
+          <div style={{ width: isMobile ? 'fit-content' : '' }} onClick={() => { setOpenFilters(true) }} className="input-box">
+            Filter
+          </div>
         </div>
-        <Input type={'sort'} setData={setRealData} data={data} style={{ width: '320px' }} placeholder={'Search for movies, font, director ...'} />
+        <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} style={{ width: '320px' }} placeholder={'Search for movies, font, director ...'} />
 
         {!isMobile &&
           <div className="input-box">

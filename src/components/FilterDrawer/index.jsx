@@ -20,7 +20,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
 
     const drawerPaperStyle = {
         width: '100%',
-        height: isMobile ? '60%' : '',
+        height: isMobile ? '60%' : 'auto',
         borderTopLeftRadius: '20px',
         borderTopRightRadius: '20px',
         backgroundColor: 'transparent'
