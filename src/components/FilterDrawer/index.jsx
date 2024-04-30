@@ -20,7 +20,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
 
     const drawerPaperStyle = {
         width: '100%',
-        // height: '60%',
+        height: isMobile ? '60%' : '',
         borderTopLeftRadius: '20px',
         borderTopRightRadius: '20px',
         backgroundColor: 'transparent'
@@ -219,14 +219,14 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
         <>
             <Drawer style={{ width: '100%' }} sx={{
                 '& .MuiDrawer-paper': drawerPaperStyle,
-            }} anchor='bottom' onClose={() => { setOpenFilters(false) }} open={open}>
-                <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: '24px 24px 160px 24px', color: '#ECECEC' }}>
+            }} anchor={isMobile ? 'top' : 'bottom'} onClose={() => { setOpenFilters(false) }} open={open}>
+                <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: isMobile ? '24px' : '24px 24px 160px 24px', color: '#ECECEC' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
                         <p className='p-regular'>Filter</p>
                         <img style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} src={closeS} />
                     </div>
-                    <div style={{ overflowY: 'auto', height: 'calc(100% - 110px)', display: 'flex' }}>
-                        <div style={{ width: '50%' }}>
+                    <div style={{ overflowY: 'auto', height: 'calc(100% - 110px)', display: isMobile ? '' : 'flex' }}>
+                        <div style={{ width: isMobile ? '100%' : '50%' }}>
                             <div style={{ marginBottom: '40px' }} >
                                 <p style={{ marginBottom: '16px' }} className='p-regular'>Font style</p>
                                 <div className='chip-container'>
@@ -250,7 +250,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                                 </div>
                             </div>
                         </div>
-                        <div style={{ width: '50%' }}>
+                        <div style={{ width: isMobile ? '100%' : '50%' }}>
                             <div style={{ marginBottom: '40px' }} >
                                 <p style={{ marginBottom: '16px' }} className='p-regular'>Film genre</p>
                                 <div className='chip-container'>
@@ -273,7 +273,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                             </div>
                         </div>
                     </div>
-                    <div style={{ width: 'fit-content', border: '1px solid #BBBBBB', color: '#BBBBBB' }} className='input-box'>
+                    <div style={{ width: 'fit-content', border: '1px solid #BBBBBB', color: '#BBBBBB', padding: isMobile ? '10px' : '' }} className='input-box'>
                         <p> Clear all</p>
                     </div>
                 </div>

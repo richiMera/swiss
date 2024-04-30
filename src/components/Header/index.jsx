@@ -7,7 +7,7 @@ import Info from '../Info';
 
 
 
-const Header = ({ isMobile }) => {
+const Header = ({ isMobile, openFilters }) => {
 
     const [openInfo, setOpenInfo] = useState(false);
     useEffect(() => {
@@ -23,7 +23,7 @@ const Header = ({ isMobile }) => {
 
     return (
         <header style={{ marginBottom: isMobile ? '0' : '' }}>
-            <Grid padding={{ width: '100%', marginTop: '0', marginLeft: '0', position: 'relative', zIndex: '7000' }} container >
+            <Grid padding={{ width: '100%', marginTop: '0', marginLeft: '0', position: 'relative', zIndex: openFilters ? '' : '7000' }} container >
                 <Grid style={{ paddingLeft: '0' }} item xs={!isMobile ? 4 : 6}>
                     <div>
                         <h1 style={{ fontWeight: '200' }} onClick={() => { window.location.reload(); }} className='p-regular pointer'>Cinema<span style={{ color: openInfo ? '#0D0D0D' : '#E72A00', fontWeight: '400' }}>Typography</span></h1>
@@ -65,7 +65,7 @@ const Header = ({ isMobile }) => {
                     </div>}
                 </Grid >}
             </Grid>
-            {openInfo && <Info />}
+            {openInfo && <Info isMobile={isMobile} />}
 
 
 

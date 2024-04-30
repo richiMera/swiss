@@ -369,7 +369,7 @@ const App = () => {
       // transition: ' scroll-behavior 7.5s ease',  /* Applica un'animazione di scorrimento */
     }}>
 
-      <Header isMobile={isMobile} setOpenFilters={setOpenFilters} setColumnWidth={setColumnWidth} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
+      <Header isMobile={isMobile} openFilters={openFilters} setColumnWidth={setColumnWidth} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
       <div style={{ padding: ' 0 16px 16px 16px' }}>
         <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
 
