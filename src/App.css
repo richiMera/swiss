@@ -155,3 +155,11 @@ h1.title,
 .sort-item:hover {
   background-color: rgba(236, 236, 236, 0.08);
 }
+
+.hover-transition {
+  transition: all 0.3s ease-out;
+}
+
+.hover-transition:hover {
+  opacity: 1 !important;
+}

@@ -340,7 +340,6 @@ const App = () => {
   ]
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [moreInfo, setMoreInfo] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
   const [openFilters, setOpenFilters] = useState(false);
   const [columnWidth, setColumnWidth] = useState(3);
 
@@ -370,7 +369,7 @@ const App = () => {
       // transition: ' scroll-behavior 7.5s ease',  /* Applica un'animazione di scorrimento */
     }}>
 
-      <Header isMobile={isMobile} setOpenFilters={setOpenFilters} setColumnWidth={setColumnWidth} darkMode={darkMode} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
+      <Header isMobile={isMobile} setOpenFilters={setOpenFilters} setColumnWidth={setColumnWidth} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
       <div style={{ padding: ' 0 16px 16px 16px' }}>
         <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
 
@@ -378,7 +377,7 @@ const App = () => {
       <Grid container >
         {realData?.map((card, index) => {
           return (
-            <Card width={isMobile ? 5 : columnWidth} darkMode={darkMode} moreInfo={moreInfo} key={index} item={card} />
+            <Card isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
           )
         })}
       </Grid>

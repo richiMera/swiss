@@ -45,6 +45,22 @@ const Input = ({ isMobile, setFilter, placeholder, style, data, setData, type })
         setData(result)
     }, [value]);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const sortMenu = document.getElementById('sort-menu');
+            const arrowSort = document.getElementById('arrow-sort');
+            const toggleButton = document.getElementById('sort-toggle-button'); // Aggiunto ID al div che apre il menu
+            if (sortMenu && !sortMenu.contains(event.target) && !arrowSort.contains(event.target) && !toggleButton.contains(event.target)) {
+                setOpenSort(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [openSort]);
+
 
     return (
         <div className='input-container' style={{ position: 'relative' }}>
@@ -61,9 +77,9 @@ const Input = ({ isMobile, setFilter, placeholder, style, data, setData, type })
                         )
                     })}
                 </div>}
-                <img id={'arrow-sort'} style={{ position: 'absolute', right: '20px', top: '50%', transform: openSort ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)' }} src={arrowRed} />
+                <img id={'arrow-sort'} style={{ position: 'absolute', right: '20px', top: '50%', transition: ' all 0.3s ease-out', transform: openSort ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)' }} src={arrowRed} />
 
-                <div style={{ width: '240px', backgroundColor: openSort ? '#161616' : '' }} onClick={() => { setOpenSort(true) }} className="input-box">
+                <div id='sort-toggle-button' style={{ width: '240px', backgroundColor: openSort ? '#161616' : '' }} onClick={() => { setOpenSort(!openSort) }} className="input-box">
                     Sort by: {sort}
                 </div>
             </div>}
