@@ -11,22 +11,22 @@ const Header = ({ isMobile, openFilters, scrollDirection }) => {
 
     const [openInfo, setOpenInfo] = useState(false);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (openInfo) {
-            function preventDefault(event) {
-                event.preventDefault();
-            }
-            window.addEventListener('wheel', preventDefault, { passive: false });
-            // Aggiungi un gestore per l'evento touchmove
-            window.addEventListener('touchmove', preventDefault, { passive: false });
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = ''; // Ripristina lo scroll
-        }
+    //     if (openInfo) {
+    //         function preventDefault(event) {
+    //             event.preventDefault();
+    //         }
+    //         window.addEventListener('wheel', preventDefault, { passive: false });
+    //         // Aggiungi un gestore per l'evento touchmove
+    //         window.addEventListener('touchmove', preventDefault, { passive: false });
+    //         document.body.style.overflow = 'hidden';
+    //     } else {
+    //         document.body.style.overflow = ''; // Ripristina lo scroll
+    //     }
 
-    }, [openInfo]);
-    console.log(scrollDirection);
+    // }, [openInfo]);
+    // console.log(scrollDirection);
 
 
     return (
