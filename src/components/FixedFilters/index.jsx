@@ -6,11 +6,11 @@ import './style.css';
 
 
 
-const FixedFilters = ({ children }) => {
+const FixedFilters = ({ children, isMobile }) => {
 
 
     return (
-        <div className='fixed-end-filter'>
+        <div style={{ bottom: isMobile ? '16px' : '', overflowX: isMobile ? 'scroll' : '', justifyContent: isMobile ? 'flex-start' : '', padding: isMobile ? '0 16px' : '' }} className='fixed-end-filter'>
 
 
             {children}

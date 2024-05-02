@@ -81,9 +81,10 @@ const Input = ({ isMobile, setFilter, placeholder, style, data, setData, type })
                         )
                     })}
                 </div>}
-                <img id={'arrow-sort'} style={{ position: 'absolute', right: '20px', top: '50%', transition: ' all 0.3s ease-out', transform: openSort ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)' }} src={arrowRed} />
 
-                <div id='sort-toggle-button' style={{ width: '240px', backgroundColor: openSort ? '#161616' : '' }} onClick={() => { setOpenSort(!openSort) }} className="input-box">
+
+                <div id='sort-toggle-button' style={{ width: '240px', backgroundColor: openSort ? '#161616' : '', position: 'relative' }} onClick={() => { setOpenSort(!openSort) }} className="input-box">
+                    <img id={'arrow-sort'} style={{ position: 'absolute', right: '20px', top: '50%', transition: ' all 0.3s ease-out', transform: openSort ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)' }} src={arrowRed} />
                     Sort by: {sort}
                 </div>
             </>}

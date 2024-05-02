@@ -20,7 +20,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
 
     const drawerPaperStyle = {
         width: '100%',
-        height: isMobile ? '60%' : 'auto',
+        height: isMobile ? '90%' : 'auto',
         borderTopLeftRadius: '20px',
         borderTopRightRadius: '20px',
         backgroundColor: 'transparent'
@@ -219,7 +219,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
         <>
             <Drawer style={{ width: '100%' }} sx={{
                 '& .MuiDrawer-paper': drawerPaperStyle,
-            }} anchor={isMobile ? 'top' : 'bottom'} onClose={() => { setOpenFilters(false) }} open={open}>
+            }} anchor={'bottom'} onClose={() => { setOpenFilters(false) }} open={open}>
                 <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: isMobile ? '24px' : '24px 24px 160px 24px', color: '#ECECEC' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
                         <p className='p-regular'>Filter</p>

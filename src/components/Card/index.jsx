@@ -13,21 +13,21 @@ const Card = ({ item, width, isMobile }) => {
     const [divPercentage, setDivPercentage] = useState(0);
     const [xs, setXs] = useState(4);
     const [isHovered, setIsHovered] = useState(false);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+    // const [position, setPosition] = useState({ x: 0, y: 0 });
     const [open, setOpen] = useState(false);
 
-    useEffect(() => {
-        const handleMouseMove = (event) => {
-            setPosition({ x: event.clientX, y: event.clientY + window.scrollY }); // Aggiungi lo scrollY
-        };
+    // useEffect(() => {
+    //     const handleMouseMove = (event) => {
+    //         setPosition({ x: event.clientX, y: event.clientY + window.scrollY }); // Aggiungi lo scrollY
+    //     };
 
-        document.addEventListener('mousemove', handleMouseMove);
+    //     document.addEventListener('mousemove', handleMouseMove);
 
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-        };
+    //     return () => {
+    //         document.removeEventListener('mousemove', handleMouseMove);
+    //     };
 
-    }, []);
+    // }, []);
 
 
 
@@ -95,7 +95,7 @@ const Card = ({ item, width, isMobile }) => {
 
     return (
         <>
-            {isHovered && <div
+            {/* {isHovered && <div
                 style={{
                     position: 'absolute',
                     left: position.x - 10, // Posiziona il div al centro del cursore
@@ -112,12 +112,12 @@ const Card = ({ item, width, isMobile }) => {
                 }}
             >
                 More
-            </div>}
+            </div>} */}
             <Grid onMouseEnter={() => { setIsHovered(true) }}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={() => { setOpen(true) }}
                 style={{ position: open ? 'fixed' : '', top: open ? '0%' : '', left: '0', cursor: 'pointer', maxWidth: open ? '100%' : '', height: open ? '100vh' : '', zIndex: open ? '70000' : '', width: open ? '100%' : '' }} item xs={xs}>
-                <div style={{ outline: '1px solid #272727', backgroundColor: isHovered || open ? item.bgColor : '#0D0D0D', width: open ? '100%' : '', zIndex: open ? '6000' : '', height: open ? '100vh' : divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '16px' : '10% 12%', position: 'relative', overflow: 'hidden', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '10%' : '' }} >
+                <div style={{ outline: '1px solid #272727', backgroundColor: isHovered || open ? item.bgColor : '#0D0D0D', width: open ? '100%' : '', zIndex: open ? '6000' : '', height: open ? '100vh' : divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile && open ? '16px' : '10% 12%', position: 'relative', overflow: 'hidden', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '10%' : '' }} >
                     {open && <div onClick={(e) => { e.stopPropagation(); setOpen(false); setIsHovered(false); }} style={{ zIndex: '6000', position: 'fixed', top: isMobile ? '' : '24px', bottom: isMobile ? '24px' : '', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                         <img src={closeSvg} />
                     </div>}

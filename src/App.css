@@ -135,11 +135,12 @@ h1.title,
 
 #sort-menu {
   width: 240px;
-  position: absolute;
-  top: -282px;
+  /* position: absolute;
+  top: -282px; */
   background-color: #1E1E1E;
   border-radius: 24px;
   padding: 12px;
+  margin-bottom: 10px;
 }
 
 .sort-item {

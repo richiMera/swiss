@@ -24,9 +24,12 @@ import Lenis from 'lenis';
 
 
 
+
 const App = () => {
 
-  const lenis = new Lenis()
+  const lenis = new Lenis();
+  const [scrollDirection, setScrollDirection] = useState('');
+
 
   const data = [
     {
@@ -362,7 +365,8 @@ const App = () => {
 
   useEffect(() => {
     lenis.on('scroll', (e) => {
-      console.log(e)
+      // console.log(e);
+      // setScrollDirection(e.direction)
     })
 
     function raf(time) {
@@ -371,9 +375,35 @@ const App = () => {
     }
 
     requestAnimationFrame(raf)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Aggiungi questo per ottenere uno scroll fluido
+    });
   }, []);
 
+  useEffect(() => {
+    let lastScrollTop = 0;
 
+    const handleScroll = () => {
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (currentScrollTop > lastScrollTop) {
+        setScrollDirection('down');
+      } else {
+        setScrollDirection('up');
+      }
+
+      lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  console.log(scrollDirection);
 
 
 
@@ -385,7 +415,7 @@ const App = () => {
       // transition: ' scroll-behavior 7.5s ease',  /* Applica un'animazione di scorrimento */
     }}>
 
-      <Header isMobile={isMobile} openFilters={openFilters} setColumnWidth={setColumnWidth} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
+      <Header scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setColumnWidth={setColumnWidth} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
       <div style={{ padding: ' 0 16px 16px 16px' }}>
         <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
 
@@ -398,7 +428,7 @@ const App = () => {
         })}
       </Grid>
       <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
-      <FixedFilters>
+      <FixedFilters isMobile={isMobile}>
         <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: '313px' }} placeholder={'Search for movies, font, director ...'} />
 
         <div style={{ width: isMobile ? '100%' : '' }}>
