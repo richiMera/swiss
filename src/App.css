@@ -10,6 +10,12 @@ html.lenis body {
   height: auto;
 }
 
+#loader {
+  height: 100vh;
+  background-color: #0d0d0d;
+  cursor: none !important;
+}
+
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }

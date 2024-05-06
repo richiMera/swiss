@@ -25,8 +25,11 @@ import FixedFilters from "./components/FixedFilters";
 import Slider from '@mui/material/Slider';
 import Lenis from 'lenis';
 import data from './data/data.js'
-import Info from "./components/Info/index.jsx";
 import Detail from "./components/Detail/index.jsx";
+import { motion } from "framer-motion"
+import Lottie from 'lottie-react';
+import animation from './loader.json'
+import Info from "./components/Info/index.jsx";
 
 
 
@@ -40,7 +43,7 @@ const App = () => {
 
 
   const isMobile = useMediaQuery('(max-width: 768px)');
-  const [moreInfo, setMoreInfo] = useState(false);
+  const [isOpenInfo, setIsOpenInfo] = useState(false);
   const [cardItem, setCardItem] = useState(null);
   const [openFilters, setOpenFilters] = useState(false);
   const [columnWidth, setColumnWidth] = useState(3);
@@ -48,6 +51,40 @@ const App = () => {
   const [filteredData, setFilteredData] = useState([])
 
   const [realData, setRealData] = useState([])
+  const [animationComplete, setAnimationComplete] = useState(false);
+  const handleAnimationComplete = () => {
+    setAnimationComplete(true);
+  };
+
+
+  const variantsCardsContainer = {
+    open: {
+      opacity: 1, y: '0', transition: {
+        delay: 0.1,
+        type: "tween",
+        duration: 1,
+        // type: "spring",
+        // stiffness: 400,
+        // damping: 40,
+      }
+    },
+
+  }
+
+  const variantsHeaderContainer = {
+    open: {
+      opacity: 1, y: '0', transition: {
+        delay: 0.1,
+        type: "tween",
+        duration: 1,
+        // type: "spring",
+        // stiffness: 400,
+        // damping: 40,
+      }
+    },
+
+  }
+
 
 
 
@@ -104,66 +141,99 @@ const App = () => {
     };
   }, []);
 
-  console.log(scrollDirection);
+
 
 
 
   return (
-    <div style={{
-      backgroundColor: '#0D0D0D',
-      // overflowY: 'scroll',/* Abilita lo scroll verticale */
-      // scrollBehavior: 'smooth',
-      // transition: ' scroll-behavior 7.5s ease',  /* Applica un'animazione di scorrimento */
-    }}>
-      <Detail setItem={setCardItem} isMobile={isMobile} item={cardItem} />
-      <Header scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setColumnWidth={setColumnWidth} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
-      <div style={{ padding: ' 0 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
-        <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} style={{ width: '320px' }} placeholder={'Search for movies, font, director ...'} />
 
-      </div>
-      <Grid container >
-        {realData?.map((card, index) => {
-          return (
-            <Card setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
-          )
-        })}
-      </Grid>
-      <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
-      <FixedFilters isMobile={isMobile}>
-        <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '270px' : '313px' }} placeholder={'Search for movies, font, director ...'} />
+    <>
+      {!animationComplete && (
+        <Lottie
+          animationData={animation}
+          loop={false}
+          autoplay
+          id="loader"
+          onComplete={handleAnimationComplete}
+        />
+      )}
+      {animationComplete && (
+        // Renderizza qualcosa dopo che l'animazione è completata
+        <div style={{
+          backgroundColor: '#0D0D0D',
+          // overflowY: 'scroll',/* Abilita lo scroll verticale */
+          // scrollBehavior: 'smooth',
+          // transition: ' scroll-behavior 7.5s ease',  /* Applica un'animazione di scorrimento */
+        }}>
 
-        <div style={{ width: isMobile ? '100%' : '' }}>
-          <div style={{ width: isMobile ? 'fit-content' : '' }} onClick={() => { setOpenFilters(true) }} className="input-box">
-            Filter
+
+
+          <Detail setItem={setCardItem} isMobile={isMobile} item={cardItem} />
+
+
+          {/* <motion.div initial={{ opacity: '0', y: '-50px', zIndex: '900000', position: 'relative' }} animate={"open"}
+            variants={variantsHeaderContainer}> */}
+          <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} />
+          {/* </motion.div> */}
+          <Info isMobile={isMobile} isOpen={isOpenInfo} />
+
+
+
+          <div style={{ padding: isMobile ? ' 56px 16px 16px 16px' : '160px 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
+            <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} style={{ width: '320px' }} />
+
           </div>
+          <motion.div initial={{ opacity: '0', y: '100px' }}
+            animate={"open"}
+            variants={variantsCardsContainer}>
+            <Grid container >
+              {realData?.map((card, index) => {
+                return (
+                  <Card setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
+                )
+              })}
+            </Grid>
+          </motion.div>
+
+          <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
+          <FixedFilters isMobile={isMobile}>
+            <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '270px' : '313px' }} placeholder={'Search for movies, font, director ...'} />
+
+            <div style={{ width: isMobile ? '100%' : '' }}>
+              <div style={{ width: isMobile ? 'fit-content' : '' }} onClick={() => { setOpenFilters(true) }} className="input-box">
+                Filter
+              </div>
+            </div>
+
+            {!isMobile &&
+              <div className="input-box">
+                <p style={{ marginRight: '16px' }} className='p-regular pointer'>Size:</p>
+                <Slider
+                  style={{ width: '88px', padding: 0, color: '#ECECEC' }}
+                  classes={{
+                    thumb: "thumb"
+                  }}
+                  aria-label="Size"
+                  defaultValue={3}
+                  // valueLabelDisplay="auto"
+
+                  step={1}
+
+                  size='small'
+                  min={1}
+                  max={5}
+                  onChange={(e) => { setColumnWidth(e.target.value) }}
+                />
+              </div>}
+
+          </FixedFilters>
+
+
         </div>
+      )}
 
-        {!isMobile &&
-          <div className="input-box">
-            <p style={{ marginRight: '16px' }} className='p-regular pointer'>Size:</p>
-            <Slider
-              style={{ width: '88px', padding: 0, color: '#ECECEC' }}
-              classes={{
-                thumb: "thumb"
-              }}
-              aria-label="Size"
-              defaultValue={3}
-              // valueLabelDisplay="auto"
-
-              step={1}
-
-              size='small'
-              min={1}
-              max={5}
-              onChange={(e) => { setColumnWidth(e.target.value) }}
-            />
-          </div>}
-
-      </FixedFilters>
-
-
-    </div>
+    </>
   );
 }
 

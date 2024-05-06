@@ -14,7 +14,7 @@ import { Grid } from '@mui/material';
 const Info = ({ isMobile, isOpen }) => {
 
 
-    const variants = {
+    const variantsC = {
         open: {
             height: '100vh', transition: {
 
@@ -38,9 +38,9 @@ const Info = ({ isMobile, isOpen }) => {
                 delay: 0.2,
                 type: "tween",
                 duration: 0.5,
-                // type: "spring",
-                // stiffness: 400,
-                // damping: 40,
+                //             // type: "spring",
+                //             // stiffness: 400,
+                //             // damping: 40,
             }
         },
         closed: {
@@ -54,15 +54,30 @@ const Info = ({ isMobile, isOpen }) => {
         },
     }
 
+    const variantsL = {
+        open: {
+            opacity: 0.64, y: '0', transition: {
+                delay: 0.1,
+                type: "tween",
+                duration: 1,
+                // type: "spring",
+                // stiffness: 400,
+                // damping: 40,
+            }
+        },
+
+    }
     return (
         <>
-            <Grid style={{ marginBottom: isMobile ? '' : '56px', paddingTop: isMobile ? '36px' : '', opacity: isOpen ? 0 : 1 }} container>
+            <Grid style={{ opacity: isOpen ? 0 : 1, color: '#ECECEC', paddingTop: !isOpen ? isMobile ? '48px' : '16px' : '', paddingLeft: !isOpen ? isMobile ? '16px' : '' : '', }} container>
                 <Grid item xs={isMobile ? 0 : 4}>
                 </Grid>
                 <Grid item xs={isMobile ? 12 : 7}>
-                    <p
+                    <motion.p initial={{ opacity: '0', y: '-50px' }} animate={"open"}
+                        variants={variantsL}
                         style={{
-                            opacity: '0.64'
+                            opacity: '0.64',
+
                         }}
                         className='p-regular'
 
@@ -71,7 +86,7 @@ const Info = ({ isMobile, isOpen }) => {
 
                     >
                         Lorem ipsum dolor sit amet consectetur...
-                    </p>
+                    </motion.p>
                 </Grid>
 
             </Grid >
@@ -82,13 +97,15 @@ const Info = ({ isMobile, isOpen }) => {
                 width: '100%',
                 backgroundColor: ' #E72A00',
                 zIndex: '6000',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                color: '#ECECEC',
+                paddingTop: isMobile && isOpen ? '56px' : ''
             }}
                 initial={{ height: '0px' }}
                 animate={isOpen ? "open" : "closed"}
-                variants={variants}>
+                variants={variantsC}>
                 <motion.div
-                    style={{ paddingTop: isMobile ? '56px' : '' }}
+
                     initial={{ opacity: '0', y: '100px' }}
                     animate={isOpen ? "open" : "closed"}
                     variants={variantsTitle}

@@ -12,49 +12,50 @@ import closeSvg from '../../assets/close.svg';
 
 
 
-const Detail = ({ isMobile, item, setItem }) => {
+const Detail = ({ isMobile, item, setItem
+}) => {
 
 
-    const variants = {
-        open: {
-            height: '100vh', transition: {
+    // const variants = {
+    //     open: {
+    //         height: '100vh', transition: {
 
-                type: "spring",
-                stiffness: 400,
-                damping: 40,
-            }
-        },
-        closed: {
-            height: '0px', transition: {
-                type: "spring",
-                stiffness: 400,
-                damping: 40,
-            }
-        },
-    }
+    //             type: "spring",
+    //             stiffness: 400,
+    //             damping: 40,
+    //         }
+    //     },
+    //     closed: {
+    //         height: '0px', transition: {
+    //             type: "spring",
+    //             stiffness: 400,
+    //             damping: 40,
+    //         }
+    //     },
+    // }
 
-    const variantsTitle = {
-        open: {
-            opacity: 1, y: '0', transition: {
-                delay: 0.2,
-                type: "tween",
-                duration: 0.5,
-                // type: "spring",
-                // stiffness: 400,
-                // damping: 40,
-            }
-        },
-        closed: {
-            opacity: 0,
-            y: '50px',
-            transition: {
-                type: "tween",
-                duration: 0.5,
-            }
+    // const variantsTitle = {
+    //     open: {
+    //         opacity: 1, y: '0', transition: {
+    //             delay: 0.2,
+    //             type: "tween",
+    //             duration: 0.5,
+    //             // type: "spring",
+    //             // stiffness: 400,
+    //             // damping: 40,
+    //         }
+    //     },
+    //     closed: {
+    //         opacity: 0,
+    //         y: '50px',
+    //         transition: {
+    //             type: "tween",
+    //             duration: 0.5,
+    //         }
 
-        },
+    //     },
 
-    }
+    // }
 
     console.log(item);
     return (
@@ -73,7 +74,7 @@ const Detail = ({ isMobile, item, setItem }) => {
             justifyContent: 'center',
             alignItems: 'center',
             gap: '8%'
-        }}>
+        }} >
             {item && <div onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: isMobile ? '' : '24px', bottom: isMobile ? '24px' : '', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
                 <img src={closeSvg} />
             </div>}
