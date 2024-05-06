@@ -138,7 +138,7 @@ const Card = ({ item, width, isMobile, setItem, index }) => {
                     animate={"visible"}
                     transition={{
                         opacity: {
-                            delay: 0,
+                            delay: 0.1,
                             duration: 1,
                         },
                         y: {
