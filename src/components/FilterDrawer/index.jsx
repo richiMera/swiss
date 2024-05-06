@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 import './style.css'
-import { Drawer } from '@mui/material';
+import { Drawer, Grid } from '@mui/material';
 import Chip from '../Chip';
 import closeS from '../../assets/close-s.svg';
 
@@ -17,6 +17,8 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
 
     const [filtersData, setFiltersData] = useState({});
     const [innerFilters, setInnerFilters] = useState({});
+    const [clearAll, setClearAll] = useState(false);
+
 
     const drawerPaperStyle = {
         width: '100%',
@@ -201,9 +203,11 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                 allDataObjects.push(...item.data);
             }
             setFilteredData(allDataObjects);
+            setClearAll(true);
         } else {
             console.log("Nessun values.length è maggiore di 0");
             setFilteredData(data);
+            setClearAll(false);
         }
 
 
@@ -225,8 +229,58 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                         <p className='p-regular'>Filter</p>
                         <img style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} src={closeS} />
                     </div>
-                    <div style={{ overflowY: 'auto', height: 'calc(100% - 110px)', display: isMobile ? '' : 'flex' }}>
-                        <div style={{ width: isMobile ? '100%' : '50%' }}>
+                    <div style={{ overflowY: 'auto', height: 'calc(100% - 110px)' }}>
+                        <Grid container>
+                            <Grid xs={12} md={6} item>
+                                <div style={{ marginBottom: '40px' }} >
+                                    <p style={{ marginBottom: '16px' }} className='p-regular'>Font style</p>
+                                    <div className='chip-container'>
+                                        {(filtersData.classifications) && Object.entries(filtersData.classifications).map(([font, count]) => {
+                                            console.log(innerFilters['classifications'][font]); return (
+                                                <Chip onClick={() => { fillMyFilter('fontStyle', font) }} key={font} text={font} />
+                                            )
+                                        })}
+
+
+                                    </div>
+
+
+                                </div>
+                            </Grid>
+                            <Grid xs={12} md={6} item>
+                                <div style={{ marginBottom: '40px' }} >
+                                    <p style={{ marginBottom: '16px' }} className='p-regular'>Film genre</p>
+                                    <div className='chip-container'>
+                                        {filtersData.genres && Object.entries(filtersData.genres).map(([genre, count]) => (
+                                            <Chip onClick={() => { fillMyFilter('genre', genre) }} key={genre} text={genre} />
+                                        ))}
+                                    </div>
+
+
+                                </div>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                            <Grid xs={12} md={6} item>
+                                <div style={{ marginBottom: '40px' }} >
+                                    <p style={{ marginBottom: '16px' }} className='p-regular'>Film period</p>
+                                    <div className='chip-container'>
+                                        {filtersData.decade && Object.entries(filtersData.decade).map(([year, count]) => (
+                                            <Chip key={year} text={year + 's'} />
+                                        ))}
+                                    </div>
+                                </div>
+                            </Grid>
+                            <Grid xs={12} md={6} item>
+                                <p style={{ marginBottom: '16px' }} className='p-regular'>Country</p>
+                                <div className='chip-container'>
+                                    {filtersData.countries && Object.entries(filtersData.countries).map(([country, count]) => (
+                                        <Chip onClick={() => { fillMyFilter('country', country) }} key={country} text={country} />
+                                    ))}
+                                </div>
+                            </Grid>
+                        </Grid>
+                        {/* <div style={{ width: isMobile ? '100%' : '50%' }}>
                             <div style={{ marginBottom: '40px' }} >
                                 <p style={{ marginBottom: '16px' }} className='p-regular'>Font style</p>
                                 <div className='chip-container'>
@@ -271,13 +325,13 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
 
 
                             </div>
-                        </div>
+                        </div> */}
                     </div>
-                    <div style={{ width: 'fit-content', border: '1px solid #BBBBBB', color: '#BBBBBB', padding: isMobile ? '10px' : '' }} className='input-box'>
+                    {clearAll && <div style={{ width: 'fit-content', border: '1px solid #BBBBBB', color: '#BBBBBB', padding: isMobile ? '10px' : '', position: 'absolute', bottom: '24px' }} className='input-box'>
                         <p> Clear all</p>
-                    </div>
-                </div>
-            </Drawer>
+                    </div>}
+                </div >
+            </Drawer >
 
 
 
