@@ -8,19 +8,53 @@ import { motion } from "framer-motion"
 
 
 const Card = ({ item, width, isMobile, setItem, index }) => {
-    const variantsCardsContainer = {
-        open: {
-            opacity: 1, y: '0', transition: {
-                delay: index * 0.1,
-                type: "tween",
-                duration: 1,
-                // type: "spring",
-                // stiffness: 400,
-                // damping: 40,
-            }
-        },
+    // const variantsCardsContainer = {
+    //     open: {
+    //         opacity: 1, y: '0', transition: {
+    //             delay: index === 0 || index === 3 || index === 6 ? 0.1 : index === 1 || index === 4 || index === 7 ? 0.2 : 0.3,
+    //             type: "tween",
+    //             duration: 1,
+    //             // type: "spring",
+    //             //             // stiffness: 400,
+    //             //             // damping: 40,
+    //         }
+    //     },
 
-    }
+    // }
+
+
+
+    // const variantsCardsContainer = {
+    //     open: {
+    //         opacity: 0, // Valore iniziale per l'opacity
+    //         y: {
+    //             delay: index === 0 || index === 3 || index === 6 ? 0.1 : index === 1 || index === 4 || index === 7 ? 0.2 : 0.3,
+    //             value: '0',
+    //         },
+    //         transition: {
+    //             opacity: {
+    //                 delay: 0, // Delay fisso per opacity
+    //                 duration: 1,
+    //             },
+    //             y: {
+    //                 duration: 1,
+    //                 type: "tween",
+    //             },
+    //         }
+    //     },
+    // };
+
+    const variantsCardsContainer = {
+        hidden: {
+            opacity: 0, // Valore iniziale per l'opacity
+            y: '50px',
+        },
+        visible: {
+            opacity: 1,
+            y: '0',
+        },
+    };
+
 
     const [divWidthPx, setDivWidthPx] = useState(0);
     const [divPercentage, setDivPercentage] = useState(0);
@@ -100,8 +134,19 @@ const Card = ({ item, width, isMobile, setItem, index }) => {
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={() => { setItem(item) }}
                 style={{ cursor: 'pointer' }} item xs={xs}>
-                <motion.div initial={{ opacity: '0', y: '50px' }}
-                    animate={"open"}
+                <motion.div initial={"hidden"}
+                    animate={"visible"}
+                    transition={{
+                        opacity: {
+                            delay: 0,
+                            duration: 1,
+                        },
+                        y: {
+                            delay: index === 0 || index === 3 || index === 6 ? 0.1 : index === 1 || index === 4 || index === 7 ? 0.2 : 0.3,
+                            duration: 1,
+                            type: "tween",
+                        },
+                    }}
                     variants={variantsCardsContainer} style={{ outline: '1px solid #272727', backgroundColor: isHovered ? item.bgColor : '#0D0D0D', height: divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 12%', position: 'relative', overflow: 'hidden' }} >
 
                     <img style={{ transform: isHovered ? 'scale(0.95)' : 'scale(1)', width: '100%', filter: isHovered ? item?.filter : '', transition: 'transform 0.5s' }} src={item.img} />
