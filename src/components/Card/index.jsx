@@ -87,7 +87,7 @@ const Card = ({ item, width, isMobile, setItem }) => {
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={() => { setItem(item) }}
                 style={{ cursor: 'pointer' }} item xs={xs}>
-                <div style={{ outline: '1px solid #272727', backgroundColor: isHovered ? item.bgColor : '#0D0D0D', height: divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '16px' : '10% 12%', position: 'relative', overflow: 'hidden' }} >
+                <div style={{ outline: '1px solid #272727', backgroundColor: isHovered ? item.bgColor : '#0D0D0D', height: divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 12%', position: 'relative', overflow: 'hidden' }} >
 
                     <img style={{ transform: isHovered ? 'scale(0.95)' : 'scale(1)', width: '100%', filter: isHovered ? item?.filter : '', transition: 'transform 0.5s' }} src={item.img} />
                     <div style={{ position: 'absolute', bottom: isHovered ? '16px' : '-50px', left: '24px', transition: 'bottom 0.5s' }}>

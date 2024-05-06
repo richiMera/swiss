@@ -74,9 +74,9 @@ const Detail = ({ isMobile, item, setItem }) => {
             alignItems: 'center',
             gap: '8%'
         }}>
-            <div onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: 'absolute', top: isMobile ? '' : '24px', bottom: isMobile ? '24px' : '', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
+            {item && <div onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: isMobile ? '' : '24px', bottom: isMobile ? '24px' : '', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
                 <img src={closeSvg} />
-            </div>
+            </div>}
             <img style={{ transform: 'scale(1)', width: '100%', filter: item?.filter, transition: 'transform 0.5s' }} src={item?.img} />
             {!isMobile ? <div style={{ position: 'absolute', bottom: '24px', left: '50%', transition: 'bottom 0.5s', transform: 'translateX(-50%)', display: 'flex', gap: '3%', justifyContent: 'center', width: '200%' }}>
                 <div>
