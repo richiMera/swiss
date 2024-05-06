@@ -26,6 +26,7 @@ import Slider from '@mui/material/Slider';
 import Lenis from 'lenis';
 import data from './data/data.js'
 import Info from "./components/Info/index.jsx";
+import Detail from "./components/Detail/index.jsx";
 
 
 
@@ -40,6 +41,7 @@ const App = () => {
 
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [moreInfo, setMoreInfo] = useState(false);
+  const [cardItem, setCardItem] = useState(null);
   const [openFilters, setOpenFilters] = useState(false);
   const [columnWidth, setColumnWidth] = useState(3);
 
@@ -113,7 +115,7 @@ const App = () => {
       // scrollBehavior: 'smooth',
       // transition: ' scroll-behavior 7.5s ease',  /* Applica un'animazione di scorrimento */
     }}>
-
+      <Detail setItem={setCardItem} isMobile={isMobile} item={cardItem} />
       <Header scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setColumnWidth={setColumnWidth} onClickDarkMode={() => { setDarkMode(!darkMode) }} moreInfo={moreInfo} onClickMoreInfo={() => { setMoreInfo(!moreInfo) }} />
       <div style={{ padding: ' 0 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
@@ -123,7 +125,7 @@ const App = () => {
       <Grid container >
         {realData?.map((card, index) => {
           return (
-            <Card isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
+            <Card setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
           )
         })}
       </Grid>
