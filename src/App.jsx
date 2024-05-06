@@ -151,6 +151,7 @@ const App = () => {
       {!animationComplete && (
         <Lottie
           animationData={animation}
+          rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
           loop={false}
           autoplay
           id="loader"
