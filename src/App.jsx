@@ -57,19 +57,7 @@ const App = () => {
   };
 
 
-  const variantsCardsContainer = {
-    open: {
-      opacity: 1, y: '0', transition: {
-        delay: 0.1,
-        type: "tween",
-        duration: 1,
-        // type: "spring",
-        // stiffness: 400,
-        // damping: 40,
-      }
-    },
 
-  }
 
   const variantsHeaderContainer = {
     open: {
@@ -185,17 +173,15 @@ const App = () => {
             <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} style={{ width: '320px' }} />
 
           </div>
-          <motion.div initial={{ opacity: '0', y: '100px' }}
-            animate={"open"}
-            variants={variantsCardsContainer}>
-            <Grid container >
-              {realData?.map((card, index) => {
-                return (
-                  <Card setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
-                )
-              })}
-            </Grid>
-          </motion.div>
+
+          <Grid container >
+            {realData?.map((card, index) => {
+              return (
+                <Card index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
+              )
+            })}
+          </Grid>
+
 
           <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
           <FixedFilters isMobile={isMobile}>
