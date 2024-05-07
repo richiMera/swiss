@@ -17,7 +17,7 @@ export default [
     {
         title: 'Das Cabinet des Dr. Caligari',
         img: cabinetSvg,
-        filter: 'brightness(0) saturate(100%) invert(60%) sepia(12%) saturate(1122%) hue-rotate(97deg) brightness(102%) contrast(92%) drop-shadow(0px 0px 2px #63B088)',
+        filter: 'brightness(0) saturate(100%) invert(60%) sepia(12%) saturate(1122%) hue-rotate(97deg) brightness(102%) contrast(92%) drop-shadow(0px 0px 1px #63B088)',
         bgColor: '#040B05',
         textColor: '#FFFFFF',
         typeface: 'Custom',
@@ -31,7 +31,7 @@ export default [
     {
         title: 'Crimes of the Future',
         img: futureSvg,
-        filter: 'brightness(0) saturate(100%) invert(7%) sepia(8%) saturate(4637%) hue-rotate(200deg) brightness(90%) contrast(111%) drop-shadow(0px 0px 2px #2778EB)',
+        filter: 'brightness(0) saturate(100%) invert(57%) sepia(81%) saturate(1752%) hue-rotate(174deg) brightness(96%) contrast(95%) drop-shadow(0px 0px 1px #2778EB)',
         bgColor: '#000237',
         textColor: '#FFFFFF',
         typeface: 'Eurostile Black Extended',
@@ -45,7 +45,7 @@ export default [
     {
         title: 'The Shining',
         img: shiningSvg,
-        filter: 'brightness(0) saturate(100%) invert(82%) sepia(76%) saturate(1778%) hue-rotate(119deg) brightness(107%) contrast(98%) drop-shadow(0px 0px 2px #13FCFC)',
+        filter: 'brightness(0) saturate(100%) invert(82%) sepia(76%) saturate(1778%) hue-rotate(119deg) brightness(107%) contrast(98%) drop-shadow(0px 0px 1px #13FCFC)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
         typeface: 'Helvetica',
@@ -59,7 +59,7 @@ export default [
     {
         title: 'The Producers',
         img: producersSvg,
-        filter: 'brightness(0) saturate(100%) invert(10%) sepia(100%) saturate(6638%) hue-rotate(358deg) brightness(102%) contrast(108%) drop-shadow(0px 0px 2px #FF0000)',
+        filter: 'brightness(0) saturate(100%) invert(10%) sepia(100%) saturate(6638%) hue-rotate(358deg) brightness(102%) contrast(108%) drop-shadow(0px 0px 1px #FF0000)',
         bgColor: '#FFFFFF',
         textColor: '#000000',
         typeface: 'Unknown',
@@ -73,7 +73,7 @@ export default [
     {
         title: 'The Long Goodbye',
         img: goodbyeSvg,
-        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%) drop-shadow(0px 0px 2px #FFFFFF)',
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%) drop-shadow(0px 0px 1px #FFFFFF)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
         typeface: 'Blippo',
@@ -87,7 +87,7 @@ export default [
     {
         title: 'Coffee and Cigarettes',
         img: coffeeSvg,
-        filter: 'brightness(0) saturate(100%) invert(0%) sepia(1%) saturate(7495%) hue-rotate(126deg) brightness(98%) contrast(102%) drop-shadow(0px 0px 2px #000000)',
+        filter: 'brightness(0) saturate(100%) invert(0%) sepia(1%) saturate(7495%) hue-rotate(126deg) brightness(98%) contrast(102%) drop-shadow(0px 0px 1px #000000)',
         bgColor: '#FFFFFF',
         textColor: '#000000',
         typeface: 'Arial',
@@ -101,7 +101,7 @@ export default [
     {
         title: 'Halloween',
         img: halloweenSvg,
-        filter: 'brightness(0) saturate(100%) invert(80%) sepia(31%) saturate(6487%) hue-rotate(355deg) brightness(103%) contrast(103%) drop-shadow(0px 0px 2px #8E2C00)',
+        filter: 'brightness(0) saturate(100%) invert(80%) sepia(31%) saturate(6487%) hue-rotate(355deg) brightness(103%) contrast(103%) drop-shadow(0px 0px 1px #8E2C00)',
         bgColor: '#100200',
         textColor: '#FFFFFF',
         typeface: 'ITC Serif Gothic',
@@ -115,7 +115,7 @@ export default [
     {
         title: 'Videodrome',
         img: videodromeSvg,
-        filter: 'brightness(0) saturate(100%) invert(58%) sepia(30%) saturate(3688%) hue-rotate(341deg) brightness(98%) contrast(94%) drop-shadow(0px 0px 2px #F2762F)',
+        filter: 'brightness(0) saturate(100%) invert(58%) sepia(30%) saturate(3688%) hue-rotate(341deg) brightness(98%) contrast(94%) drop-shadow(0px 0px 1px #F2762F)',
         bgColor: '#020101',
         textColor: '#FFFFFF',
         typeface: 'ITC Souvenir',
@@ -129,7 +129,7 @@ export default [
     {
         title: 'Naked Lunch',
         img: nakedSvg,
-        filter: 'brightness(0) saturate(100%) invert(6%) sepia(71%) saturate(254%) hue-rotate(334deg) brightness(102%) contrast(104%) drop-shadow(0px 0px 2px #1A0406)',
+        filter: 'brightness(0) saturate(100%) invert(6%) sepia(71%) saturate(254%) hue-rotate(334deg) brightness(102%) contrast(104%) drop-shadow(0px 0px 1px #1A0406)',
         bgColor: '#FFDC4A',
         textColor: '#000000',
         typeface: 'Futura',
