@@ -184,6 +184,7 @@ const App = () => {
 
 
           <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
+
           <FixedFilters isMobile={isMobile}>
             <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '270px' : '313px' }} placeholder={'Search for movies, font, director ...'} />
 
@@ -215,6 +216,7 @@ const App = () => {
               </div>}
 
           </FixedFilters>
+
 
 
         </div>

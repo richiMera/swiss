@@ -8,41 +8,7 @@ import { motion } from "framer-motion"
 
 
 const Card = ({ item, width, isMobile, setItem, index }) => {
-    // const variantsCardsContainer = {
-    //     open: {
-    //         opacity: 1, y: '0', transition: {
-    //             delay: index === 0 || index === 3 || index === 6 ? 0.1 : index === 1 || index === 4 || index === 7 ? 0.2 : 0.3,
-    //             type: "tween",
-    //             duration: 1,
-    //             // type: "spring",
-    //             //             // stiffness: 400,
-    //             //             // damping: 40,
-    //         }
-    //     },
 
-    // }
-
-
-
-    // const variantsCardsContainer = {
-    //     open: {
-    //         opacity: 0, // Valore iniziale per l'opacity
-    //         y: {
-    //             delay: index === 0 || index === 3 || index === 6 ? 0.1 : index === 1 || index === 4 || index === 7 ? 0.2 : 0.3,
-    //             value: '0',
-    //         },
-    //         transition: {
-    //             opacity: {
-    //                 delay: 0, // Delay fisso per opacity
-    //                 duration: 1,
-    //             },
-    //             y: {
-    //                 duration: 1,
-    //                 type: "tween",
-    //             },
-    //         }
-    //     },
-    // };
 
     const variantsCardsContainer = {
         hidden: {
@@ -139,11 +105,11 @@ const Card = ({ item, width, isMobile, setItem, index }) => {
                     transition={{
                         opacity: {
                             delay: 0.1,
-                            duration: 1,
+                            duration: 0.5,
                         },
                         y: {
                             delay: index === 0 || index === 3 || index === 6 ? 0.1 : index === 1 || index === 4 || index === 7 ? 0.2 : 0.3,
-                            duration: 1,
+                            duration: 0.5,
                             type: "tween",
                         },
                     }}

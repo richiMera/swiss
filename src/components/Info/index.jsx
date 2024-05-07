@@ -59,7 +59,7 @@ const Info = ({ isMobile, isOpen }) => {
             opacity: 0.64, y: '0', transition: {
                 delay: 0.1,
                 type: "tween",
-                duration: 1,
+                duration: 0.5,
                 // type: "spring",
                 // stiffness: 400,
                 // damping: 40,
