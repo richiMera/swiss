@@ -17,7 +17,6 @@ const Info = ({ isMobile, isOpen }) => {
     const variantsC = {
         open: {
             height: '100vh', transition: {
-
                 type: "spring",
                 stiffness: 400,
                 damping: 40,
@@ -32,27 +31,24 @@ const Info = ({ isMobile, isOpen }) => {
         },
     }
 
-    const variantsTitle = {
+    const variantsContainer = {
+        close: { opacity: 0, y: '50px' },
         open: {
-            opacity: 1, y: '0', transition: {
-                delay: 0.2,
-                type: "tween",
-                duration: 0.5,
-                //             // type: "spring",
-                //             // stiffness: 400,
-                //             // damping: 40,
-            }
-        },
-        closed: {
-            opacity: 0,
-            y: '50px',
+            opacity: 1,
+            y: '0',
             transition: {
-                type: "tween",
-                duration: 0.5,
+                ease: [0, 0.71, 0.2, 1.01],
+                delayChildren: 0.3,
+                staggerChildren: 0.2,
             }
-
-        },
+        }
     }
+
+    const variantsItem = {
+        closed: { opacity: 0, y: '50px', },
+        open: { opacity: 1, y: '0', transition: { duration: 0.7 } },
+    }
+
 
     const variantsL = {
         open: {
@@ -105,17 +101,18 @@ const Info = ({ isMobile, isOpen }) => {
                 animate={isOpen ? "open" : "closed"}
                 variants={variantsC}>
                 <motion.div
-
-                    initial={{ opacity: '0', y: '100px' }}
+                    style={{ height: '100%' }}
+                    initial={"close"}
                     animate={isOpen ? "open" : "closed"}
-                    variants={variantsTitle}
+                    variants={variantsContainer}
                 >
                     {/* //Titolo */}
-                    <Grid style={{ marginBottom: '56px', }} container>
+                    <Grid style={{ paddingBottom: '56px', }} container>
                         <Grid item xs={isMobile ? 0 : 4}>
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 7}>
-                            <p
+                            <motion.p
+                                variants={variantsItem}
                                 style={{
                                     fontSize: isMobile ? '24px' : '40px',
                                     lineHeight: '120%',
@@ -128,7 +125,7 @@ const Info = ({ isMobile, isOpen }) => {
 
                             >
                                 Lorem ipsum dolor sit amet consectetur. Sit nisl ipsum aliquet condimentum amet elementum sagittis ac. Purus potenti tincidunt consectetur vitae sed proin. Neque sed orci sed lectus vulputate luctus. Laoreet aliquet massa phasellus ut tincidunt.' : 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi laudantium
-                            </p>
+                            </motion.p>
                         </Grid>
 
                     </Grid>
@@ -137,7 +134,7 @@ const Info = ({ isMobile, isOpen }) => {
                         <Grid item xs={isMobile ? 0 : 4}>
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 7}>
-                            <div style={{ display: 'flex', width: isMobile ? '100%' : '60%', padding: '16px' }}>
+                            <motion.div variants={variantsItem} style={{ display: 'flex', width: isMobile ? '100%' : '60%', padding: '16px' }}>
                                 <div style={{ marginRight: isMobile ? '36px' : '125px' }}>
                                     <p style={{ opacity: '0.8' }} className='p-small'>Design</p>
                                     <p className='p-big'>andrea dominici</p>
@@ -147,10 +144,13 @@ const Info = ({ isMobile, isOpen }) => {
                                     <p style={{ opacity: '0.8' }} className='p-small'>Web development</p>
                                     <p className='p-big'>riccardo ferrari</p>
                                 </div>
-                            </div>
+                            </motion.div>
                         </Grid>
 
                     </Grid>
+                    <motion.div style={{ position: 'absolute', bottom: '16px', right: '16px', left: '16px', color: 'black' }} className='isChildren' variants={variantsItem}>
+                        <p>All material for educational and non-profit purposes only. Any copyright material mirrored on this site is intended for private personal study. Copyright owners may, if they wish, request to have material removed by leaving a comment on the relevant page. The materials archived, stored, and presented here, are copyrighted by their respective contributors, and may not be saved, re-transmitted, republished, or reformatted by any means, electronic or mechanical. This site offers broad public access to these materials exclusively as a contribution to education and scholarship, and for the private, non-profit use of the academic community.</p>
+                    </motion.div>
                 </motion.div>
 
 

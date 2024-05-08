@@ -27,6 +27,8 @@ const Card = ({ item, width, isMobile, setItem, index }) => {
     const [xs, setXs] = useState(4);
     const [isHovered, setIsHovered] = useState(false);
 
+    console.log('divWidthPx', divWidthPx);
+
 
     useEffect(() => {
         // Calcola la larghezza del div in pixel basandosi sulla larghezza della viewport
