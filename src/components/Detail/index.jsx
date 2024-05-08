@@ -98,27 +98,19 @@ const Detail = ({ isMobile, item, setItem
         }
     }
 
-    function handleMouseLeave() {
-        window.requestAnimationFrame(function () {
-            const image = imageRef.current;
-            if (image) {
-                image.style.transform = "rotateX(0) rotateY(0)";
-            }
-        });
-    }
 
     useEffect(() => {
         // Cleanup function to reset transformation when component unmounts or item becomes null
-        return () => {
-            const image = imageRef.current;
-            if (image && item) {
-                image.style.transform = "rotateX(0) rotateY(0)";
-            }
-        };
-    }, []);
+        const image = imageRef.current;
+        if (!item) {
+            image.style.transform = "rotateX(0) rotateY(0)";
+
+        }
+
+    }, [item]);
     return (
         <motion.div
-            onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{
+            onMouseMove={handleMouseMove} style={{
                 position: 'fixed',
                 top: '0',
                 left: '0',
@@ -136,9 +128,9 @@ const Detail = ({ isMobile, item, setItem
                 transformStyle: "preserve-3d",
                 perspective: '3000px'
             }} >
-            {item && <div onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: isMobile ? '' : '24px', bottom: isMobile ? '24px' : '', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
-                <motion.img initial={"closed"} animate={item ? "open" : "closed"} variants={isMobile ? variantsYTop : variantsYButtom} src={closeSvg} />
-            </div>}
+            {item && <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={isMobile ? variantsYTop : variantsYButtom} onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: isMobile ? '' : '24px', bottom: isMobile ? '24px' : '', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
+                <img src={closeSvg} />
+            </motion.div>}
 
             <motion.img
                 ref={imageRef}

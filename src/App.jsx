@@ -147,30 +147,20 @@ const App = () => {
         />
       )}
       {animationComplete && (
-        // Renderizza qualcosa dopo che l'animazione è completata
         <div style={{
           backgroundColor: '#0D0D0D',
-          // overflowY: 'scroll',/* Abilita lo scroll verticale */
-          // scrollBehavior: 'smooth',
-          // transition: ' scroll-behavior 7.5s ease',  /* Applica un'animazione di scorrimento */
+
         }}>
 
-
-
           <Detail setItem={setCardItem} isMobile={isMobile} item={cardItem} />
-
-
-          {/* <motion.div initial={{ opacity: '0', y: '-50px', zIndex: '900000', position: 'relative' }} animate={"open"}
-            variants={variantsHeaderContainer}> */}
           <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} />
-          {/* </motion.div> */}
           <Info isMobile={isMobile} isOpen={isOpenInfo} />
 
 
 
           <div style={{ padding: isMobile ? ' 56px 16px 16px 16px' : '160px 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
-            <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} style={{ width: '320px' }} />
+            <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} realData={realData} style={{ width: '320px' }} />
 
           </div>
 

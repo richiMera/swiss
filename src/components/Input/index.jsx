@@ -8,28 +8,33 @@ import SortItem from '../SortItem';
 
 
 
-const Input = ({ isMobile, setFilter, placeholder, style, data, setData, type }) => {
+const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) => {
 
 
     const [value, setValue] = useState('');
     const [sort, setSort] = useState('Featured');
-    const [closeInput, setCloseInput] = useState(true);
     const [openSort, setOpenSort] = useState(false)
     const dataSort = [
         {
-            text: 'Featured'
+            text: 'Featured',
+            onClick: () => { setData(data) }
+
         },
         {
-            text: 'Year (ASC)'
+            text: 'Year (ASC)',
+            onClick: () => { setData(realData.slice().sort((a, b) => parseInt(a.year) - parseInt(b.year))) }
         },
         {
-            text: 'Year (DESC)'
+            text: 'Year (DESC)',
+            onClick: () => { setData(realData.slice().sort((a, b) => parseInt(b.year) - parseInt(a.year))) }
         },
         {
-            text: 'Movie title (A-Z)'
+            text: 'Movie title (A-Z)',
+            onClick: () => { setData(realData.slice().sort((a, b) => a.title.localeCompare(b.title))) }
         },
         {
-            text: 'Movie title (Z-A)'
+            text: 'Movie title (Z-A)',
+            onClick: () => { setData(realData.slice().sort((a, b) => b.title.localeCompare(a.title))) }
         }
     ]
 
@@ -68,16 +73,16 @@ const Input = ({ isMobile, setFilter, placeholder, style, data, setData, type })
             {type === 'search' && <>
 
 
-                <img onClick={() => { if (isMobile) { setCloseInput(false) } }} id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4' }} src={searchIcon} />
+                <img id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4' }} src={searchIcon} />
 
                 <input style={{ paddingLeft: '45px', fontSize: '16px', letterSpacing: '.1px', ...style }} className='input-box' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
-                {value && <img onClick={() => { setValue(''); if (isMobile) { setCloseInput(true) } }} id={'search-icon'} style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)' }} src={closeXs} />}</>}
+                {value && <img onClick={() => { setValue(''); }} id={'search-icon'} style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)' }} src={closeXs} />}</>}
 
             {type === 'sort' && <>
                 {openSort && <div id='sort-menu'>
                     {dataSort.map((e, index) => {
                         return (
-                            <SortItem key={index} text={e.text} active={e.text === sort} onClick={() => { setSort(e.text); setOpenSort(false) }} />
+                            <SortItem key={index} text={e.text} active={e.text === sort} onClick={() => { setSort(e.text); setOpenSort(false); e.onClick() }} />
                         )
                     })}
                 </div>}

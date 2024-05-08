@@ -12,8 +12,41 @@ import cabinetSvg from '../assets/cabinet.svg';
 import futureSvg from '../assets/future.svg';
 import shiningSvg from '../assets/shining.svg';
 import producersSvg from '../assets/producers.svg';
+import vertigoSvg from '../assets/vertigo.svg';
+import nosferatuSvg from '../assets/nosferatu.svg';
+
+
+
 
 export default [
+    {
+        title: 'Nosferatu',
+        img: nosferatuSvg,
+        filter: 'brightness(0) saturate(100%) invert(62%) sepia(52%) saturate(371%) hue-rotate(18deg) brightness(98%) contrast(89%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Custom',
+        fontStyle: 'Handwritten',
+        designer: 'Uncredited',
+        film_director: 'Friedrich Wilhelm Murnau',
+        year: '1922',
+        genre: 'Horror',
+        country: 'Germany',
+    },
+    {
+        title: 'Vertigo',
+        img: vertigoSvg,
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Clarendon',
+        fontStyle: 'Serif',
+        designer: 'Saul Bass',
+        film_director: 'Alfred Hitchcock',
+        year: '1958',
+        genre: 'Thriller',
+        country: 'USA',
+    },
     {
         title: 'Das Cabinet des Dr. Caligari',
         img: cabinetSvg,
@@ -31,8 +64,8 @@ export default [
     {
         title: 'Crimes of the Future',
         img: futureSvg,
-        filter: 'brightness(0) saturate(100%) invert(62%) sepia(13%) saturate(6044%) hue-rotate(173deg) brightness(97%) contrast(94%)',
-        bgColor: '#000237',
+        filter: 'brightness(0) saturate(100%) invert(57%) sepia(81%) saturate(1752%) hue-rotate(174deg) brightness(96%) contrast(95%)',
+        bgColor: '#02021B',
         textColor: '#FFFFFF',
         typeface: 'Eurostile Black Extended',
         fontStyle: 'Sans Serif',
@@ -206,7 +239,7 @@ export default [
         fontStyle: 'Handwritten',
         designer: 'Pablo Ferro',
         film_director: 'Stanley Kubrick',
-        year: '1976',
+        year: '1964',
         genre: 'Comedy',
         country: 'UK',
     },
