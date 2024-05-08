@@ -29,12 +29,22 @@ const Detail = ({ isMobile, item, setItem
 
     const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
     console.log('transform', transform);
+    const [ready, setReady] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setReady(true);
+        }, 1000);
+
+        // Cleanup della setTimeout al momento dello smontaggio del componente.
+        return () => clearTimeout(timer);
+    }, []); // Assicurati di fornire un array vuoto come dipendenza affinché l'effetto venga eseguito solo una volta, all'avvio del componente.
 
     const ROTATION_RANGE = 20; // Ridotto il valore della gamma di rotazione desiderata
     const HALF_ROTATION_RANGE = ROTATION_RANGE / 2; // Metà della gamma di rotazione
 
     const handleMouseMove = (e) => {
-        if (!ref.current) return;
+        if (!ready || !ref.current) return;
 
         const rect = ref.current.getBoundingClientRect();
 
