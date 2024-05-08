@@ -76,11 +76,26 @@ const Detail = ({ isMobile, item, setItem
 
         image.style.transform = `rotateX(${calcX}deg) rotateY(${calcY}deg)`;
     }
+    useEffect(() => {
+        let timeoutId;
+        if (item) {
+            // Delay the initialization of handleMouseMove after one second
+            timeoutId = setTimeout(() => {
+                setMouseMoveInitialized(true);
+            }, 1000);
+        }
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    }, [item]);
+
+    const [mouseMoveInitialized, setMouseMoveInitialized] = useState(false);
 
     function handleMouseMove(e) {
-        window.requestAnimationFrame(function () {
+        if (mouseMoveInitialized) {
             transformImage(e.clientX, e.clientY);
-        });
+        }
     }
 
     function handleMouseLeave() {
@@ -93,17 +108,17 @@ const Detail = ({ isMobile, item, setItem
     }
 
     useEffect(() => {
-        // Cleanup function to reset transformation when component unmounts
+        // Cleanup function to reset transformation when component unmounts or item becomes null
         return () => {
             const image = imageRef.current;
-            if (image) {
+            if (image && item) {
                 image.style.transform = "rotateX(0) rotateY(0)";
             }
         };
     }, []);
     return (
         <motion.div
-            onMouseMove={handleMouseMove} style={{
+            onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{
                 position: 'fixed',
                 top: '0',
                 left: '0',
@@ -119,7 +134,7 @@ const Detail = ({ isMobile, item, setItem
                 alignItems: 'center',
                 gap: '8%',
                 transformStyle: "preserve-3d",
-                perspective: '1000px'
+                perspective: '3000px'
             }} >
             {item && <div onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: isMobile ? '' : '24px', bottom: isMobile ? '24px' : '', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
                 <motion.img initial={"closed"} animate={item ? "open" : "closed"} variants={isMobile ? variantsYTop : variantsYButtom} src={closeSvg} />
@@ -132,8 +147,7 @@ const Detail = ({ isMobile, item, setItem
                 variants={variantsScale}
                 style={{ width: '100%', filter: item?.filter }}
                 src={item?.img}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
+
             />
 
             {!isMobile ? <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} style={{ position: 'absolute', bottom: '24px', left: '0', transition: 'bottom 0.5s', transform: 'translateX(-50%)', display: 'flex', gap: '3%', justifyContent: 'center', width: '100%' }}>
