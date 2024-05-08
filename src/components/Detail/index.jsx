@@ -16,74 +16,11 @@ const Detail = ({ isMobile, item, setItem
 }) => {
 
 
-
-
-
-    const ref = useRef(null);
-
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const xSpring = useSpring(x);
-    const ySpring = useSpring(y);
-
-    const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
-    console.log('transform', transform);
-    const [ready, setReady] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setReady(true);
-        }, 1000);
-
-        // Cleanup della setTimeout al momento dello smontaggio del componente.
-        return () => clearTimeout(timer);
-    }, []); // Assicurati di fornire un array vuoto come dipendenza affinché l'effetto venga eseguito solo una volta, all'avvio del componente.
-
-    const ROTATION_RANGE = 20; // Ridotto il valore della gamma di rotazione desiderata
-    const HALF_ROTATION_RANGE = ROTATION_RANGE / 2; // Metà della gamma di rotazione
-
-    const handleMouseMove = (e) => {
-        if (!ready || !ref.current) return;
-
-        const rect = ref.current.getBoundingClientRect();
-
-        const width = rect.width;
-        const height = rect.height;
-
-        const mouseX = (e.clientX - rect.left) * ROTATION_RANGE;
-        const mouseY = (e.clientY - rect.top) * ROTATION_RANGE;
-
-        const calcX = ((mouseY / height) - HALF_ROTATION_RANGE) * -1;
-        const calcY = (mouseX / width) - HALF_ROTATION_RANGE;
-
-        x.set(calcX);
-        y.set(calcY);
-    };
-
-    // const handleMouseMove = (e) => {
-    //     if (!ref.current) return [0, 0];
-
-    //     const rect = ref.current.getBoundingClientRect();
-
-    //     const width = rect.width;
-    //     const height = rect.height;
-
-    //     const mouseX = (e.clientX - rect.left) * ROTATION_RANGE;
-    //     const mouseY = (e.clientY - rect.top) * ROTATION_RANGE;
-
-    //     const rX = (mouseY / height - HALF_ROTATION_RANGE) * -1;
-    //     const rY = mouseX / width - HALF_ROTATION_RANGE;
-
-    //     x.set(rX);
-    //     y.set(rY);
-    // };
-
+    const Multiple = 150;
 
     const variantsScale = {
         open: {
             scale: '1',
-
             transition: {
                 delay: 0.1,
                 type: "spring",
@@ -127,9 +64,45 @@ const Detail = ({ isMobile, item, setItem
 
     }
 
-    console.log(item);
+    const imageRef = useRef(null);
+
+    function transformImage(x, y) {
+        const image = imageRef.current;
+        if (!image) return;
+
+        const box = image.getBoundingClientRect();
+        const calcX = -(y - box.y - box.height / 2) / Multiple;
+        const calcY = (x - box.x - box.width / 2) / Multiple;
+
+        image.style.transform = `rotateX(${calcX}deg) rotateY(${calcY}deg)`;
+    }
+
+    function handleMouseMove(e) {
+        window.requestAnimationFrame(function () {
+            transformImage(e.clientX, e.clientY);
+        });
+    }
+
+    function handleMouseLeave() {
+        window.requestAnimationFrame(function () {
+            const image = imageRef.current;
+            if (image) {
+                image.style.transform = "rotateX(0) rotateY(0)";
+            }
+        });
+    }
+
+    useEffect(() => {
+        // Cleanup function to reset transformation when component unmounts
+        return () => {
+            const image = imageRef.current;
+            if (image) {
+                image.style.transform = "rotateX(0) rotateY(0)";
+            }
+        };
+    }, []);
     return (
-        <motion.div ref={ref}
+        <motion.div
             onMouseMove={handleMouseMove} style={{
                 position: 'fixed',
                 top: '0',
@@ -146,15 +119,23 @@ const Detail = ({ isMobile, item, setItem
                 alignItems: 'center',
                 gap: '8%',
                 transformStyle: "preserve-3d",
+                perspective: '1000px'
             }} >
             {item && <div onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: isMobile ? '' : '24px', bottom: isMobile ? '24px' : '', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
                 <motion.img initial={"closed"} animate={item ? "open" : "closed"} variants={isMobile ? variantsYTop : variantsYButtom} src={closeSvg} />
             </div>}
-            <motion.div style={{ transform }}>
-                <motion.img initial={"closed"} animate={item ? "open" : "closed"} variants={variantsScale} style={{
-                    width: '100%', filter: item?.filter,
-                }} src={item?.img} />
-            </motion.div>
+
+            <motion.img
+                ref={imageRef}
+                initial={"closed"}
+                animate={item ? "open" : "closed"}
+                variants={variantsScale}
+                style={{ width: '100%', filter: item?.filter }}
+                src={item?.img}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+            />
+
             {!isMobile ? <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} style={{ position: 'absolute', bottom: '24px', left: '0', transition: 'bottom 0.5s', transform: 'translateX(-50%)', display: 'flex', gap: '3%', justifyContent: 'center', width: '100%' }}>
 
                 <div>
