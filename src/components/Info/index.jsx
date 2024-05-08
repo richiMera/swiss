@@ -46,7 +46,7 @@ const Info = ({ isMobile, isOpen }) => {
 
     const variantsItem = {
         closed: { opacity: 0, y: '50px', },
-        open: { opacity: 1, y: '0', transition: { duration: 0.7 } },
+        open: { opacity: 1, y: '0', transition: { duration: 0.5 } },
     }
 
 
@@ -119,9 +119,6 @@ const Info = ({ isMobile, isOpen }) => {
                                     padding: '15px'
                                 }}
                                 className='p-regular'
-
-
-
 
                             >
                                 Lorem ipsum dolor sit amet consectetur. Sit nisl ipsum aliquet condimentum amet elementum sagittis ac. Purus potenti tincidunt consectetur vitae sed proin. Neque sed orci sed lectus vulputate luctus. Laoreet aliquet massa phasellus ut tincidunt.' : 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi laudantium
