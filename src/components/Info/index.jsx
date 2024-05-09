@@ -164,7 +164,7 @@ const Info = ({ isMobile, isOpen }) => {
                         </Grid>
 
                     </Grid>
-                    <motion.div style={{ position: 'fixed', bottom: isMobile ? '40px' : '16px', right: '16px', left: '16px', color: 'black' }} className='isChildren' variants={variantsItem}>
+                    <motion.div style={{ position: 'fixed', bottom: isMobile ? '110px' : '16px', right: '16px', left: '16px', color: 'black' }} className='isChildren' variants={variantsItem}>
                         <p style={{ fontSize: isMobile ? '12px' : '14px' }}>All material for informational, entertainment and non-profit purposes only. Works appearing on this site are the property of their respective owners and may not be saved, re-transmitted, republished, or reformatted by any means, electronic or mechanical. This site offers broad public access to these materials exclusively for the private, informational and non-commercial use.</p>
                     </motion.div>
                 </motion.div>
