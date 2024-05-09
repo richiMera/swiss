@@ -78,6 +78,9 @@ const Detail = ({ isMobile, item, setItem
 
         image.style.transform = `rotateX(${calcX}deg) rotateY(${calcY}deg)`;
         info.style.transform = `rotateX(${calcX}deg) rotateY(${calcY}deg)`;
+
+        image.style.transition = 'all 0.2s';
+        info.style.transition = 'all 0.2s';
     }
     useEffect(() => {
         let timeoutId;
@@ -140,7 +143,7 @@ const Detail = ({ isMobile, item, setItem
                 alignItems: 'center',
                 gap: '8%',
                 transformStyle: "preserve-3d",
-                perspective: '3000px'
+                perspective: '1000px',
             }} >
             {item && <motion.div className='close-circle-div' initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYButtom} onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: '24px', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', height: '64px', width: '64px' }}>
                 <img draggable={false} src={closeXs} />
