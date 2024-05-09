@@ -5,6 +5,10 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
+#root {
+  position: relative;
+}
+
 html.lenis,
 html.lenis body {
   height: auto;

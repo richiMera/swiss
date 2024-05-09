@@ -100,20 +100,21 @@ const Detail = ({ isMobile, item, setItem
     useEffect(() => {
         // Cleanup function to reset transformation when component unmounts or item becomes null
         const image = imageRef.current;
+
         if (item) {
-            document.body.style.overflow = 'hidden';
-            document.body.style.height = '0px';
+            // document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
         } else {
-            document.body.style.overflow = 'auto';
-            document.body.style.height = 'auto';
+            // document.body.style.overflow = 'auto';
+            document.body.style.position = 'inherit';
             image.style.transform = "rotateX(0) rotateY(0)";
         }
 
 
         // Ripristina lo scroll quando il componente viene smontato
-        return () => {
-            document.body.style.overflow = 'auto';
-        };
+        // return () => {
+        //     document.body.style.overflow = 'auto';
+        // };
 
     }, [item]);
 
@@ -228,7 +229,7 @@ const Detail = ({ isMobile, item, setItem
                     </Grid>
                     <Grid style={{ textTransform: 'uppercase' }} item container xs={12} spacing={1}>
                         <Grid style={{ textAlign: 'right' }} item xs={6}>
-                            <p className='p-tiny' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Title Designer / Studio</p>
+                            <p className='p-tiny' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Title Design</p>
 
                         </Grid>
                         <Grid style={{}} item xs={6}>
