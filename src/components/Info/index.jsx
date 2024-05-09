@@ -65,17 +65,22 @@ const Info = ({ isMobile, isOpen }) => {
     }
 
 
+    const [scrollPosition, setScrollPosition] = useState(0);
     useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
+        // Cleanup function to reset transformation when component unmounts or item becomes null
 
+        if (isOpen) {
+            setScrollPosition(window.scrollY);
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollPosition}px`;
         } else {
-            document.body.style.overflow = 'auto';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            window.scrollTo(0, scrollPosition);
         }
-        // Ripristina lo scroll quando il componente viene smontato
-        return () => {
-            document.body.style.overflow = 'auto';
-        };
+
+
+
     }, [isOpen]);
     return (
         <div data-lenis-prevent="true">

@@ -5,6 +5,11 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
+::selection {
+  background-color: #E72A00;
+}
+
+
 #root {
   position: relative;
 }
@@ -205,4 +210,15 @@ h1.title,
 
 .hover-transition:hover {
   opacity: 1 !important;
+}
+
+.close-circle-div {
+  border-radius: 50%;
+  background-color: #1e1e1e;
+  border: 1px solid #2d2d2d;
+  transition: background-color .3s ease-out;
+}
+
+.close-circle-div:hover {
+  background-color: #2d2d2d;
 }

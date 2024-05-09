@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from "framer-motion"
 import { Grid } from '@mui/material';
-import closeSvg from '../../assets/close.svg';
+import closeXs from '../../assets/close-xs.svg'
 
 
 // fare nuvi detail
@@ -37,14 +37,15 @@ const Detail = ({ isMobile, item, setItem
 
     const variantsYTop = {
         open: {
-            y: '0', transition: {
+            y: '0', opacity: '1', transition: {
                 delay: 0.1,
                 ease: [0, 0.71, 0.2, 1.01],
-                duration: 0.5,
+                duration: 0.7,
             }
         },
         closed: {
             y: '100px',
+            opacity: '0'
         },
     }
 
@@ -53,7 +54,7 @@ const Detail = ({ isMobile, item, setItem
             y: '0', transition: {
                 delay: 0.1,
                 ease: [0, 0.71, 0.2, 1.01],
-                duration: 0.5,
+                duration: 0.7,
             }
         },
         closed: {
@@ -63,9 +64,12 @@ const Detail = ({ isMobile, item, setItem
     }
 
     const imageRef = useRef(null);
+    const infoRef = useRef(null);
 
     function transformImage(x, y) {
         const image = imageRef.current;
+        const info = infoRef.current;
+
         if (!image) return;
 
         const box = image.getBoundingClientRect();
@@ -73,6 +77,7 @@ const Detail = ({ isMobile, item, setItem
         const calcY = (x - box.x - box.width / 2) / Multiple;
 
         image.style.transform = `rotateX(${calcX}deg) rotateY(${calcY}deg)`;
+        info.style.transform = `rotateX(${calcX}deg) rotateY(${calcY}deg)`;
     }
     useEffect(() => {
         let timeoutId;
@@ -96,25 +101,23 @@ const Detail = ({ isMobile, item, setItem
         }
     }
 
-
+    const [scrollPosition, setScrollPosition] = useState(0);
     useEffect(() => {
         // Cleanup function to reset transformation when component unmounts or item becomes null
         const image = imageRef.current;
 
         if (item) {
-            // document.body.style.overflow = 'hidden';
+            setScrollPosition(window.scrollY);
             document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollPosition}px`;
         } else {
-            // document.body.style.overflow = 'auto';
-            document.body.style.position = 'inherit';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            window.scrollTo(0, scrollPosition);
             image.style.transform = "rotateX(0) rotateY(0)";
         }
 
 
-        // Ripristina lo scroll quando il componente viene smontato
-        // return () => {
-        //     document.body.style.overflow = 'auto';
-        // };
 
     }, [item]);
 
@@ -130,7 +133,7 @@ const Detail = ({ isMobile, item, setItem
                 zIndex: '90000',
                 overflow: 'hidden',
                 height: item ? '100vh' : '0px',
-                padding: item ? isMobile ? '16px' : '10% 12%' : ' 0px',
+                padding: item ? isMobile ? '16px' : '8%' : ' 0px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -139,8 +142,8 @@ const Detail = ({ isMobile, item, setItem
                 transformStyle: "preserve-3d",
                 perspective: '3000px'
             }} >
-            {item && <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYButtom} onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: '24px', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
-                <img src={closeSvg} />
+            {item && <motion.div className='close-circle-div' initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYButtom} onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: '24px', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', height: '64px', width: '64px' }}>
+                <img draggable={false} src={closeXs} />
             </motion.div>}
 
             <motion.img
@@ -153,70 +156,7 @@ const Detail = ({ isMobile, item, setItem
 
             />
 
-            {/* {!isMobile ? <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} style={{ position: 'absolute', bottom: '40px', left: '0', transition: 'bottom 0.5s', transform: 'translateX(-50%)', display: 'flex', gap: '3%', justifyContent: 'center', width: '100%' }}>
-
-                <div>
-                    <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
-                    <p className='p-big' style={{ color: item?.textColor }}>{item?.typeface}</p>
-                </div>
-                <div>
-                    <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Title Designer / Studio</p>
-                    <p className='p-big' style={{ color: item?.textColor }}>{item?.designer}</p>
-                </div>
-                <div>
-                    <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Film Director</p>
-                    <p className='p-big' style={{ color: item?.textColor }}>{item?.film_director}</p>
-                </div>
-                <div>
-                    <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Year</p>
-                    <p className='p-big' style={{ color: item?.textColor }}>{item?.year}</p>
-                </div>
-                <div>
-                    <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Genre</p>
-                    <p className='p-big' style={{ color: item?.textColor }}>{item?.genre}</p>
-                </div>
-                <div>
-                    <p className='p-smalls' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Country</p>
-                    <p className='p-big' style={{ color: item?.textColor }}>{item?.country}</p>
-                </div>
-
-            </motion.div> : <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} >
-                <Grid container spacing={3}>
-                    <Grid item container xs={6}>
-                        <Grid style={{ marginBottom: '24px' }} item xs={12}>
-                            <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
-                            <p className='p-big' style={{ color: item?.textColor }}>{item?.typeface}</p>
-                        </Grid>
-                        <Grid style={{ marginBottom: '24px' }} item xs={12}>
-                            <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Title Designer / Studio</p>
-                            <p className='p-big' style={{ color: item?.textColor }}>{item?.designer}</p>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Film Director</p>
-                            <p className='p-big' style={{ color: item?.textColor }}>{item?.film_director}</p>
-                        </Grid>
-                    </Grid>
-                    <Grid item container xs={6}>
-
-                        <Grid style={{ marginBottom: '24px' }} item xs={12}>
-                            <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Year</p>
-                            <p className='p-big' style={{ color: item?.textColor }}>{item?.year}</p>
-                        </Grid>
-                        <Grid style={{ marginBottom: '24px' }} item xs={12}>
-                            <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Genre</p>
-                            <p className='p-big' style={{ color: item?.textColor }}>{item?.genre}</p>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <p className='p-smalls' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Country</p>
-                            <p className='p-big' style={{ color: item?.textColor }}>{item?.country}</p>
-                        </Grid>
-
-                    </Grid>
-                </Grid>
-            </motion.div>
-
-            } */}
-            <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} >
+            <motion.div ref={infoRef} initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} >
                 <Grid container spacing={0}>
                     <Grid style={{ textTransform: 'uppercase' }} item container xs={12} spacing={1}>
                         <Grid style={{ textAlign: 'right' }} item xs={6}>

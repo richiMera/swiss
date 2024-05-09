@@ -73,10 +73,10 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
             {type === 'search' && <>
 
 
-                <img id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4' }} src={searchIcon} />
+                <img draggable={false} id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4' }} src={searchIcon} />
 
                 <input style={{ paddingLeft: '45px', fontSize: '16px', letterSpacing: '.1px', ...style }} className='input-box' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
-                {value && <img onClick={() => { setValue(''); }} id={'search-icon'} style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)' }} src={closeXs} />}</>}
+                {value && <img draggable={false} onClick={() => { setValue(''); }} id={'search-icon'} style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)' }} src={closeXs} />}</>}
 
             {type === 'sort' && <>
                 {openSort && <div id='sort-menu'>
@@ -90,7 +90,7 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
 
                 <div id='sort-toggle-button' style={{ display: 'flex', alignItems: 'center', position: 'realtive', cursor: 'pointer' }} onClick={() => { setOpenSort(!openSort) }} >
                     <p className='p-regular' style={{ color: '#ececec', marginRight: '8px' }}>{sort}</p>
-                    <img id={'arrow-sort'} style={{ transition: ' all 0.3s ease-out', transform: openSort ? 'rotate(180deg)' : '' }} src={arrowRed} />
+                    <img draggable={false} id={'arrow-sort'} style={{ transition: ' all 0.3s ease-out', transform: openSort ? 'rotate(180deg)' : '' }} src={arrowRed} />
                 </div>
             </>}
         </div>
