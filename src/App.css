@@ -50,6 +50,14 @@ p.p-small {
   font-weight: 200;
 }
 
+p.p-tiny {
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  line-height: 120%;
+  font-weight: 200;
+}
+
+
 p.p-big {
   font-size: 18px;
   font-weight: 200;

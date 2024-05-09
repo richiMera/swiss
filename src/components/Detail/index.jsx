@@ -1,14 +1,12 @@
 
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion"
+import { motion } from "framer-motion"
 import { Grid } from '@mui/material';
 import closeSvg from '../../assets/close.svg';
 
 
-
-
-
-
+// fare nuvi detail
+//bloccare scroll
 
 
 
@@ -102,14 +100,24 @@ const Detail = ({ isMobile, item, setItem
     useEffect(() => {
         // Cleanup function to reset transformation when component unmounts or item becomes null
         const image = imageRef.current;
-        if (!item) {
+        if (item) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
             image.style.transform = "rotateX(0) rotateY(0)";
-
         }
 
+
+        // Ripristina lo scroll quando il componente viene smontato
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+
     }, [item]);
+
     return (
         <motion.div
+            data-lenis-prevent="true"
             onMouseMove={handleMouseMove} style={{
                 position: 'fixed',
                 top: '0',
@@ -128,7 +136,7 @@ const Detail = ({ isMobile, item, setItem
                 transformStyle: "preserve-3d",
                 perspective: '3000px'
             }} >
-            {item && <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={isMobile ? variantsYTop : variantsYButtom} onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: isMobile ? '' : '24px', bottom: isMobile ? '24px' : '', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
+            {item && <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYButtom} onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: '24px', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer' }}>
                 <img src={closeSvg} />
             </motion.div>}
 
@@ -142,7 +150,7 @@ const Detail = ({ isMobile, item, setItem
 
             />
 
-            {!isMobile ? <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} style={{ position: 'absolute', bottom: '24px', left: '0', transition: 'bottom 0.5s', transform: 'translateX(-50%)', display: 'flex', gap: '3%', justifyContent: 'center', width: '100%' }}>
+            {/* {!isMobile ? <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} style={{ position: 'absolute', bottom: '40px', left: '0', transition: 'bottom 0.5s', transform: 'translateX(-50%)', display: 'flex', gap: '3%', justifyContent: 'center', width: '100%' }}>
 
                 <div>
                     <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
@@ -204,8 +212,71 @@ const Detail = ({ isMobile, item, setItem
                 </Grid>
             </motion.div>
 
-            }
-        </motion.div>
+            } */}
+            <motion.div initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} >
+                <Grid container spacing={0}>
+                    <Grid style={{ textTransform: 'uppercase' }} item container xs={12} spacing={1}>
+                        <Grid style={{ textAlign: 'right' }} item xs={6}>
+                            <p className='p-tiny' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
+
+                        </Grid>
+                        <Grid style={{}} item xs={6}>
+                            <p className='p-tiny' style={{ color: item?.textColor }}>{item?.typeface}</p>
+                        </Grid>
+                    </Grid>
+                    <Grid style={{ textTransform: 'uppercase' }} item container xs={12} spacing={1}>
+                        <Grid style={{ textAlign: 'right' }} item xs={6}>
+                            <p className='p-tiny' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Title Designer / Studio</p>
+
+                        </Grid>
+                        <Grid style={{}} item xs={6}>
+                            <p className='p-tiny' style={{ color: item?.textColor }}>{item?.designer}</p>
+                        </Grid>
+                    </Grid>
+                    <Grid style={{ textTransform: 'uppercase' }} item container xs={12} spacing={1}>
+                        <Grid style={{ textAlign: 'right' }} item xs={6}>
+                            <p className='p-tiny' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Film Director</p>
+
+                        </Grid>
+                        <Grid style={{}} item xs={6}>
+                            <p className='p-tiny' style={{ color: item?.textColor }}>{item?.film_director}</p>
+                        </Grid>
+                    </Grid>
+                    <Grid style={{ textTransform: 'uppercase' }} item container xs={12} spacing={1}>
+                        <Grid style={{ textAlign: 'right' }} item xs={6}>
+                            <p className='p-tiny' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Year</p>
+
+
+                        </Grid>
+                        <Grid style={{}} item xs={6}>
+                            <p className='p-tiny' style={{ color: item?.textColor }}>{item?.year}</p>
+                        </Grid>
+                    </Grid>
+                    <Grid style={{ textTransform: 'uppercase' }} item container xs={12} spacing={1}>
+                        <Grid style={{ textAlign: 'right' }} item xs={6}>
+                            <p className='p-tiny' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Genre</p>
+                        </Grid>
+                        <Grid style={{}} item xs={6}>
+                            <p className='p-tiny' style={{ color: item?.textColor }}>{item?.genre}</p>
+                        </Grid>
+                    </Grid>
+                    <Grid style={{ textTransform: 'uppercase' }} item container xs={12} spacing={1}>
+                        <Grid style={{ textAlign: 'right' }} item xs={6}>
+                            <p className='p-tiny' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Country</p>
+                        </Grid>
+                        <Grid style={{}} item xs={6}>
+                            <p className='p-tiny' style={{ color: item?.textColor }}>{item?.country}</p>
+                        </Grid>
+                    </Grid>
+
+
+                </Grid>
+
+
+            </motion.div>
+
+
+        </motion.div >
     );
 }
 

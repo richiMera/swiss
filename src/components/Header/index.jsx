@@ -11,11 +11,6 @@ import { motion } from "framer-motion"
 
 const Header = ({ isMobile, openFilters, scrollDirection, setIsOpenInfo, isOpenInfo }) => {
 
-
-
-
-
-
     const variants = {
         hidden: { top: "-50px" },
         visible: {
@@ -23,14 +18,9 @@ const Header = ({ isMobile, openFilters, scrollDirection, setIsOpenInfo, isOpenI
                 delay: 0.1,
                 type: "tween",
                 duration: 0.5,
-                // type: "spring",
-                // stiffness: 400,
-                // damping: 40,
             }
         }
     };
-
-
 
     return (
         <div style={{ width: '100%', marginTop: '0', marginLeft: '0', zIndex: openFilters ? '' : '9001', display: 'flex', justifyContent: !isMobile ? 'center' : 'start', color: ' #ECECEC' }}>

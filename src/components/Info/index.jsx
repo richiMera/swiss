@@ -63,8 +63,21 @@ const Info = ({ isMobile, isOpen }) => {
         },
 
     }
+
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+        // Ripristina lo scroll quando il componente viene smontato
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isOpen]);
     return (
-        <>
+        <div data-lenis-prevent="true">
             <Grid style={{ opacity: isOpen ? 0 : 1, color: '#ECECEC', paddingTop: !isOpen ? isMobile ? '48px' : '16px' : '', paddingLeft: !isOpen ? isMobile ? '16px' : '' : '', }} container>
                 <Grid item xs={isMobile ? 0 : 4}>
                 </Grid>
@@ -146,14 +159,14 @@ const Info = ({ isMobile, isOpen }) => {
 
                     </Grid>
                     <motion.div style={{ position: 'absolute', bottom: '16px', right: '16px', left: '16px', color: 'black' }} className='isChildren' variants={variantsItem}>
-                        <p>All material for educational and non-profit purposes only. Any copyright material mirrored on this site is intended for private personal study. Copyright owners may, if they wish, request to have material removed by leaving a comment on the relevant page. The materials archived, stored, and presented here, are copyrighted by their respective contributors, and may not be saved, re-transmitted, republished, or reformatted by any means, electronic or mechanical. This site offers broad public access to these materials exclusively as a contribution to education and scholarship, and for the private, non-profit use of the academic community.</p>
+                        <p style={{ fontSize: '12px' }}>All material for informational, entertainment and non-profit purposes only. Works appearing on this site are the property of their respective owners and may not be saved, re-transmitted, republished, or reformatted by any means, electronic or mechanical. This site offers broad public access to these materials exclusively for the private, informational and non-commercial use.</p>
                     </motion.div>
                 </motion.div>
 
 
 
             </motion.div>
-        </>
+        </div>
     );
 }
 
