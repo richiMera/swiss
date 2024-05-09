@@ -102,8 +102,10 @@ const Detail = ({ isMobile, item, setItem
         const image = imageRef.current;
         if (item) {
             document.body.style.overflow = 'hidden';
+            document.body.style.height = '0px';
         } else {
             document.body.style.overflow = 'auto';
+            document.body.style.height = 'auto';
             image.style.transform = "rotateX(0) rotateY(0)";
         }
 
