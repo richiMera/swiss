@@ -5,10 +5,10 @@ import closeXs from '../../assets/close-xs.svg'
 
 
 
-const Chip = ({ text, onClick }) => {
+const Chip = ({ text, onClick, isSelected = false }) => {
 
 
-    const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState(isSelected);
     const handleClick = () => {
         setSelected(!selected);
         if (onClick) {

@@ -164,7 +164,7 @@ const App = () => {
 
           </div>
 
-          <Grid container >
+          <Grid style={{ paddingBottom: '100px' }} container >
             {realData?.map((card, index) => {
               return (
                 <Card index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />

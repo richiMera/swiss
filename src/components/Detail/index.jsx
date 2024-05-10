@@ -207,7 +207,11 @@ const Detail = ({ isMobile, item, setItem
                             <p className='p-tiny' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Genre</p>
                         </Grid>
                         <Grid style={{}} item xs={6}>
-                            <p className='p-tiny' style={{ color: item?.textColor }}>{item?.genre}</p>
+                            {item?.genre.map((g, index) => {
+                                return (
+                                    <p key={index} className='p-tiny' style={{ color: item?.textColor }}>{g}</p>
+                                )
+                            })}
                         </Grid>
                     </Grid>
                     <Grid style={{ textTransform: 'uppercase' }} item container xs={12} spacing={1}>
@@ -215,7 +219,12 @@ const Detail = ({ isMobile, item, setItem
                             <p className='p-tiny' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Country</p>
                         </Grid>
                         <Grid style={{}} item xs={6}>
-                            <p className='p-tiny' style={{ color: item?.textColor }}>{item?.country}</p>
+                            {item?.country.map((c, index) => {
+                                return (
+                                    <p key={index} className='p-tiny' style={{ color: item?.textColor }}>{c}</p>
+                                )
+                            })}
+
                         </Grid>
                     </Grid>
 

@@ -10,7 +10,7 @@ import closeS from '../../assets/close-s.svg';
 
 
 
-
+//seleziono e filtra, deseleziono e resetta, riseleziono e aggiunge i filtri a quelli prima
 
 
 const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile }) => {
@@ -18,6 +18,40 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
     const [filtersData, setFiltersData] = useState({});
     const [innerFilters, setInnerFilters] = useState({});
     const [clearAll, setClearAll] = useState(false);
+    const [arrayFontStyle, setArrayFontStyle] = useState([]);
+    const [arrayCountry, setArrayCountry] = useState([]);
+    const [arrayGenres, setArrayGenres] = useState([]);
+    const [selectedDecades, setSelectedDecades] = useState([]);
+
+    function filterFilmsByAttributes(fontStyles, countries, genres, decades) {
+        // Inizializza la lista filtrata con tutti i film
+        let filteredFilms = data;
+
+        // Applica i filtri incrementali
+        if (fontStyles.length > 0) {
+            filteredFilms = filteredFilms.filter(film => fontStyles.some(style => film.fontStyle.includes(style)));
+        }
+        if (countries.length > 0) {
+            filteredFilms = filteredFilms.filter(film => countries.some(country => film.country.includes(country)));
+        }
+        if (genres.length > 0) {
+            filteredFilms = filteredFilms.filter(film => genres.some(genre => film.genre.includes(genre)));
+        }
+        if (decades.length > 0) {
+            filteredFilms = filteredFilms.filter(film => decades.some(decade => {
+                const filmDecade = Math.floor(parseInt(film.year) / 10) * 10;
+                return filmDecade.toString() === decade;
+            }));
+        }
+
+        // Restituisci la lista filtrata
+        return filteredFilms;
+    }
+
+    // Esempio di utilizzo
+
+
+    // Aggiungi ulteriori filtri
 
 
     const drawerPaperStyle = {
@@ -31,8 +65,12 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
 
     useEffect(() => {
 
+
+
         const countByFontStyle = data.reduce((acc, curr) => {
-            acc[curr.fontStyle] = (acc[curr.fontStyle] || 0) + 1;
+            curr.fontStyle.forEach(fontStyle => {
+                acc[fontStyle] = (acc[fontStyle] || 0) + 1;
+            });
             return acc;
         }, {});
 
@@ -42,16 +80,22 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
             return acc;
         }, {});
 
+
         const countByGenre = data.reduce((acc, curr) => {
-            acc[curr.genre] = (acc[curr.genre] || 0) + 1;
+            curr.genre.forEach(genre => {
+                acc[genre] = (acc[genre] || 0) + 1;
+            });
             return acc;
         }, {});
+
+
 
         const countByCountry = data.reduce((acc, curr) => {
-            acc[curr.country] = (acc[curr.country] || 0) + 1;
+            curr.country.forEach(country => {
+                acc[country] = (acc[country] || 0) + 1;
+            });
             return acc;
         }, {});
-
 
 
 
@@ -81,137 +125,85 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
 
     }, []);
 
-    const [myFilter, setMyFilter] = useState([{
-        type: 'fontStyle',
-        values: [],
-        data: []
-    }, {
-        type: 'dedace',
-        values: [],
-        data: []
-    },
-    {
-        type: 'genre',
-        values: [],
-        data: []
-    },
-    {
-        type: 'country',
-        values: [],
-        data: []
-    }
-    ]);
 
-    // clicco du uno, si riempie a quel punto cerco tutti gli elementi che hanno quello, 
-    console.log('myFilter', myFilter);
+
     const fillMyFilter = (type, value) => {
-        const lozz = [...myFilter];
-
-        const obj = lozz.find((f) => f.type === type);
-        const filtered = data.filter((f) => f[type] === value);
-        if (!obj.values.includes(value)) {
-            obj.values.push(value);
-            obj.data = [...obj.data, ...filtered];
-
-        } else {
-            obj.values = obj.values.filter((v) => v !== value);
+        let updatedFontStyle = [...arrayFontStyle];
+        let updatedCountry = [...arrayCountry];
+        let updatedGenres = [...arrayGenres];
+        let updatedDecades = [...selectedDecades];
+        switch (type) {
+            case 'fontStyle':
+                // Aggiungi o rimuovi il valore selezionato dall'array degli stili di carattere
+                if (updatedFontStyle.includes(value)) {
+                    updatedFontStyle = updatedFontStyle.filter(style => style !== value);
+                } else {
+                    updatedFontStyle.push(value);
+                }
+                break;
+            case 'country':
+                // Aggiungi o rimuovi il valore selezionato dall'array dei paesi
+                if (updatedCountry.includes(value)) {
+                    updatedCountry = updatedCountry.filter(country => country !== value);
+                } else {
+                    updatedCountry.push(value);
+                }
+                break;
+            case 'genre':
+                // Aggiungi o rimuovi il valore selezionato dall'array dei generi
+                if (updatedGenres.includes(value)) {
+                    updatedGenres = updatedGenres.filter(genre => genre !== value);
+                } else {
+                    updatedGenres.push(value);
+                }
+                break;
+            case 'decade':
+                // Aggiungi o rimuovi la decade selezionata dall'array delle decadi
+                if (updatedDecades.includes(value)) {
+                    updatedDecades = updatedDecades.filter(decade => decade !== value);
+                } else {
+                    updatedDecades.push(value);
+                }
+                break;
+            default:
+                break;
         }
-        setMyFilter(lozz);
+
+        // Aggiorna gli array dei filtri
+        setArrayFontStyle(updatedFontStyle);
+        setArrayCountry(updatedCountry);
+        setArrayGenres(updatedGenres);
+        setSelectedDecades(updatedDecades);
+
+        // Applica il filtro
+        const filteredArray = filterFilmsByAttributes(updatedFontStyle, updatedCountry, updatedGenres, updatedDecades);
+        console.log('filteredArray', filteredArray);
+        setFilteredData(filteredArray);
 
     }
 
-    Object.compare = function (obj1, obj2) {
-        // Loop attraverso le proprietà dell'oggetto 1
-        for (var p in obj1) {
-            // Verifica se la proprietà esiste in entrambi gli oggetti
-            if (obj1.hasOwnProperty(p) !== obj2.hasOwnProperty(p)) return false;
 
-            // Confronta il tipo di proprietà
-            switch (typeof (obj1[p])) {
-                // Confronto profondo degli oggetti
-                case 'object':
-                    if (!Object.compare(obj1[p], obj2[p])) return false;
-                    break;
-                // Confronto del codice della funzione
-                case 'function':
-                    if (typeof (obj2[p]) == 'undefined' || (p !== 'compare' && obj1[p].toString() !== obj2[p].toString())) return false;
-                    break;
-                // Confronto dei valori
-                default:
-                    if (obj1[p] !== obj2[p]) return false;
-            }
-        }
 
-        // Verifica se ci sono proprietà extra nell'oggetto 2
-        for (var p in obj2) {
-            if (typeof (obj1[p]) === 'undefined') return false;
-        }
-        return true;
-    };
 
+    const [scrollPosition, setScrollPosition] = useState(0);
     useEffect(() => {
+        // Cleanup function to reset transformation when component unmounts or item becomes null
 
-        let count = 0;
-
-        for (const item of myFilter) {
-            if (item.values.length > 0) {
-                count++;
-            }
-        }
-
-        if (count >= 2) {
-
-            console.log("Almeno due values.length sono maggiori di 0");
-
-
-            const allDataObjects = [];
-
-            // Concateniamo tutti gli oggetti presenti negli array data
-            for (const item of myFilter) {
-                allDataObjects.push(...item.data);
-            }
-
-            console.log('filteredMyFilterALL', allDataObjects);
-            // Filtriamo gli oggetti identici
-            const filteredIdenticalObjects = allDataObjects.filter((obj, index, self) => {
-                // Cerchiamo se ci sono altri oggetti identici a quello corrente
-                return self.findIndex((o) => Object.compare(o, obj)) !== index;
-            });
-
-            if (filteredIdenticalObjects.length === 0) {
-                // Se non ci sono duplicati, restituisci un array vuoto
-
-                setFilteredData([]);
-                return [];
-            } else {
-                // Altrimenti, restituisci l'array di oggetti duplicati
-
-                setFilteredData(filteredIdenticalObjects);
-
-            }
-
-
-
-
-
-
-
-        } else if (count === 1) {
-            console.log("Solo uno values.length è maggiore di 0");
-            const allDataObjects = [];
-            for (const item of myFilter) {
-                allDataObjects.push(...item.data);
-            }
-            setFilteredData(allDataObjects);
-            setClearAll(true);
+        if (open) {
+            setScrollPosition(window.scrollY);
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollPosition}px`;
         } else {
-            console.log("Nessun values.length è maggiore di 0");
-            setFilteredData(data);
-            setClearAll(false);
+            document.body.style.position = '';
+            document.body.style.top = '';
+            window.scrollTo(0, scrollPosition);
+
         }
 
 
-    }, [myFilter]);
+
+    }, [open]);
+
 
     //fare filtro || su stesso type, am && con altri type
 
@@ -233,7 +225,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                         </div>
 
                     </div>
-                    <div style={{ overflowY: 'auto', height: 'calc(100% - 30px)' }}>
+                    <div style={{ overflowY: 'auto', height: 'calc(100% - 45px)' }}>
                         <Grid container>
                             <Grid xs={12} md={6} item>
                                 <div style={{ marginBottom: '40px' }} >
@@ -241,7 +233,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                                     <div className='chip-container'>
                                         {(filtersData.classifications) && Object.entries(filtersData.classifications).map(([font, count]) => {
                                             console.log(innerFilters['classifications'][font]); return (
-                                                <Chip onClick={() => { fillMyFilter('fontStyle', font) }} key={font} text={font} />
+                                                <Chip isSelected={arrayFontStyle.includes(font)} onClick={() => { fillMyFilter('fontStyle', font) }} key={font} text={font} />
                                             )
                                         })}
 
@@ -256,7 +248,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                                     <p style={{ marginBottom: '16px' }} className='p-regular'>Film genre</p>
                                     <div className='chip-container'>
                                         {filtersData.genres && Object.entries(filtersData.genres).map(([genre, count]) => (
-                                            <Chip onClick={() => { fillMyFilter('genre', genre) }} key={genre} text={genre} />
+                                            <Chip isSelected={arrayGenres.includes(genre)} onClick={() => { fillMyFilter('genre', genre) }} key={genre} text={genre} />
                                         ))}
                                     </div>
 
@@ -270,7 +262,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                                     <p style={{ marginBottom: '16px' }} className='p-regular'>Film period</p>
                                     <div className='chip-container'>
                                         {filtersData.decade && Object.entries(filtersData.decade).map(([year, count]) => (
-                                            <Chip key={year} text={year + 's'} />
+                                            <Chip isSelected={selectedDecades.includes(year)} onClick={() => fillMyFilter('decade', year)} key={year} text={year + 's'} />
                                         ))}
                                     </div>
                                 </div>
@@ -279,7 +271,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                                 <p style={{ marginBottom: '16px' }} className='p-regular'>Country</p>
                                 <div className='chip-container'>
                                     {filtersData.countries && Object.entries(filtersData.countries).map(([country, count]) => (
-                                        <Chip onClick={() => { fillMyFilter('country', country) }} key={country} text={country} />
+                                        <Chip isSelected={arrayCountry.includes(country)} onClick={() => { fillMyFilter('country', country) }} key={country} text={country} />
                                     ))}
                                 </div>
                             </Grid>
