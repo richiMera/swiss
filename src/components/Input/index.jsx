@@ -69,7 +69,7 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
 
 
     return (
-        <div className='input-container' style={{ position: 'relative', zIndex: '200' }}>
+        <div className='input-container' style={{ position: 'relative', zIndex: '200', width: type === 'search' && isMobile ? '80%' : '' }}>
             {type === 'search' && <>
 
 

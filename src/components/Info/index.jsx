@@ -5,12 +5,6 @@ import { motion } from "framer-motion"
 import { Grid } from '@mui/material';
 
 
-
-
-
-
-
-
 const Info = ({ isMobile, isOpen }) => {
 
 

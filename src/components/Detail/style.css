@@ -1,0 +1,17 @@
+.pop-cors {
+    position: absolute;
+    transition: top 2s linear;
+    /* Animazione del movimento verso il basso */
+}
+
+/* Animazione di uscita dalla viewport */
+@keyframes exitAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(200vh);
+    }
+}

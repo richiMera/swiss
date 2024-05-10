@@ -126,6 +126,10 @@ h1.title,
   background-color: #1E1E1E;
 }
 
+.input-box::selection {
+  background-color: transparent;
+}
+
 .input-container:focus-within #search-icon {
   opacity: 1 !important;
   /* filter: invert(36%) sepia(87%) saturate(7497%) hue-rotate(11deg) brightness(97%) contrast(101%); */
@@ -153,6 +157,10 @@ h1.title,
 
 .filter-chip:hover {
   background-color: #3C3C3C;
+}
+
+.filter-chip>p::selection {
+  background-color: transparent;
 }
 
 .filter-chip.selected,

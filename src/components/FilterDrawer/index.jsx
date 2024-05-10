@@ -227,9 +227,13 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                 <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: isMobile ? '24px' : '24px 24px 160px 24px', color: '#ECECEC' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
                         <p className='p-regular'>Filter</p>
-                        <img draggable={false} style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} src={closeS} />
+                        <div style={{ display: 'flex', gap: '24px' }}>
+                            <p style={{ opacity: !clearAll ? '0.16' : '1', cursor: 'pointer' }}> Clear all</p>
+                            <p style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} > Close</p>
+                        </div>
+
                     </div>
-                    <div style={{ overflowY: 'auto', height: 'calc(100% - 110px)' }}>
+                    <div style={{ overflowY: 'auto', height: 'calc(100% - 30px)' }}>
                         <Grid container>
                             <Grid xs={12} md={6} item>
                                 <div style={{ marginBottom: '40px' }} >
@@ -327,9 +331,6 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                             </div>
                         </div> */}
                     </div>
-                    {clearAll && <div style={{ width: 'fit-content', border: '1px solid #BBBBBB', color: '#BBBBBB', padding: isMobile ? '10px' : '', position: 'absolute', bottom: '24px' }} className='input-box'>
-                        <p> Clear all</p>
-                    </div>}
                 </div >
             </Drawer >
 

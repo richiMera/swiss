@@ -2,7 +2,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from "framer-motion"
 import { Grid } from '@mui/material';
-import closeXs from '../../assets/close-xs.svg'
+import closeXs from '../../assets/close-xs.svg';
+import './style.css'
 
 
 // fare nuvi detail
@@ -100,6 +101,7 @@ const Detail = ({ isMobile, item, setItem
 
     function handleMouseMove(e) {
         if (mouseMoveInitialized) {
+            // setPopCorsList(prevList => [...prevList, { x: e.clientX, y: e.clientY }]);
             transformImage(e.clientX, e.clientY);
         }
     }
@@ -145,11 +147,13 @@ const Detail = ({ isMobile, item, setItem
                 transformStyle: "preserve-3d",
                 perspective: '1000px',
             }} >
+
             {item && <motion.div className='close-circle-div' initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYButtom} onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: '24px', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', height: '64px', width: '64px' }}>
                 <img draggable={false} src={closeXs} />
             </motion.div>}
 
             <motion.img
+                draggable={false}
                 ref={imageRef}
                 initial={"closed"}
                 animate={item ? "open" : "closed"}

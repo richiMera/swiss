@@ -176,7 +176,7 @@ const App = () => {
           <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
 
           <FixedFilters isMobile={isMobile}>
-            <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '270px' : '313px' }} placeholder={'Search for movies, font, director ...'} />
+            <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '' : '313px' }} placeholder={isMobile ? 'Movies, font, director ...' : 'Search for movies, font, director ...'} />
 
             <div style={{ width: isMobile ? '100%' : '' }}>
               <div style={{ width: isMobile ? 'fit-content' : '' }} onClick={() => { setOpenFilters(true) }} className="input-box">
