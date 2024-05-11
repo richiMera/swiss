@@ -78,11 +78,7 @@ const App = () => {
 
   useEffect(() => {
 
-    if (filteredData.length === 0) {
-      setRealData(data);
-    } else {
-      setRealData(filteredData);
-    }
+    setRealData(filteredData);
 
   }, [filteredData]);
 
