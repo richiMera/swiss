@@ -47,6 +47,7 @@ const App = () => {
   const [cardItem, setCardItem] = useState(null);
   const [openFilters, setOpenFilters] = useState(false);
   const [columnWidth, setColumnWidth] = useState(3);
+  const [numberOfFilters, setNumberOfFilter] = useState(0);
 
   const [filteredData, setFilteredData] = useState([])
 
@@ -169,14 +170,14 @@ const App = () => {
           </Grid>
 
 
-          <FilterDrawer isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
+          <FilterDrawer numberOfFilters={numberOfFilters} setNumberOfFilter={setNumberOfFilter} isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
 
           <FixedFilters isMobile={isMobile}>
             <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '' : '313px' }} placeholder={isMobile ? 'Movies, font, director ...' : 'Search for movies, font, director ...'} />
 
             <div style={{ width: isMobile ? '100%' : '' }}>
-              <div style={{ width: isMobile ? 'fit-content' : '' }} onClick={() => { setOpenFilters(true) }} className="input-box">
-                Filter
+              <div style={{ width: isMobile ? 'fit-content' : '', backgroundColor: numberOfFilters > 0 ? '#E72A00' : '', border: numberOfFilters > 0 ? '1px solid #E72A00' : '' }} onClick={() => { setOpenFilters(true) }} className="input-box">
+                <p>Filter </p> {numberOfFilters > 0 && <div style={{ width: numberOfFilters > 9 ? '19px' : '16px', height: numberOfFilters > 9 ? '19px' : '16px', borderRadius: '50%', backgroundColor: 'white', color: '#E72A00', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: '8px', letterSpacing: '0' }}><p>{numberOfFilters}</p></div>}
               </div>
             </div>
 

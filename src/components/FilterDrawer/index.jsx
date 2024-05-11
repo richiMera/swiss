@@ -13,7 +13,7 @@ import closeS from '../../assets/close-s.svg';
 //seleziono e filtra, deseleziono e resetta, riseleziono e aggiunge i filtri a quelli prima
 
 
-const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile }) => {
+const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, setNumberOfFilter, numberOfFilters }) => {
 
     const [filtersData, setFiltersData] = useState({});
     const [innerFilters, setInnerFilters] = useState({});
@@ -26,6 +26,9 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
     function filterFilmsByAttributes(fontStyles, countries, genres, decades) {
         // Inizializza la lista filtrata con tutti i film
         let filteredFilms = data;
+        const innerNumberOfFilters = fontStyles.length + countries.length + genres.length + decades.length;
+        setNumberOfFilter(innerNumberOfFilters)
+
 
         // Applica i filtri incrementali
         if (fontStyles.length > 0) {
@@ -181,6 +184,21 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
         setFilteredData(filteredArray);
 
     }
+    const clearFilter = () => {
+
+
+        // Aggiorna gli array dei filtri
+        setArrayFontStyle([]);
+        setArrayCountry([]);
+        setArrayGenres([]);
+        setSelectedDecades([]);
+        setNumberOfFilter(0);
+
+        setFilteredData(data);
+
+    }
+
+
 
 
 
@@ -204,6 +222,8 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
 
     }, [open]);
 
+    console.log(arrayFontStyle);
+
 
     //fare filtro || su stesso type, am && con altri type
 
@@ -220,7 +240,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
                         <p className='p-regular'>Filter</p>
                         <div style={{ display: 'flex', gap: '24px' }}>
-                            <p style={{ opacity: !clearAll ? '0.16' : '1', cursor: 'pointer' }}> Clear all</p>
+                            <p onClick={() => { clearFilter() }} style={{ opacity: numberOfFilters === 0 ? '0.16' : '1', cursor: 'pointer' }}> Clear all</p>
                             <p style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} > Close</p>
                         </div>
 
@@ -232,7 +252,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile })
                                     <p style={{ marginBottom: '16px' }} className='p-regular'>Font style</p>
                                     <div className='chip-container'>
                                         {(filtersData.classifications) && Object.entries(filtersData.classifications).map(([font, count]) => {
-                                            console.log(innerFilters['classifications'][font]); return (
+                                            return (
                                                 <Chip isSelected={arrayFontStyle.includes(font)} onClick={() => { fillMyFilter('fontStyle', font) }} key={font} text={font} />
                                             )
                                         })}

@@ -6,6 +6,7 @@ import closeXs from '../../assets/close-xs.svg'
 
 
 const Chip = ({ text, onClick, isSelected = false }) => {
+    console.log('isSel', isSelected);
 
 
     const [selected, setSelected] = useState(isSelected);
@@ -15,6 +16,15 @@ const Chip = ({ text, onClick, isSelected = false }) => {
             onClick(); // Chiamare la funzione onClick passata come props, se presente
         }
     };
+
+    useEffect(() => {
+        // Cleanup function to reset transformation when component unmounts or item becomes null
+
+        setSelected(isSelected)
+
+
+
+    }, [isSelected]);
 
     return (
         <>
