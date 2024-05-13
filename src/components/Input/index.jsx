@@ -69,14 +69,14 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
 
 
     return (
-        <div className='input-container' style={{ position: 'relative', zIndex: '200', width: type === 'search' && isMobile ? '80%' : '' }}>
+        <div className='input-container' style={{ position: 'relative', zIndex: '200', width: type === 'search' && isMobile ? '80%' : '', height: type === 'search' ? '49.6px' : '' }}>
             {type === 'search' && <>
 
 
                 <img draggable={false} id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4' }} src={searchIcon} />
 
-                <input style={{ paddingLeft: '45px', fontSize: '16px', letterSpacing: '.1px', ...style }} className='input-box' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
-                {value && <img draggable={false} onClick={() => { setValue(''); }} id={'search-icon'} style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)' }} src={closeXs} />}</>}
+                <input style={{ paddingLeft: '45px', fontSize: '16px', height: '100%', letterSpacing: '.1px', ...style }} className='input-box' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
+                {value && <img draggable={false} onClick={() => { setValue(''); }} id={'search-icon'} style={{ position: 'absolute', padding: '20px', right: '0', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', height: '100%' }} src={closeXs} />}</>}
 
             {type === 'sort' && <>
                 {openSort && <div id='sort-menu'>

@@ -10,17 +10,17 @@ const Info = ({ isMobile, isOpen }) => {
 
     const variantsC = {
         open: {
-            height: '100vh', transition: {
-                type: "spring",
-                stiffness: 400,
-                damping: 40,
+            height: '100vh',
+            transition: {
+                ease: [1, 0, 1, 1], // Funzione di easing personalizzata
+                duration: 0.5, // Durata dell'animazione in secondi
             }
         },
         closed: {
-            height: '0px', transition: {
-                type: "spring",
-                stiffness: 400,
-                damping: 40,
+            height: '0px',
+            transition: {
+                ease: [1, 0, 1, 1], // Funzione di easing personalizzata
+                duration: 0.5, // Durata dell'animazione in secondi
             }
         },
     }
@@ -134,8 +134,7 @@ const Info = ({ isMobile, isOpen }) => {
                                 className='p-regular'
 
                             >
-                                Lorem ipsum dolor sit amet consectetur. Sit nisl ipsum aliquet condimentum amet elementum sagittis ac. Purus potenti tincidunt consectetur vitae sed proin. Neque sed orci sed lectus vulputate luctus. Laoreet aliquet massa phasellus ut tincidunt.' : 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi laudantium
-                            </motion.p>
+                                Cinema Typography was born out of a passion for cinema and design. Our mission is to celebrate the art of typography in the cinematic context and to provide enthusiasts with a space to explore, learn, and share                            </motion.p>
                         </Grid>
 
                     </Grid>

@@ -25,6 +25,9 @@ import madnessSvg from '../assets/madness.svg';
 import pierrotSvg from '../assets/pierrot.svg';
 import ricomincioSvg from '../assets/ricomincio.svg';
 import zoneSvg from '../assets/zone.svg';
+import akiraSvg from '../assets/akira.svg';
+import assaultSvg from '../assets/assault.svg';
+import orangeSvg from '../assets/orange.svg';
 
 
 
@@ -40,12 +43,40 @@ import zoneSvg from '../assets/zone.svg';
 
 export default [
     {
+        title: 'A Clockwork Orange',
+        img: orangeSvg,
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(76%) saturate(257%) hue-rotate(62deg) brightness(105%) contrast(100%)',
+        bgColor: '#F0280A',
+        textColor: '#FFFFFF',
+        typeface: 'Akzidenz-Grotesk Bold Extended',
+        fontStyle: ['Sans Serif'],
+        designer: 'Uncredited',
+        film_director: 'Stanley Kubrick',
+        year: '1971',
+        genre: ['Crime', 'Drama'],
+        country: ['UK', 'USA'],
+    },
+    {
+        title: 'AKIRA',
+        img: akiraSvg,
+        filter: 'brightness(0) saturate(100%) invert(18%) sepia(95%) saturate(6137%) hue-rotate(350deg) brightness(97%) contrast(103%)',
+        bgColor: '#200001',
+        textColor: '#FFFFFF',
+        typeface: 'Hand-drawn',
+        fontStyle: ['Sans Serif'],
+        designer: 'Uncredited',
+        film_director: 'Katsuhiro Otomo',
+        year: '1988',
+        genre: ['Animation', 'Action', 'Sci-Fi'],
+        country: ['Japan'],
+    },
+    {
         title: 'Nosferatu',
         img: nosferatuSvg,
         filter: 'brightness(0) saturate(100%) invert(62%) sepia(52%) saturate(371%) hue-rotate(18deg) brightness(98%) contrast(89%)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
-        typeface: 'Custom',
+        typeface: 'Hand-drawn',
         fontStyle: ['Handwritten'],
         designer: 'Uncredited',
         film_director: 'Friedrich Wilhelm Murnau',
@@ -73,7 +104,7 @@ export default [
         filter: 'brightness(0) saturate(100%) invert(60%) sepia(12%) saturate(1122%) hue-rotate(97deg) brightness(102%) contrast(92%)',
         bgColor: '#040B05',
         textColor: '#FFFFFF',
-        typeface: 'Custom',
+        typeface: 'Hand-drawn',
         fontStyle: ['Handwritten'],
         designer: 'Uncredited',
         film_director: 'Robert Wiene',
@@ -177,7 +208,7 @@ export default [
         film_director: 'Jim Jarmusch',
         year: '2003',
         genre: ['Comedy', 'Drama'],
-        country: ['USA', 'Italy', 'Japan'],
+        country: ['USA'],
     },
     {
         title: 'Un homme qui dort',
@@ -255,7 +286,7 @@ export default [
         filter: 'brightness(0) saturate(100%) invert(92%) sepia(87%) saturate(1119%) hue-rotate(303deg) brightness(110%) contrast(93%)',
         bgColor: '#BB1F01',
         textColor: '#FFFFFF',
-        typeface: 'Custom',
+        typeface: 'Hand-drawn',
         fontStyle: ['Handwritten'],
         designer: 'Iginio Lardani',
         film_director: 'Sergio Leone',
@@ -297,7 +328,7 @@ export default [
         filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
-        typeface: 'Estro (customized)',
+        typeface: 'Estro (Hand-drawnized)',
         fontStyle: ['Serif'],
         designer: 'Uncredited',
         film_director: 'Steno',
@@ -306,12 +337,26 @@ export default [
         country: ['Italy'],
     },
     {
+        title: 'Assault on Precinct 13',
+        img: assaultSvg,
+        filter: 'brightness(0) saturate(100%) invert(7%) sepia(67%) saturate(7382%) hue-rotate(1deg) brightness(114%) contrast(111%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Helvetica Black',
+        fontStyle: ['Sans Serif'],
+        designer: 'Uncredited',
+        film_director: 'John Carpenter',
+        year: '1976',
+        genre: ['Crime', 'Action', 'Thriller'],
+        country: ['USA'],
+    },
+    {
         title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
         img: drSvg,
         filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
-        typeface: 'Custom',
+        typeface: 'Hand-drawn',
         fontStyle: ['Handwritten'],
         designer: 'Pablo Ferro',
         film_director: 'Stanley Kubrick',
@@ -367,7 +412,7 @@ export default [
         filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
-        typeface: 'Custom',
+        typeface: 'Hand-drawn',
         fontStyle: ['Handwritten'],
         designer: 'Uncredited',
         film_director: 'Fritz Lang',
@@ -378,7 +423,7 @@ export default [
     {
         title: 'Pierrot le fou',
         img: pierrotSvg,
-        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+        filter: 'brightness(0) saturate(100%) invert(24%) sepia(41%) saturate(3403%) hue-rotate(196deg) brightness(104%) contrast(99%)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
         typeface: 'Incised901',
@@ -409,7 +454,7 @@ export default [
         filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
-        typeface: 'Custom',
+        typeface: 'Hand-drawn',
         fontStyle: ['Handwritten'],
         designer: 'Uncredited',
         film_director: 'Friedrich Wilhelm Murnau',
@@ -417,5 +462,4 @@ export default [
         genre: ['Fantasy', 'Drama', 'Horror'],
         country: ['Germany'],
     },
-
 ]

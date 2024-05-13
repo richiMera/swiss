@@ -86,9 +86,7 @@ const App = () => {
   useEffect(() => {
 
     lenis.on('scroll', (e) => {
-      console.log(e);
 
-      // setScrollDirection(e.direction)
     })
 
     function raf(time) {
@@ -177,7 +175,7 @@ const App = () => {
 
             <div style={{ width: isMobile ? '100%' : '' }}>
               <div style={{ width: isMobile ? 'fit-content' : '', backgroundColor: numberOfFilters > 0 ? '#E72A00' : '', border: numberOfFilters > 0 ? '1px solid #E72A00' : '' }} onClick={() => { setOpenFilters(true) }} className="input-box">
-                <p>Filter </p> {numberOfFilters > 0 && <div style={{ width: numberOfFilters > 9 ? '19px' : '16px', height: numberOfFilters > 9 ? '19px' : '16px', borderRadius: '50%', backgroundColor: 'white', color: '#E72A00', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: '8px', letterSpacing: '0' }}><p>{numberOfFilters}</p></div>}
+                <p>Filter {numberOfFilters > 0 && '(' + numberOfFilters + ')'} </p>
               </div>
             </div>
 

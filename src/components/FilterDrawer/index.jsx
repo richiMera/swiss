@@ -100,13 +100,32 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
             return acc;
         }, {});
 
+        const countByFontStyleSorted = Object.fromEntries(
+            Object.entries(countByFontStyle).sort((a, b) => a[0].localeCompare(b[0]))
+        );
+
+        // Ordina countByDecade in ordine alfabetico
+        const countByDecadeSorted = Object.fromEntries(
+            Object.entries(countByDecade).sort((a, b) => a[0] - b[0])
+        );
+
+        // Ordina countByGenre in ordine alfabetico
+        const countByGenreSorted = Object.fromEntries(
+            Object.entries(countByGenre).sort((a, b) => a[0].localeCompare(b[0]))
+        );
+
+        // Ordina countByCountry in ordine alfabetico
+        const countByCountrySorted = Object.fromEntries(
+            Object.entries(countByCountry).sort((a, b) => a[0].localeCompare(b[0]))
+        );
+
 
 
         const fData = {
-            classifications: countByFontStyle,
-            decade: countByDecade,
-            genres: countByGenre,
-            countries: countByCountry
+            classifications: countByFontStyleSorted,
+            decade: countByDecadeSorted,
+            genres: countByGenreSorted,
+            countries: countByCountrySorted
 
         }
 
@@ -180,7 +199,6 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
 
         // Applica il filtro
         const filteredArray = filterFilmsByAttributes(updatedFontStyle, updatedCountry, updatedGenres, updatedDecades);
-        console.log('filteredArray', filteredArray);
         setFilteredData(filteredArray);
 
     }
@@ -203,26 +221,25 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
 
 
 
-    const [scrollPosition, setScrollPosition] = useState(0);
-    useEffect(() => {
-        // Cleanup function to reset transformation when component unmounts or item becomes null
+    // const [scrollPosition, setScrollPosition] = useState(0);
+    // useEffect(() => {
+    //     // Cleanup function to reset transformation when component unmounts or item becomes null
 
-        if (open) {
-            setScrollPosition(window.scrollY);
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${scrollPosition}px`;
-        } else {
-            document.body.style.position = '';
-            document.body.style.top = '';
-            window.scrollTo(0, scrollPosition);
+    //     if (open) {
+    //         setScrollPosition(window.scrollY);
+    //         document.body.style.position = 'fixed';
+    //         document.body.style.top = `-${scrollPosition}px`;
+    //     } else {
+    //         document.body.style.position = '';
+    //         document.body.style.top = '';
+    //         window.scrollTo(0, scrollPosition);
 
-        }
+    //     }
 
 
 
-    }, [open]);
+    // }, [open]);
 
-    console.log(arrayFontStyle);
 
 
     //fare filtro || su stesso type, am && con altri type
@@ -238,10 +255,13 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
             }} anchor={'bottom'} onClose={() => { setOpenFilters(false) }} open={open}>
                 <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: isMobile ? '24px' : '24px 24px 160px 24px', color: '#ECECEC' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-                        <p className='p-regular'>Filter</p>
+
                         <div style={{ display: 'flex', gap: '24px' }}>
-                            <p onClick={() => { clearFilter() }} style={{ opacity: numberOfFilters === 0 ? '0.16' : '1', cursor: 'pointer' }}> Clear all</p>
-                            <p style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} > Close</p>
+                            <p className='p-regular'>Filter {numberOfFilters > 0 && '(' + numberOfFilters + ')'}</p>
+                            {numberOfFilters > 0 && <p className='p-regular' onClick={() => { clearFilter() }} style={{ cursor: 'pointer' }}>Reset</p>}
+                        </div>
+                        <div style={{ display: 'flex', gap: '24px' }}>
+                            <p className='p-regular' style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} > Close</p>
                         </div>
 
                     </div>

@@ -6,7 +6,6 @@ import closeXs from '../../assets/close-xs.svg'
 
 
 const Chip = ({ text, onClick, isSelected = false }) => {
-    console.log('isSel', isSelected);
 
 
     const [selected, setSelected] = useState(isSelected);
