@@ -21,10 +21,12 @@ const FixedFilters = ({ children, isMobile }) => {
 
     return (
         <motion.div initial={{ opacity: '0', y: '50px' }} animate={"open"}
-            variants={variantsL} style={{ bottom: isMobile ? '16px' : '', overflowX: isMobile ? 'scroll' : '', justifyContent: isMobile ? 'flex-start' : '', padding: isMobile ? '0 16px' : '' }} className='fixed-end-filter'>
+            variants={variantsL} style={{ bottom: isMobile ? '16px' : '', }} className='fixed-end-filter'>
 
 
-            {children}
+            <div style={{ width: '100% ', overflowX: isMobile ? 'scroll' : '', display: 'flex', alignitems: 'center', justifyContent: isMobile ? 'flex-start' : 'center', padding: isMobile ? '0 16px' : '', gap: '8px' }}>
+                {children}
+            </div>
 
 
         </motion.div>

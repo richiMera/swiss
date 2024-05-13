@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import './style.css'
 import { Drawer, Grid } from '@mui/material';
 import Chip from '../Chip';
-import closeS from '../../assets/close-s.svg';
+
 
 
 
@@ -254,18 +254,19 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
                 '& .MuiDrawer-paper': drawerPaperStyle,
             }} anchor={'bottom'} onClose={() => { setOpenFilters(false) }} open={open}>
                 <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: isMobile ? '24px' : '24px 24px 160px 24px', color: '#ECECEC' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
-                        <div style={{ display: 'flex', gap: '24px' }}>
-                            <p className='p-regular'>Filter {numberOfFilters > 0 && '(' + numberOfFilters + ')'}</p>
-                            {numberOfFilters > 0 && <p className='p-regular' onClick={() => { clearFilter() }} style={{ cursor: 'pointer' }}>Reset</p>}
-                        </div>
-                        <div style={{ display: 'flex', gap: '24px' }}>
-                            <p className='p-regular' style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} > Close</p>
-                        </div>
+                    <div style={{ overflowY: 'auto', height: 'calc(100% - 30px)', paddingBottom: '24px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
-                    </div>
-                    <div style={{ overflowY: 'auto', height: 'calc(100% - 45px)' }}>
+                            <div style={{ display: 'flex', gap: '24px' }}>
+                                <p className='p-regular'>Filter {numberOfFilters > 0 && '(' + numberOfFilters + ')'}</p>
+                                {numberOfFilters > 0 && <p className='p-regular' onClick={() => { clearFilter() }} style={{ cursor: 'pointer' }}>Reset</p>}
+                            </div>
+                            <div style={{ display: 'flex', gap: '24px' }}>
+                                <p className='p-regular' style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} > Close</p>
+                            </div>
+
+                        </div>
                         <Grid container>
                             <Grid xs={12} md={6} item>
                                 <div style={{ marginBottom: '40px' }} >

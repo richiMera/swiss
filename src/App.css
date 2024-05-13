@@ -130,6 +130,10 @@ h1.title,
   background-color: transparent;
 }
 
+.input-box.search::selection {
+  background-color: #E72A00;
+}
+
 .input-container:focus-within #search-icon {
   opacity: 1 !important;
   /* filter: invert(36%) sepia(87%) saturate(7497%) hue-rotate(11deg) brightness(97%) contrast(101%); */

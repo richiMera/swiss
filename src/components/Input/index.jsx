@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import searchIcon from '../../assets/search.svg';
 import arrowRed from '../../assets/arrow-down-red.svg'
-import closeXs from '../../assets/close-xs.svg'
+import closeS from '../../assets/close-s.svg';
 import SortItem from '../SortItem';
 
 
@@ -69,31 +69,43 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
 
 
     return (
-        <div className='input-container' style={{ position: 'relative', zIndex: '200', width: type === 'search' && isMobile ? '80%' : '', height: type === 'search' ? '49.6px' : '' }}>
+        <>
             {type === 'search' && <>
 
+                <div className='input-container ' style={{ position: 'relative', zIndex: '200', width: isMobile ? '70%' : '', height: '49.6px', }}>
+                    <img draggable={false} id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4' }} src={searchIcon} />
 
-                <img draggable={false} id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4' }} src={searchIcon} />
-
-                <input style={{ paddingLeft: '45px', fontSize: '16px', height: '100%', letterSpacing: '.1px', ...style }} className='input-box' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
-                {value && <img draggable={false} onClick={() => { setValue(''); }} id={'search-icon'} style={{ position: 'absolute', padding: '20px', right: '0', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', height: '100%' }} src={closeXs} />}</>}
-
-            {type === 'sort' && <>
-                {openSort && <div id='sort-menu'>
-                    {dataSort.map((e, index) => {
-                        return (
-                            <SortItem key={index} text={e.text} active={e.text === sort} onClick={() => { setSort(e.text); setOpenSort(false); e.onClick() }} />
-                        )
-                    })}
-                </div>}
-
-
-                <div id='sort-toggle-button' style={{ display: 'flex', alignItems: 'center', position: 'realtive', cursor: 'pointer' }} onClick={() => { setOpenSort(!openSort) }} >
-                    <p className='p-regular' style={{ color: '#ececec', marginRight: '8px' }}>{sort}</p>
-                    <img draggable={false} id={'arrow-sort'} style={{ transition: ' all 0.3s ease-out', transform: openSort ? 'rotate(180deg)' : '' }} src={arrowRed} />
+                    <input style={{ paddingLeft: '45px', paddingRight: '35px', fontSize: '16px', height: '100%', letterSpacing: '.1px', ...style }} className='input-box search' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
+                    {value && <img draggable={false} onClick={() => { setValue(''); }} id={'search-icon'} style={{ position: 'absolute', padding: '17px', right: '0', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', height: '100%', }} src={closeS} />
+                    }
                 </div>
             </>}
-        </div>
+
+            {
+                type === 'sort' && <>
+                    <div style={{ position: 'relative', zIndex: '200', }}>
+                        {openSort && <div id='sort-menu'>
+                            {dataSort.map((e, index) => {
+                                return (
+                                    <SortItem key={index} text={e.text} active={e.text === sort} onClick={() => { setSort(e.text); setOpenSort(false); e.onClick() }} />
+                                )
+                            })}
+                        </div>}
+
+
+                        <div id='sort-toggle-button' style={{ display: 'flex', alignItems: 'center', position: 'realtive', cursor: 'pointer' }} onClick={() => { setOpenSort(!openSort) }} >
+                            <p className='p-regular' style={{ color: '#ececec', marginRight: '8px' }}>{sort}</p>
+                            <img draggable={false} id={'arrow-sort'} style={{ transition: ' all 0.3s ease-out', transform: openSort ? 'rotate(180deg)' : '' }} src={arrowRed} />
+                        </div>
+                    </div>
+                </>
+            }
+
+
+        </>
+
+
+
     );
 }
 
