@@ -253,9 +253,9 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
             <Drawer style={{ width: '100%' }} sx={{
                 '& .MuiDrawer-paper': drawerPaperStyle,
             }} anchor={'bottom'} onClose={() => { setOpenFilters(false) }} open={open}>
-                <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: isMobile ? '24px' : '24px 24px 160px 24px', color: '#ECECEC' }}>
+                <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: isMobile ? '24px 24px 0 24px' : '24px 24px 160px 24px', color: '#ECECEC' }}>
 
-                    <div style={{ overflowY: 'auto', height: 'calc(100% - 30px)', paddingBottom: '24px' }}>
+                    <div style={{ overflowY: 'auto', height: 'calc(100% - 1px)', paddingBottom: '24px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
                             <div style={{ display: 'flex', gap: '24px' }}>
