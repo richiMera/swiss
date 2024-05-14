@@ -30,6 +30,7 @@ import { motion } from "framer-motion"
 import Lottie from 'lottie-react';
 import animation from './loader.json'
 import Info from "./components/Info/index.jsx";
+import CardContainer from "./components/CardsContainer/index.jsx";
 
 
 
@@ -50,6 +51,9 @@ const App = () => {
   const [numberOfFilters, setNumberOfFilter] = useState(0);
 
   const [filteredData, setFilteredData] = useState([])
+  const [font, setFont] = useState('')
+  const [isHovered, setIsHovered] = useState('')
+
 
   const [realData, setRealData] = useState([])
   const [animationComplete, setAnimationComplete] = useState(false);
@@ -85,9 +89,7 @@ const App = () => {
 
   useEffect(() => {
 
-    lenis.on('scroll', (e) => {
 
-    })
 
     function raf(time) {
       lenis.raf(time)
@@ -159,19 +161,21 @@ const App = () => {
 
           </div>
 
-          <Grid style={{ height: realData.length === 0 ? '400px' : 'auto', paddingBottom: realData.length === 0 ? '0px' : '100px' }} container >
-            {realData?.map((card, index) => {
-              return (
-                <Card index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
-              )
-            })}
-          </Grid>
+          <CardContainer font={font} isHovered={isHovered}>
+            <Grid style={{ height: realData.length === 0 ? '100vh' : '300px', paddingBottom: '100px' }} container >
+              {realData?.map((card, index) => {
+                return (
+                  <Card setIsHovered={setIsHovered} setFont={setFont} index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
+                )
+              })}
+            </Grid>
+          </CardContainer>
 
 
           <FilterDrawer numberOfFilters={numberOfFilters} setNumberOfFilter={setNumberOfFilter} isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
 
           <FixedFilters isMobile={isMobile}>
-            <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: '100%' }} placeholder={isMobile ? 'Search...' : 'Search for movies, font, director ...'} />
+            <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '100%' }} placeholder={isMobile ? 'Search...' : 'Search for movies, font, director ...'} />
 
             <div style={{ width: isMobile ? '35%' : '' }}>
               <div style={{ width: isMobile ? 'fit-content' : '', backgroundColor: numberOfFilters > 0 ? '#E72A00' : '', border: numberOfFilters > 0 ? '1px solid #E72A00' : '', }} onClick={() => { setOpenFilters(true) }} className="input-box">

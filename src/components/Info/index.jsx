@@ -12,14 +12,14 @@ const Info = ({ isMobile, isOpen }) => {
         open: {
             height: '100vh',
             transition: {
-                ease: [1, 0, 1, 1], // Funzione di easing personalizzata
+                type: 'tween', // Funzione di easing personalizzata
                 duration: 0.5, // Durata dell'animazione in secondi
             }
         },
         closed: {
             height: '0px',
             transition: {
-                ease: [1, 0, 1, 1], // Funzione di easing personalizzata
+                type: 'tween', // Funzione di easing personalizzata
                 duration: 0.5, // Durata dell'animazione in secondi
             }
         },

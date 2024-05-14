@@ -26,14 +26,14 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
         // Se il valore è vuoto, impostiamo isActive su false e la larghezza al 50%
 
         setIsFocused(false);
-        console.log('isActiveentro');
+
         if (value === '') {
             setIsActive(false)
-            console.log('isActiveelse');
+
         }
     };
 
-    console.log('isActive', isActive);
+
 
     const dataSort = [
         {
@@ -112,7 +112,7 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
             clearTimeout(isScrolling);
             isScrolling = setTimeout(() => {
                 setIsFocused(true);
-            }, 150);
+            }, 100);
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -122,7 +122,7 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
         };
     }, []);
 
-    console.log('isFocuded', isFocused);
+
 
 
     return (

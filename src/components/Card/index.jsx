@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 
 
 
-const Card = ({ item, width, isMobile, setItem, index }) => {
+const Card = ({ item, width, isMobile, setItem, index, setIsHovered, setFont }) => {
 
 
     const variantsCardsContainer = {
@@ -25,32 +25,31 @@ const Card = ({ item, width, isMobile, setItem, index }) => {
     const [divWidthPx, setDivWidthPx] = useState(0);
     const [divPercentage, setDivPercentage] = useState(0);
     const [xs, setXs] = useState(4);
-    const [isHovered, setIsHovered] = useState(false);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-    const contentRef = useRef(null);
+    const [innerIsHovered, setInnerIsHovered] = useState(false);
+    // const [innerIsHovered, innerSetIsHovered] = useState(false);
+    // const contentRef = useRef(null);
 
-    const handleMouseMove = (e) => {
-        setPosition({ x: e.clientX, y: e.clientY });
-    };
+    // const handleMouseMove = (e) => {
+    //     setPosition({ x: e.clientX, y: e.clientY });
+    // };
 
-    const handleScroll = () => {
-        // Calcoliamo la nuova posizione durante lo scroll
-        if (isHovered && contentRef.current) {
-            const { width, height } = contentRef.current.getBoundingClientRect();
-            setDimensions({ width, height });
-        }
-    };
+    // const handleScroll = () => {
+    //     // Calcoliamo la nuova posizione durante lo scroll
+    //     if (isHovered && contentRef.current) {
+    //         const { width, height } = contentRef.current.getBoundingClientRect();
+    //         setDimensions({ width, height });
+    //     }
+    // };
 
-    useEffect(() => {
-        // Aggiungiamo un listener per l'evento scroll al documento
-        window.addEventListener('scroll', handleScroll);
+    // useEffect(() => {
+    //     // Aggiungiamo un listener per l'evento scroll al documento
+    //     window.addEventListener('scroll', handleScroll);
 
-        // Pulizia del listener quando il componente si smonta
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [isHovered]);
+    //     // Pulizia del listener quando il componente si smonta
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll);
+    //     };
+    // }, []);
 
 
     useEffect(() => {
@@ -103,7 +102,7 @@ const Card = ({ item, width, isMobile, setItem, index }) => {
 
     return (
         <>
-            {isHovered && <div
+            {/* <div
                 style={{
                     position: 'absolute',
                     left: position.x - 10 - (dimensions.width / 2) + window.scrollX, // Posiziona il div al centro del cursore
@@ -121,10 +120,10 @@ const Card = ({ item, width, isMobile, setItem, index }) => {
                 ref={contentRef}
             >
                 Font: <span style={{ fontWeight: 'bold' }}>{item?.typeface}</span>
-            </div >}
-            <Grid onMouseEnter={() => { setIsHovered(true) }}
-                onMouseLeave={() => setIsHovered(false)}
-                onMouseMove={handleMouseMove}
+            </div > */}
+            <Grid onMouseEnter={() => { if (!isMobile) { setIsHovered(true); setInnerIsHovered(true); setFont(item.typeface) } }}
+                onMouseLeave={() => { if (!isMobile) { setIsHovered(false); setInnerIsHovered(false); setFont('') } }}
+                // onMouseMove={handleMouseMove}
                 onClick={() => { setItem(item) }}
                 style={{ cursor: 'pointer' }} item xs={xs}>
                 <motion.div initial={"hidden"}
@@ -140,12 +139,12 @@ const Card = ({ item, width, isMobile, setItem, index }) => {
                             type: "tween",
                         },
                     }}
-                    variants={variantsCardsContainer} style={{ outline: '1px solid #272727', backgroundColor: isHovered ? item.bgColor : '#0D0D0D', height: divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 12%', position: 'relative', overflow: 'hidden' }} >
+                    variants={variantsCardsContainer} style={{ outline: '1px solid #272727', backgroundColor: innerIsHovered ? item.bgColor : '#0D0D0D', height: divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 12%', position: 'relative', overflow: 'hidden' }} >
 
-                    <img draggable={false} style={{ transform: isHovered ? 'scale(0.95)' : 'scale(1)', width: '100%', filter: isHovered ? item?.filter : '', transition: 'transform 0.5s' }} src={item.img} />
-                    {!isMobile && <div style={{ position: 'absolute', bottom: isHovered ? '16px' : '-50px', left: '24px', transition: 'bottom 0.5s' }}>
-                        <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Typeface</p>
-                        <p className='p-small' style={{ color: item?.textColor }}>{item?.typeface}</p>
+                    <img draggable={false} style={{ transform: innerIsHovered ? 'scale(0.95)' : 'scale(1)', width: '100%', filter: innerIsHovered ? item?.filter : '', transition: 'transform 0.5s' }} src={item.img} />
+                    {!isMobile && <div style={{ position: 'absolute', bottom: innerIsHovered ? '16px' : '-50px', left: '24px', transition: 'bottom 0.5s' }}>
+                        <p className='p-small' style={{ opacity: '0.5', marginBottom: '4px', color: item?.textColor }}>Director</p>
+                        <p className='p-small' style={{ color: item?.textColor }}>{item?.film_director}</p>
                     </div>}
                 </motion.div>
 
