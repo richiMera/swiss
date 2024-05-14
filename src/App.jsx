@@ -106,7 +106,7 @@ const App = () => {
     let lastScrollTop = 0;
 
     const handleScroll = () => {
-      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
       if (currentScrollTop > lastScrollTop) {
         setScrollDirection('down');
@@ -159,7 +159,7 @@ const App = () => {
 
           </div>
 
-          <Grid style={{ height: realData.length === 0 ? '100vh' : 'auto', paddingBottom: '100px' }} container >
+          <Grid style={{ height: realData.length === 0 ? '400px' : 'auto', paddingBottom: realData.length === 0 ? '0px' : '100px' }} container >
             {realData?.map((card, index) => {
               return (
                 <Card index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />

@@ -88,6 +88,42 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
         };
     }, [openSort]);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const searchCont = document.getElementById('search-container');
+
+            if (searchCont && !searchCont.contains(event.target)) {
+                setIsFocused(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isFocused]);
+
+
+    useEffect(() => {
+
+        let isScrolling = false;
+        const handleScroll = () => {
+            setIsFocused(false);
+            clearTimeout(isScrolling);
+            isScrolling = setTimeout(() => {
+                setIsFocused(true);
+            }, 150);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    console.log('isFocuded', isFocused);
+
 
     return (
         <>
@@ -100,18 +136,18 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
                     {value && <img draggable={false} onClick={() => { setValue(''); }} id={'search-icon'} style={{ position: 'absolute', padding: '17px', right: '0', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', height: '100%', }} src={closeS} />
                     }
                 </div> */}
-                {isMobile && <div onClick={() => { setIsActive(true) }} className={`input-container ${isActive ? 'active' : ''}`} style={{ position: 'relative', zIndex: '200', width: isActive ? !isFocused ? '30%' : '45%' : '49.6px', height: '49.6px', borderRadius: isActive ? '0' : '30px', overflow: 'hidden', transition: 'all 0.5s ease-in', }}>
+                {isMobile && <div id='search-container' onClick={() => { setIsActive(true); setIsFocused(true) }} className={`input-container ${isActive ? 'active' : ''}`} style={{ position: 'relative', zIndex: '200', width: isActive ? !isFocused ? '30%' : '45%' : '49.6px', height: '49.6px', borderRadius: isActive ? '0' : '30px', overflow: 'hidden', transition: 'all 0.5s ease-in', border: isActive ? '' : '1px solid #2D2D2D' }}>
                     <img draggable={false} id={'search-icon'} style={{ position: 'absolute', left: isActive ? '20px' : '16px', top: '50%', transform: 'translate(0 , -50%)', opacity: '0.4', }} src={searchIcon} />
 
-                    <input onFocus={handleFocus} onBlur={handleBlur} style={{ paddingLeft: '45px', paddingRight: '40px', fontSize: '16px', height: '100%', letterSpacing: '.1px', ...style }} className='input-box search' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
+                    <input onFocus={handleFocus} onBlur={handleBlur} style={{ paddingLeft: '45px', paddingRight: '40px', fontSize: '16px', height: '100%', letterSpacing: '.1px', border: isActive ? '' : 'none', ...style }} className='input-box search' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
                     {value && <img draggable={false} onClick={(e) => { e.stopPropagation(); setValue(''); setIsActive(false) }} id={'search-icon'} style={{ position: 'absolute', padding: '17px', right: '0', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', height: '100%', zIndex: '3000' }} src={closeS} />}
                 </div>}
 
-                {!isMobile && <div onClick={() => { setIsActive(true) }} className={`input-container `} style={{ position: 'relative', zIndex: '200', width: '313px', overflow: 'hidden', }}>
+                {!isMobile && <div className={`input-container `} style={{ position: 'relative', zIndex: '200', width: '313px', overflow: 'hidden', }}>
                     <img draggable={false} id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4', }} src={searchIcon} />
 
-                    <input onFocus={handleFocus} onBlur={handleBlur} style={{ paddingLeft: '45px', paddingRight: '40px', fontSize: '16px', height: '100%', letterSpacing: '.1px', ...style }} className='input-box search' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
-                    {value && <img draggable={false} onClick={(e) => { e.stopPropagation(); setValue(''); setIsActive(false) }} id={'search-icon'} style={{ position: 'absolute', padding: '18px', right: '0', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', height: '100%', zIndex: '3000' }} src={closeS} />}
+                    <input style={{ paddingLeft: '45px', paddingRight: '40px', fontSize: '16px', height: '100%', letterSpacing: '.1px', ...style }} className='input-box search' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
+                    {value && <img draggable={false} onClick={(e) => { setValue(''); setIsActive(false) }} id={'search-icon'} style={{ position: 'absolute', padding: '18px', right: '0', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', height: '100%', zIndex: '3000' }} src={closeS} />}
                 </div>}
             </>}
 
