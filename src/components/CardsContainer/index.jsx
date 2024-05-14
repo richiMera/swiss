@@ -17,7 +17,7 @@ const CardContainer = ({ children, isHovered, font }) => {
 
 
     return (
-        <div onMouseMove={handleMouseMove}>
+        <div style={{ height: '100%' }} onMouseMove={handleMouseMove}>
             {isHovered && <div
                 style={{
                     position: 'absolute',
@@ -28,7 +28,7 @@ const CardContainer = ({ children, isHovered, font }) => {
                     zIndex: '200',
                     color: '#E72A00',
                     backgroundColor: '#ECECEC',
-                    transition: 'all 0.2 ease',
+                    // transition: 'all 0.1s ease-out',
                     fontWeight: '200',
                     pointerEvents: 'none',
                     display: 'inline-block', // Utilizzato per mantenere il div nella stessa riga del testo

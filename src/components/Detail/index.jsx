@@ -80,7 +80,7 @@ const Detail = ({ isMobile, item, setItem
         image.style.transform = `rotateX(${calcX}deg) rotateY(${calcY}deg)`;
         info.style.transform = `rotateX(${calcX}deg) rotateY(${calcY}deg)`;
 
-        image.style.transition = 'all 0.2s';
+        image.style.transition = 'transform 0.2s';
         info.style.transition = 'all 0.2s';
     }
 
@@ -127,21 +127,34 @@ const Detail = ({ isMobile, item, setItem
     useEffect(() => {
         // Cleanup function to reset transformation when component unmounts or item becomes null
         const image = imageRef.current;
+        const metaThemeColor = document.querySelector("meta[name='theme-color']");
+
+        // Se il tag meta esiste, imposta il suo contenuto sul colore del tema attuale
+
 
         if (item) {
             setScrollPosition(window.scrollY);
             document.body.style.position = 'fixed';
             document.body.style.top = `-${scrollPosition}px`;
+            metaThemeColor.setAttribute('content', item.bgColor);
         } else {
             document.body.style.position = '';
             document.body.style.top = '';
             window.scrollTo(0, scrollPosition);
             image.style.transform = "rotateX(0) rotateY(0)";
+            metaThemeColor.setAttribute('content', '#0d0d0d');
         }
 
 
 
     }, [item]);
+
+
+    const changeThemeColor = (newColor) => {
+        setThemeColor(newColor);
+    };
+
+
 
     return (
         <motion.div

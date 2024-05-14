@@ -162,7 +162,7 @@ const App = () => {
           </div>
 
           <CardContainer font={font} isHovered={isHovered}>
-            <Grid style={{ height: realData.length === 0 ? '100vh' : '300px', paddingBottom: '100px' }} container >
+            <Grid style={{ height: realData.length === 0 ? '100px' : 'auto', paddingBottom: '100px' }} container >
               {realData?.map((card, index) => {
                 return (
                   <Card setIsHovered={setIsHovered} setFont={setFont} index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />

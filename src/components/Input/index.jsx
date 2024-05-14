@@ -35,6 +35,11 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
 
 
 
+
+
+
+
+
     const dataSort = [
         {
             text: 'Featured',
@@ -61,16 +66,32 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
 
 
     useEffect(() => {
+        const delay = 300; // Ritardo di debounce
+        let timeoutId;
+
+        const debounceSetData = (result) => {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+
+            timeoutId = setTimeout(() => {
+                setData(result);
+            }, delay);
+        };
         const result = data.filter(item => {
-            return Object.values(item).some(val => {
+            const { img, filter, bgColor, textColor, ...rest } = item;
+            // Rimuovi le proprietà "img" e "filter" dall'oggetto
+            return Object.entries(rest).some(([key, val]) => { // Utilizza solo le proprietà rimanenti per la ricerca
                 if (typeof val === 'string') { // Controlla solo le stringhe
                     return val.toLowerCase().includes(value.toLowerCase());
                 }
                 return false; // Ignora altri tipi di valore
             });
         });
-        setData(result)
-    }, [value]);
+
+        debounceSetData(result);
+        return () => clearTimeout(timeoutId); // Pulizia
+    }, [value, data]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -106,13 +127,8 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
 
     useEffect(() => {
 
-        let isScrolling = false;
         const handleScroll = () => {
             setIsFocused(false);
-            clearTimeout(isScrolling);
-            isScrolling = setTimeout(() => {
-                setIsFocused(true);
-            }, 100);
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -121,6 +137,7 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
 
 
 
@@ -143,7 +160,7 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
                     {value && <img draggable={false} onClick={(e) => { e.stopPropagation(); setValue(''); setIsActive(false) }} id={'search-icon'} style={{ position: 'absolute', padding: '17px', right: '0', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', height: '100%', zIndex: '3000' }} src={closeS} />}
                 </div>}
 
-                {!isMobile && <div className={`input-container `} style={{ position: 'relative', zIndex: '200', width: '313px', overflow: 'hidden', }}>
+                {!isMobile && <div className={`input-container `} style={{ position: 'relative', zIndex: '200', width: '334px', overflow: 'hidden', }}>
                     <img draggable={false} id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4', }} src={searchIcon} />
 
                     <input style={{ paddingLeft: '45px', paddingRight: '40px', fontSize: '16px', height: '100%', letterSpacing: '.1px', ...style }} className='input-box search' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />

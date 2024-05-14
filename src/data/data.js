@@ -31,6 +31,7 @@ import orangeSvg from '../assets/orange.svg';
 import aguirreSvg from '../assets/aguirre.svg';
 import sorpassoSvg from '../assets/sorpasso.svg';
 import lostSvg from '../assets/lost.svg';
+import shutterSvg from '../assets/shutter.svg';
 
 
 
@@ -288,6 +289,20 @@ export default [
         country: ['Canada'],
     },
     {
+        title: 'Shutter Island',
+        img: shutterSvg,
+        filter: 'brightness(0) saturate(100%) invert(83%) sepia(9%) saturate(218%) hue-rotate(349deg) brightness(100%) contrast(97%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'FB Agency',
+        fontStyle: ['Sans Serif'],
+        designer: 'Uncredited',
+        film_director: 'Martin Scorsese',
+        year: '2010',
+        genre: ['Mystery', 'Drama', 'Thriller'],
+        country: ['USA'],
+    },
+    {
         title: 'Naked Lunch',
         img: nakedSvg,
         filter: 'brightness(0) saturate(100%) invert(6%) sepia(71%) saturate(254%) hue-rotate(334deg) brightness(102%) contrast(104%)',
@@ -363,7 +378,7 @@ export default [
         filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
-        typeface: 'Estro (Hand-drawnized)',
+        typeface: 'Estro (Customized)',
         fontStyle: ['Serif'],
         designer: 'Uncredited',
         film_director: 'Steno',
