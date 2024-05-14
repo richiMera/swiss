@@ -140,6 +140,24 @@ h1.title,
   /* filter: brightness(0) saturate(100%) invert(98%) sepia(27%) saturate(140%) hue-rotate(182deg) brightness(118%) contrast(85%); */
 }
 
+.input-container.search.open {
+  position: 'relative';
+  z-index: '200';
+  height: '49.6px';
+  width: auto;
+}
+
+.input-container.search.mobile {
+  width: 70%;
+}
+
+.input-container.search {
+  height: 49.6px;
+  width: 49.6px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .MuiSlider-thumb {
   background-color: #E72A00 !important;
   /* Cambia il colore del thumb come desideri */

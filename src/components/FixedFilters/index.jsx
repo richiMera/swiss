@@ -24,7 +24,7 @@ const FixedFilters = ({ children, isMobile }) => {
             variants={variantsL} style={{ bottom: isMobile ? '16px' : '', }} className='fixed-end-filter'>
 
 
-            <div style={{ width: '100% ', overflowX: isMobile ? 'scroll' : '', display: 'flex', alignitems: 'center', justifyContent: isMobile ? 'flex-start' : 'center', padding: isMobile ? '0 16px' : '', gap: '8px' }}>
+            <div style={{ width: isMobile ? '200%' : '100% ', overflowX: isMobile ? 'hidden' : '', display: 'flex', alignitems: 'center', justifyContent: isMobile ? 'flex-start' : 'center', padding: isMobile ? '0 16px' : '', gap: '8px' }}>
                 {children}
             </div>
 

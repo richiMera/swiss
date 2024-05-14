@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Grid from '@mui/material/Grid';
 import './style.css';
 import { motion } from "framer-motion"
@@ -26,8 +26,31 @@ const Card = ({ item, width, isMobile, setItem, index }) => {
     const [divPercentage, setDivPercentage] = useState(0);
     const [xs, setXs] = useState(4);
     const [isHovered, setIsHovered] = useState(false);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const contentRef = useRef(null);
 
+    const handleMouseMove = (e) => {
+        setPosition({ x: e.clientX, y: e.clientY });
+    };
 
+    const handleScroll = () => {
+        // Calcoliamo la nuova posizione durante lo scroll
+        if (isHovered && contentRef.current) {
+            const { width, height } = contentRef.current.getBoundingClientRect();
+            setDimensions({ width, height });
+        }
+    };
+
+    useEffect(() => {
+        // Aggiungiamo un listener per l'evento scroll al documento
+        window.addEventListener('scroll', handleScroll);
+
+        // Pulizia del listener quando il componente si smonta
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [isHovered]);
 
 
     useEffect(() => {
@@ -80,26 +103,28 @@ const Card = ({ item, width, isMobile, setItem, index }) => {
 
     return (
         <>
-            {/* {isHovered && <div
+            {isHovered && <div
                 style={{
                     position: 'absolute',
-                    left: position.x - 10, // Posiziona il div al centro del cursore
-                    top: position.y + 30,
+                    left: position.x - 10 - (dimensions.width / 2) + window.scrollX, // Posiziona il div al centro del cursore
+                    top: position.y + 30 + window.scrollY,
                     padding: '10px 16px',
                     borderRadius: '30px',
                     zIndex: '200',
-                    color: '#ECECEC',
-                    backgroundColor: '#E72A00',
+                    color: '#E72A00',
+                    backgroundColor: '#ECECEC',
                     transition: 'all 0.2 ease',
                     fontWeight: '200',
                     pointerEvents: 'none',
                     display: 'inline-block', // Utilizzato per mantenere il div nella stessa riga del testo
                 }}
+                ref={contentRef}
             >
-                More
-            </div>} */}
+                Font: <span style={{ fontWeight: 'bold' }}>{item?.typeface}</span>
+            </div >}
             <Grid onMouseEnter={() => { setIsHovered(true) }}
                 onMouseLeave={() => setIsHovered(false)}
+                onMouseMove={handleMouseMove}
                 onClick={() => { setItem(item) }}
                 style={{ cursor: 'pointer' }} item xs={xs}>
                 <motion.div initial={"hidden"}

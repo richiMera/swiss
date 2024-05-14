@@ -159,7 +159,7 @@ const App = () => {
 
           </div>
 
-          <Grid style={{ paddingBottom: '100px' }} container >
+          <Grid style={{ height: realData.length === 0 ? '100vh' : 'auto', paddingBottom: '100px' }} container >
             {realData?.map((card, index) => {
               return (
                 <Card index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
@@ -171,7 +171,7 @@ const App = () => {
           <FilterDrawer numberOfFilters={numberOfFilters} setNumberOfFilter={setNumberOfFilter} isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
 
           <FixedFilters isMobile={isMobile}>
-            <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '313px' }} placeholder={isMobile ? 'Search...' : 'Search for movies, font, director ...'} />
+            <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: '100%' }} placeholder={isMobile ? 'Search...' : 'Search for movies, font, director ...'} />
 
             <div style={{ width: isMobile ? '35%' : '' }}>
               <div style={{ width: isMobile ? 'fit-content' : '', backgroundColor: numberOfFilters > 0 ? '#E72A00' : '', border: numberOfFilters > 0 ? '1px solid #E72A00' : '', }} onClick={() => { setOpenFilters(true) }} className="input-box">

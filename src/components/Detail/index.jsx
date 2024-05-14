@@ -83,6 +83,23 @@ const Detail = ({ isMobile, item, setItem
         image.style.transition = 'all 0.2s';
         info.style.transition = 'all 0.2s';
     }
+
+    useEffect(() => {
+        // Aggiungi un gestore degli eventi per l'evento "keydown" sulla finestra
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                setItem(null); // Chiudi il dettaglio quando viene premuto "Esc"
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown); // Aggiungi il gestore degli eventi
+
+        // Pulizia del gestore degli eventi quando il componente viene smontato
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown); // Rimuovi il gestore degli eventi
+        };
+    }, [setItem]);
+
     useEffect(() => {
         let timeoutId;
         if (item) {
