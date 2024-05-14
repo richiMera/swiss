@@ -28,16 +28,9 @@ import zoneSvg from '../assets/zone.svg';
 import akiraSvg from '../assets/akira.svg';
 import assaultSvg from '../assets/assault.svg';
 import orangeSvg from '../assets/orange.svg';
-
-
-
-
-
-
-
-
-
-
+import aguirreSvg from '../assets/aguirre.svg';
+import sorpassoSvg from '../assets/sorpasso.svg';
+import lostSvg from '../assets/lost.svg';
 
 
 
@@ -153,6 +146,48 @@ export default [
         year: '1980',
         genre: ['Horror', 'Thriller'],
         country: ['UK', 'USA'],
+    },
+    {
+        title: 'Il Sorpasso',
+        img: sorpassoSvg,
+        filter: 'brightness(0) saturate(100%) invert(92%) sepia(0%) saturate(1758%) hue-rotate(27deg) brightness(103%) contrast(95%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'AnnonceW01',
+        fontStyle: ['Sans Serif'],
+        designer: 'Uncredited',
+        film_director: 'Dino Risi',
+        year: '1962',
+        genre: ['Comedy', 'Drama'],
+        country: ['Italy'],
+    },
+    {
+        title: 'Aguirre, der Zorn Gottes',
+        img: aguirreSvg,
+        filter: 'brightness(0) saturate(100%) invert(92%) sepia(0%) saturate(1758%) hue-rotate(27deg) brightness(103%) contrast(95%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Futura Display',
+        fontStyle: ['Sans Serif'],
+        designer: 'Uncredited',
+        film_director: 'Werner Herzog',
+        year: '1977',
+        genre: ['Drama'],
+        country: ['Germany'],
+    },
+    {
+        title: 'Lost In Translation',
+        img: lostSvg,
+        filter: 'brightness(0) saturate(100%) invert(22%) sepia(3%) saturate(3752%) hue-rotate(175deg) brightness(97%) contrast(96%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Kabel Heavy',
+        fontStyle: ['Sans Serif'],
+        designer: 'Uncredited',
+        film_director: 'Sofia Coppola',
+        year: '2003',
+        genre: ['Drama', 'Romance'],
+        country: ['USA', 'Japan'],
     },
     {
         title: 'Il conformista',
@@ -462,4 +497,5 @@ export default [
         genre: ['Fantasy', 'Drama', 'Horror'],
         country: ['Germany'],
     },
+
 ]
