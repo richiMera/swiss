@@ -20,7 +20,7 @@ const FixedFilters = ({ children, isMobile }) => {
     }
 
     return (
-        <motion.div initial={{ opacity: '0', y: '50px' }} animate={"open"}
+        <motion.div id='fixed-end-container' initial={{ opacity: '0', y: '50px' }} animate={"open"}
             variants={variantsL} style={{ bottom: isMobile ? '16px' : '', }} className='fixed-end-filter'>
 
 

@@ -19,6 +19,7 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
     const [openSort, setOpenSort] = useState(false)
     const [isActive, setIsActive] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
+
     const handleFocus = () => {
         setIsFocused(true);
     };
@@ -110,13 +111,26 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
     }, [openSort]);
 
     useEffect(() => {
+        const fixedContainer = document.getElementById('fixed-end-container');
+
         const handleClickOutside = (event) => {
             const searchCont = document.getElementById('search-container');
 
             if (searchCont && !searchCont.contains(event.target)) {
                 setIsFocused(false);
+
             }
         };
+        if (isMobile && isFocused) {
+            fixedContainer.style.bottom = '200px';
+            // if (value === '') {
+            //     console.log('entro');
+            //     setIsActive(false);
+            // }
+        }
+        if (isMobile && !isFocused) {
+            fixedContainer.style.bottom = '16px';
+        }
 
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
@@ -146,13 +160,6 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
         <>
             {type === 'search' && <>
 
-                {/* <div className={`input-container ${isActive ? 'active' : ''}`} style={{ position: 'relative', zIndex: '200', width: isMobile ? '70%' : '', height: '49.6px', }}>
-                    <img draggable={false} id={'search-icon'} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', opacity: '0.4' }} src={searchIcon} />
-
-                    <input style={{ paddingLeft: '45px', paddingRight: '35px', fontSize: '16px', height: '100%', letterSpacing: '.1px', ...style }} className='input-box search' type='text' value={value} onChange={(e) => { setValue(e.target.value) }} placeholder={placeholder} />
-                    {value && <img draggable={false} onClick={() => { setValue(''); }} id={'search-icon'} style={{ position: 'absolute', padding: '17px', right: '0', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', height: '100%', }} src={closeS} />
-                    }
-                </div> */}
                 {isMobile && <div id='search-container' onClick={() => { setIsActive(true); setIsFocused(true) }} className={`input-container ${isActive ? 'active' : ''}`} style={{ position: 'relative', zIndex: '200', width: isActive ? !isFocused ? '30%' : '45%' : '49.6px', height: '49.6px', borderRadius: isActive ? '0' : '30px', overflow: 'hidden', transition: 'all 0.3s ease', border: isActive ? '' : '1px solid #2D2D2D' }}>
                     <img draggable={false} id={'search-icon'} style={{ position: 'absolute', left: isActive ? '20px' : '16px', top: '50%', transform: 'translate(0 , -50%)', opacity: '0.4', }} src={searchIcon} />
 
