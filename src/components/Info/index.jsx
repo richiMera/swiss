@@ -62,20 +62,25 @@ const Info = ({ isMobile, isOpen }) => {
     const [scrollPosition, setScrollPosition] = useState(0);
     useEffect(() => {
         // Cleanup function to reset transformation when component unmounts or item becomes null
+        const metaThemeColor = document.querySelector("meta[name='theme-color']");
 
         if (isOpen) {
             setScrollPosition(window.scrollY);
             document.body.style.position = 'fixed';
             document.body.style.top = `-${scrollPosition}px`;
+            metaThemeColor.setAttribute('content', '#e72a00');
         } else {
             document.body.style.position = '';
             document.body.style.top = '';
             window.scrollTo(0, scrollPosition);
+            metaThemeColor.setAttribute('content', '#0d0d0d');
         }
 
 
 
     }, [isOpen]);
+
+
     return (
         <div data-lenis-prevent="true">
             <Grid style={{ opacity: isOpen ? 0 : 1, color: '#ECECEC', paddingTop: !isOpen ? isMobile ? '48px' : '16px' : '', paddingLeft: !isOpen ? isMobile ? '16px' : '' : '', }} container>

@@ -53,7 +53,7 @@ const App = () => {
   const [filteredData, setFilteredData] = useState([])
   const [font, setFont] = useState('')
   const [isHovered, setIsHovered] = useState('')
-
+  const [index, setIndex] = useState(0)
 
   const [realData, setRealData] = useState([])
   const [animationComplete, setAnimationComplete] = useState(false);
@@ -61,22 +61,6 @@ const App = () => {
     setAnimationComplete(true);
   };
 
-
-
-
-  const variantsHeaderContainer = {
-    open: {
-      opacity: 1, y: '0', transition: {
-        delay: 0.1,
-        type: "tween",
-        duration: 1,
-        // type: "spring",
-        // stiffness: 400,
-        // damping: 40,
-      }
-    },
-
-  }
 
 
 
@@ -149,7 +133,7 @@ const App = () => {
 
         }}>
 
-          <Detail setItem={setCardItem} isMobile={isMobile} item={cardItem} />
+          <Detail index={index} setIndex={setIndex} data={realData} setItem={setCardItem} isMobile={isMobile} item={cardItem} />
           <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} />
           <Info isMobile={isMobile} isOpen={isOpenInfo} />
 
@@ -165,7 +149,7 @@ const App = () => {
             <Grid style={{ height: realData.length === 0 ? '100px' : 'auto', paddingBottom: '100px' }} container >
               {realData?.map((card, index) => {
                 return (
-                  <Card setIsHovered={setIsHovered} setFont={setFont} index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
+                  <Card setIndex={setIndex} setIsHovered={setIsHovered} setFont={setFont} index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
                 )
               })}
             </Grid>

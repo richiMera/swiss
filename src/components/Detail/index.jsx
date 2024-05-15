@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { Grid } from '@mui/material';
 import closeXs from '../../assets/close-xs.svg';
 import './style.css'
+import arrowUp from '../../assets/arrow-up.svg';
+import arrowDown from '../../assets/arrow-down.svg';
 
 
 // fare nuvi detail
@@ -11,9 +13,12 @@ import './style.css'
 
 
 
-const Detail = ({ isMobile, item, setItem
+const Detail = ({ isMobile, item, setItem, data, index, setIndex
 }) => {
 
+
+
+    console.log('index', index);
 
     const Multiple = 150;
 
@@ -150,10 +155,27 @@ const Detail = ({ isMobile, item, setItem
     }, [item]);
 
 
-    const changeThemeColor = (newColor) => {
-        setThemeColor(newColor);
-    };
 
+    const showPrevious = () => {
+        let currentIndex = index;
+        if (currentIndex > 0) {
+            currentIndex--;
+            setIndex(currentIndex);
+            setItem(data[currentIndex]);
+
+        }
+    }
+
+    // Funzione per gestire il click sulla freccia successiva
+    const showNext = () => {
+        let currentIndex = index;
+        if (currentIndex < data.length - 1) {
+            currentIndex++;
+            setIndex(currentIndex);
+            setItem(data[currentIndex]);
+
+        }
+    }
 
 
     return (
@@ -262,6 +284,15 @@ const Detail = ({ isMobile, item, setItem
                 </Grid>
 
 
+            </motion.div>
+
+            <motion.div style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', bottom: '24px', right: '24px', border: '1px solid #2D2D2D', backgroundColor: '#272727', padding: '4px', borderRadius: '50px', display: 'flex', flexDirection: 'column', gap: '8px' }} initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop}>
+                {item && <div className='close-circle-div' onClick={showPrevious} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', height: '64px', width: '64px' }}>
+                    <img draggable={false} src={arrowUp} />
+                </div>}
+                {item && <div className='close-circle-div' onClick={showNext} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', height: '64px', width: '64px' }}>
+                    <img draggable={false} src={arrowDown} />
+                </div>}
             </motion.div>
 
 

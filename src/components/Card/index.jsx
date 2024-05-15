@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 
 
 
-const Card = ({ item, width, isMobile, setItem, index, setIsHovered, setFont }) => {
+const Card = ({ item, width, isMobile, setItem, index, setIsHovered, setFont, setIndex }) => {
 
 
     const variantsCardsContainer = {
@@ -124,7 +124,7 @@ const Card = ({ item, width, isMobile, setItem, index, setIsHovered, setFont }) 
             <Grid onMouseEnter={() => { if (!isMobile) { setIsHovered(true); setInnerIsHovered(true); setFont(item.typeface) } }}
                 onMouseLeave={() => { if (!isMobile) { setIsHovered(false); setInnerIsHovered(false); setFont('') } }}
                 // onMouseMove={handleMouseMove}
-                onClick={() => { setItem(item) }}
+                onClick={() => { setItem(item); setIndex(index) }}
                 style={{ cursor: 'pointer' }} item xs={xs}>
                 <motion.div initial={"hidden"}
                     animate={"visible"}
