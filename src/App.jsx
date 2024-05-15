@@ -20,7 +20,7 @@ import Card from "./components/Card";
 import { Grid } from "@mui/material";
 import Header from "./components/Header";
 import FilterDrawer from "./components/FilterDrawer";
-import Input from "./components/Input";
+import Input from "./components/Input/index-new.jsx";
 import FixedFilters from "./components/FixedFilters";
 import Slider from '@mui/material/Slider';
 import Lenis from 'lenis';
@@ -138,30 +138,10 @@ const App = () => {
           <Info isMobile={isMobile} isOpen={isOpenInfo} />
 
 
-
-          <div style={{ padding: isMobile ? ' 56px 16px 16px 16px' : '160px 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
-            <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} realData={realData} style={{ width: '320px' }} />
-
-          </div>
-
-          <CardContainer font={font} isHovered={isHovered}>
-            <Grid style={{ height: realData.length === 0 ? '100px' : 'auto', paddingBottom: '100px' }} container >
-              {realData?.map((card, index) => {
-                return (
-                  <Card setIndex={setIndex} setIsHovered={setIsHovered} setFont={setFont} index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
-                )
-              })}
-            </Grid>
-          </CardContainer>
-
-
-          <FilterDrawer numberOfFilters={numberOfFilters} setNumberOfFilter={setNumberOfFilter} isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
-
           <FixedFilters isMobile={isMobile}>
-            <Input isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '100%' }} placeholder={'Search for movies, font, director ...'} />
+            <Input scrollDirection={scrollDirection} numberOfFilters={numberOfFilters} isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '100%' }} placeholder={'Search for movies, font, director ...'} />
 
-            <div style={{ width: isMobile ? '35%' : '' }}>
+            <div style={{ width: isMobile ? numberOfFilters > 0 ? '35%' : '20%' : '', }}>
               <div style={{ width: isMobile ? 'fit-content' : '', backgroundColor: numberOfFilters > 0 ? '#E72A00' : '', border: numberOfFilters > 0 ? '1px solid #E72A00' : '', }} onClick={() => { setOpenFilters(true) }} className="input-box">
                 <p>Filter {numberOfFilters > 0 && '(' + numberOfFilters + ')'} </p>
               </div>
@@ -189,6 +169,26 @@ const App = () => {
               </div>}
 
           </FixedFilters>
+          <div style={{ padding: isMobile ? ' 56px 16px 16px 16px' : '160px 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
+            <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} realData={realData} style={{ width: '320px' }} />
+
+          </div>
+
+          <CardContainer font={font} isHovered={isHovered}>
+            <Grid style={{ height: realData.length === 0 ? '100px' : 'auto', paddingBottom: '100px' }} container >
+              {realData?.map((card, index) => {
+                return (
+                  <Card setIndex={setIndex} setIsHovered={setIsHovered} setFont={setFont} index={index} setItem={setCardItem} isMobile={isMobile} width={isMobile ? 5 : columnWidth} key={index} item={card} />
+                )
+              })}
+            </Grid>
+          </CardContainer>
+
+
+          <FilterDrawer numberOfFilters={numberOfFilters} setNumberOfFilter={setNumberOfFilter} isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
+
+
 
 
 

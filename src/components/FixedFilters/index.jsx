@@ -20,16 +20,27 @@ const FixedFilters = ({ children, isMobile }) => {
     }
 
     return (
-        <motion.div id='fixed-end-container' initial={{ opacity: '0', y: '50px' }} animate={"open"}
-            variants={variantsL} style={{ bottom: isMobile ? '16px' : '', }} className='fixed-end-filter'>
+        <>
+            {isMobile ? <motion.div initial={{ opacity: '0', y: '50px' }} animate={"open"}
+                variants={variantsL} style={{ position: 'sticky', top: '16px', padding: '0 0 32px 0', zIndex: '300' }} className=''>
 
 
-            <div style={{ width: isMobile ? '200%' : '100% ', overflowX: isMobile ? 'hidden' : '', display: 'flex', alignitems: 'center', justifyContent: isMobile ? 'flex-start' : 'center', padding: isMobile ? '0 16px' : '', gap: '8px' }}>
-                {children}
-            </div>
+                <div style={{ width: '100%', overflowX: isMobile ? 'hidden' : '', display: 'flex', alignitems: 'center', justifyContent: isMobile ? 'flex-start' : 'center', padding: isMobile ? '0 16px' : '', gap: '8px' }}>
+                    {children}
+                </div>
 
 
-        </motion.div>
+            </motion.div> : <motion.div id='fixed-end-container' initial={{ opacity: '0', y: '50px' }} animate={"open"}
+                variants={variantsL} style={{ bottom: isMobile ? '79%' : '', }} className='fixed-end-filter'>
+
+
+                <div style={{ width: '100%', overflowX: isMobile ? 'hidden' : '', display: 'flex', alignitems: 'center', justifyContent: isMobile ? 'flex-start' : 'center', gap: '8px' }}>
+                    {children}
+                </div>
+
+
+            </motion.div>}
+        </>
     );
 }
 

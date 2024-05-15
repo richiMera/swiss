@@ -38,6 +38,7 @@ import grilloSvg from '../assets/grillo.svg';
 import hotSvg from '../assets/hot.svg';
 import nuoviSvg from '../assets/nuovi.svg';
 import shutSvg from '../assets/shut.svg';
+import comiziSvg from '../assets/comizi.svg';
 
 
 
@@ -221,7 +222,7 @@ export default [
         designer: 'Uncredited',
         film_director: 'Werner Herzog',
         year: '1977',
-        genre: ['Drama'],
+        genre: ['Drama', 'History'],
         country: ['Germany'],
     },
     {
@@ -250,6 +251,20 @@ export default [
         film_director: 'Bernardo Bertolucci',
         year: '1970',
         genre: ['Drama'],
+        country: ['Italy'],
+    },
+    {
+        title: 'Comizi d’amore',
+        img: comiziSvg,
+        filter: 'brightness(0) saturate(100%) invert(92%) sepia(0%) saturate(1758%) hue-rotate(27deg) brightness(103%) contrast(95%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Hand-drawn',
+        fontStyle: ['Handwritten'],
+        designer: 'Uncredited',
+        film_director: 'Pier Paolo Pasolini',
+        year: '1964',
+        genre: ['Documentary'],
         country: ['Italy'],
     },
     {
@@ -381,7 +396,7 @@ export default [
     {
         title: 'Per un pugno di dollari',
         img: dollariSvg,
-        filter: 'brightness(0) saturate(100%) invert(71%) sepia(30%) saturate(168%) hue-rotate(114deg) brightness(96%) contrast(97%)',
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
         bgColor: '#BB1F01',
         textColor: '#FFFFFF',
         typeface: 'Hand-drawn',
