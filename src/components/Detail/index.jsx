@@ -6,6 +6,7 @@ import closeXs from '../../assets/close-xs.svg';
 import './style.css'
 import arrowUp from '../../assets/arrow-up.svg';
 import arrowDown from '../../assets/arrow-down.svg';
+import clickSound from '../../assets/sounds/clicksound.mp3'
 
 
 // fare nuvi detail
@@ -17,8 +18,10 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
 }) => {
 
 
+    const audioRef = React.createRef();
     const [animationKey, setAnimationKey] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(index);
     const [variantsScale, setVariantsScale] = useState({
         open: {
             scale: '1',
@@ -37,6 +40,10 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
 
     const Multiple = 150;
 
+
+    const playSound = () => {
+        audioRef.current.play();
+    };
 
 
     const variantsYTop = {
@@ -107,6 +114,31 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
             if (event.key === 'Escape') {
                 setItem(null); // Chiudi il dettaglio quando viene premuto "Esc"
             }
+            if (event.key === 'ArrowUp') {
+                // Freccia su
+
+                if (currentIndex > 0) {
+
+                    let newIndex = currentIndex - 1;
+                    setCurrentIndex(newIndex);
+                    setIndex(newIndex);
+                    setItem(data[newIndex]);
+
+                }
+                console.log('Freccia su premuta');
+            }
+            if (event.key === 'ArrowDown') {
+                // Freccia giù
+                if (currentIndex < data.length - 1) {
+
+                    let newIndex = currentIndex + 1;
+                    setCurrentIndex(newIndex);
+                    setIndex(newIndex);
+                    setItem(data[newIndex]);
+
+                }
+                console.log('Freccia giù premuta');
+            }
         };
 
         window.addEventListener('keydown', handleKeyDown); // Aggiungi il gestore degli eventi
@@ -115,7 +147,7 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
         return () => {
             window.removeEventListener('keydown', handleKeyDown); // Rimuovi il gestore degli eventi
         };
-    }, [setItem]);
+    }, [setItem, index]);
 
 
 
@@ -177,22 +209,27 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
 
 
     const showPrevious = () => {
-        let currentIndex = index;
-        if (currentIndex > 0) {
-            currentIndex--;
-            setIndex(currentIndex);
-            setItem(data[currentIndex]);
 
+        if (currentIndex > 0) {
+
+            let newIndex = currentIndex - 1;
+            setCurrentIndex(newIndex);
+            setIndex(newIndex);
+            setItem(data[newIndex]);
+            playSound();
         }
     }
 
     // Funzione per gestire il click sulla freccia successiva
     const showNext = () => {
-        let currentIndex = index;
+
         if (currentIndex < data.length - 1) {
-            currentIndex++;
-            setIndex(currentIndex);
-            setItem(data[currentIndex]);
+
+            let newIndex = currentIndex + 1;
+            setCurrentIndex(newIndex);
+            setIndex(newIndex);
+            setItem(data[newIndex]);
+            playSound();
 
         }
     }
@@ -219,7 +256,10 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
                 transformStyle: "preserve-3d",
                 perspective: '1000px',
             }} >
+            <audio ref={audioRef}>
+                <source src={clickSound} type="audio/mpeg" />
 
+            </audio>
             {item && <motion.div className='close-circle-div' initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYButtom} onClick={(e) => { e.stopPropagation(); setItem(null); }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', top: '24px', right: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', height: '64px', width: '64px' }}>
                 <img draggable={false} src={closeXs} />
             </motion.div>}

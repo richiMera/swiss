@@ -111,7 +111,7 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
     }, [openSort]);
 
     useEffect(() => {
-        const fixedContainer = document.getElementById('fixed-end-container');
+
 
         const handleClickOutside = (event) => {
             const searchCont = document.getElementById('search-container');
@@ -121,16 +121,6 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
 
             }
         };
-        if (isMobile && isFocused) {
-            fixedContainer.style.bottom = '200px';
-            // if (value === '') {
-            //     console.log('entro');
-            //     setIsActive(false);
-            // }
-        }
-        if (isMobile && !isFocused) {
-            fixedContainer.style.bottom = '16px';
-        }
 
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
