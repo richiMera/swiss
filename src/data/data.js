@@ -32,6 +32,12 @@ import aguirreSvg from '../assets/aguirre.svg';
 import sorpassoSvg from '../assets/sorpasso.svg';
 import lostSvg from '../assets/lost.svg';
 import shutterSvg from '../assets/shutter.svg';
+import amarcordSvg from '../assets/amarcord.svg';
+import bladeSvg from '../assets/blade.svg';
+import grilloSvg from '../assets/grillo.svg';
+import hotSvg from '../assets/hot.svg';
+import nuoviSvg from '../assets/nuovi.svg';
+import shutSvg from '../assets/shut.svg';
 
 
 
@@ -39,7 +45,7 @@ export default [
     {
         title: 'A Clockwork Orange',
         img: orangeSvg,
-        filter: 'brightness(0) saturate(100%) invert(100%) sepia(76%) saturate(257%) hue-rotate(62deg) brightness(105%) contrast(100%)',
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
         bgColor: '#F0280A',
         textColor: '#FFFFFF',
         typeface: 'Akzidenz-Grotesk Bold Extended',
@@ -63,6 +69,20 @@ export default [
         year: '1988',
         genre: ['Animation', 'Action', 'Sci-Fi'],
         country: ['Japan'],
+    },
+    {
+        title: 'Amarcord',
+        img: amarcordSvg,
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Hand-drawn',
+        fontStyle: ['Sans Serif'],
+        designer: 'John Alcorn',
+        film_director: 'Federico Fellini',
+        year: '1973',
+        genre: ['Drama', 'Comedy'],
+        country: ['Italy'],
     },
     {
         title: 'Nosferatu',
@@ -135,6 +155,20 @@ export default [
         country: ['Canada'],
     },
     {
+        title: 'I nuovi mostri',
+        img: nuoviSvg,
+        filter: 'brightness(0) saturate(100%) invert(71%) sepia(30%) saturate(168%) hue-rotate(114deg) brightness(96%) contrast(97%) drop-shadow(8px 6px 2px #150606)',
+        bgColor: '#671410',
+        textColor: '#FFFFFF',
+        typeface: 'Eurostile Black',
+        fontStyle: ['Sans Serif'],
+        designer: 'Uncredited',
+        film_director: 'Mario Monicelli, Dino Risi, Ettore Scola',
+        year: '1977',
+        genre: ['Comedy'],
+        country: ['Italy'],
+    },
+    {
         title: 'The Shining',
         img: shiningSvg,
         filter: 'brightness(0) saturate(100%) invert(82%) sepia(76%) saturate(1778%) hue-rotate(119deg) brightness(107%) contrast(98%)',
@@ -161,6 +195,20 @@ export default [
         year: '1962',
         genre: ['Comedy', 'Drama'],
         country: ['Italy'],
+    },
+    {
+        title: 'Blade Runner',
+        img: bladeSvg,
+        filter: 'brightness(0) saturate(100%) invert(14%) sepia(22%) saturate(7177%) hue-rotate(346deg) brightness(98%) contrast(102%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Goudy Oldstyle',
+        fontStyle: ['Serif'],
+        designer: 'Pacific Title and Art Studio',
+        film_director: 'Ridley Scott',
+        year: '1982',
+        genre: ['Thriller', 'Drama', 'Sci-Fi'],
+        country: ['USA'],
     },
     {
         title: 'Aguirre, der Zorn Gottes',
@@ -333,7 +381,7 @@ export default [
     {
         title: 'Per un pugno di dollari',
         img: dollariSvg,
-        filter: 'brightness(0) saturate(100%) invert(92%) sepia(87%) saturate(1119%) hue-rotate(303deg) brightness(110%) contrast(93%)',
+        filter: 'brightness(0) saturate(100%) invert(71%) sepia(30%) saturate(168%) hue-rotate(114deg) brightness(96%) contrast(97%)',
         bgColor: '#BB1F01',
         textColor: '#FFFFFF',
         typeface: 'Hand-drawn',
@@ -359,6 +407,20 @@ export default [
         country: ['USA'],
     },
     {
+        title: 'Il Marchese del Grillo',
+        img: grilloSvg,
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+        bgColor: '#01175F',
+        textColor: '#FFFFFF',
+        typeface: 'Classic Garamond',
+        fontStyle: ['Serif'],
+        designer: 'Uncredited',
+        film_director: 'Mario Monicelli',
+        year: '1981',
+        genre: ['Comedy'],
+        country: ['Italy'],
+    },
+    {
         title: 'L’uccello dalle piume di cristallo',
         img: uccelloSvg,
         filter: 'brightness(0) saturate(100%) invert(98%) sepia(4%) saturate(3588%) hue-rotate(319deg) brightness(98%) contrast(76%)',
@@ -371,6 +433,20 @@ export default [
         year: '1970',
         genre: ['Thriller', 'Mystery', 'Horror'],
         country: ['Italy'],
+    },
+    {
+        title: 'Some Like it Hot',
+        img: hotSvg,
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%) drop-shadow(2px 2px 2px #07080A)',
+        bgColor: '#3D3D3D',
+        textColor: '#FFFFFF',
+        typeface: 'Hand-drawn',
+        fontStyle: ['Handwritten'],
+        designer: 'Uncredited',
+        film_director: 'Billy Wilder',
+        year: '1959',
+        genre: ['Romance', 'Crime', 'Comedy'],
+        country: ['USA'],
     },
     {
         title: 'Febbre da cavallo',
@@ -399,6 +475,20 @@ export default [
         year: '1976',
         genre: ['Crime', 'Action', 'Thriller'],
         country: ['USA'],
+    },
+    {
+        title: 'Eyes Wide Shut',
+        img: shutSvg,
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Futura Extra Bold',
+        fontStyle: ['Sans Serif'],
+        designer: 'Uncredited',
+        film_director: 'Stanley Kubrick',
+        year: '1999',
+        genre: ['Thriller', 'Drama', 'Mystery'],
+        country: ['UK', 'USA'],
     },
     {
         title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
