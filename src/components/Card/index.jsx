@@ -121,7 +121,7 @@ const Card = ({ item, width, isMobile, setItem, index, setIsHovered, setFont, se
             >
                 Font: <span style={{ fontWeight: 'bold' }}>{item?.typeface}</span>
             </div > */}
-            <Grid onMouseEnter={() => { if (!isMobile) { setIsHovered(true); setInnerIsHovered(true); setFont(item.typeface) } }}
+            <Grid onContextMenu={(e) => { e.preventDefault() }} onMouseEnter={() => { if (!isMobile) { setIsHovered(true); setInnerIsHovered(true); setFont(item.typeface) } }}
                 onMouseLeave={() => { if (!isMobile) { setIsHovered(false); setInnerIsHovered(false); setFont('') } }}
                 // onMouseMove={handleMouseMove}
                 onClick={() => { setItem(item); setIndex(index) }}

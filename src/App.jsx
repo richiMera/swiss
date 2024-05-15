@@ -49,7 +49,6 @@ const App = () => {
   const [openFilters, setOpenFilters] = useState(false);
   const [columnWidth, setColumnWidth] = useState(3);
   const [numberOfFilters, setNumberOfFilter] = useState(0);
-
   const [filteredData, setFilteredData] = useState([])
   const [font, setFont] = useState('')
   const [isHovered, setIsHovered] = useState('')
@@ -139,7 +138,7 @@ const App = () => {
 
 
           <FixedFilters isMobile={isMobile}>
-            <Input scrollDirection={scrollDirection} numberOfFilters={numberOfFilters} isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '100%' }} placeholder={'Search for movies, font, director ...'} />
+            <Input scrollDirection={scrollDirection} numberOfFilters={numberOfFilters} isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '100%' }} placeholder={isMobile ? 'movies, font, director...' : 'Search for movies, font, director ...'} />
 
             <div style={{ width: isMobile ? numberOfFilters > 0 ? '35%' : '20%' : '', }}>
               <div style={{ width: isMobile ? 'fit-content' : '', backgroundColor: numberOfFilters > 0 ? '#E72A00' : '', border: numberOfFilters > 0 ? '1px solid #E72A00' : '', }} onClick={() => { setOpenFilters(true) }} className="input-box">
@@ -169,7 +168,7 @@ const App = () => {
               </div>}
 
           </FixedFilters>
-          <div style={{ padding: isMobile ? ' 56px 16px 16px 16px' : '160px 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ padding: isMobile ? ' 32px 16px 16px 16px' : '160px 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
             <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} realData={realData} style={{ width: '320px' }} />
 

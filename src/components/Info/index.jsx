@@ -12,15 +12,15 @@ const Info = ({ isMobile, isOpen }) => {
         open: {
             height: isMobile ? '100svh' : '100vh',
             transition: {
-                type: 'tween', // Funzione di easing personalizzata
-                duration: 0.5, // Durata dell'animazione in secondi
+                ease: [0.5, 0.4, 0.2, 0.2], // Funzione di easing personalizzata
+                duration: 0.3, // Durata dell'animazione in secondi
             }
         },
         closed: {
             height: '0px',
             transition: {
                 type: 'tween', // Funzione di easing personalizzata
-                duration: 0.5, // Durata dell'animazione in secondi
+                duration: 0.3, // Durata dell'animazione in secondi
             }
         },
     }

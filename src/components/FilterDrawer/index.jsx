@@ -259,7 +259,7 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
 
                             <div style={{ display: 'flex', gap: '24px' }}>
-                                <p onClick={() => { setOpenFilters(false) }} className='p-regular'>Filter {numberOfFilters > 0 && '(' + numberOfFilters + ')'}</p>
+                                <p style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} className='p-regular'>Filter {numberOfFilters > 0 && '(' + numberOfFilters + ')'}</p>
                                 {numberOfFilters > 0 && <p className='p-regular' onClick={() => { clearFilter() }} style={{ cursor: 'pointer' }}>Reset</p>}
                             </div>
                             <div style={{ display: 'flex', gap: '24px' }}>
