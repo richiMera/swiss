@@ -17,29 +17,26 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
 }) => {
 
 
-
-    console.log('index', index);
-
-    const Multiple = 150;
-
-    const variantsScale = {
+    const [animationKey, setAnimationKey] = useState(0);
+    const [variantsScale, setVariantsScale] = useState({
         open: {
             scale: '1',
             transition: {
                 delay: 0.1,
                 type: "spring",
-                stiffness: 80, // Riduci lo stiffness per rendere l'effetto meno pronunciato
-                damping: 15, // Aumenta il damping per ridurre l'effetto di rimbalzo
+                stiffness: 80,
+                damping: 15,
                 duration: 0.5,
-                // ease: "easeInOut",
             }
         },
         closed: {
             scale: '1.1',
-
         },
+    });
 
-    }
+    const Multiple = 150;
+
+
 
     const variantsYTop = {
         open: {
@@ -55,6 +52,20 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
         },
     }
 
+    const variantsYTopIcons = {
+        open: {
+            y: '0', x: isMobile ? '50%' : '0', opacity: '1', transition: {
+                delay: 0.1,
+                ease: [0, 0.71, 0.2, 1.01],
+                duration: 0.7,
+            }
+        },
+        closed: {
+            y: '100px',
+            x: isMobile ? '50%' : '0',
+            opacity: '0'
+        },
+    }
     const variantsYButtom = {
         open: {
             y: '0', transition: {
@@ -105,19 +116,7 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
         };
     }, [setItem]);
 
-    useEffect(() => {
-        let timeoutId;
-        if (item) {
-            // Delay the initialization of handleMouseMove after one second
-            timeoutId = setTimeout(() => {
-                setMouseMoveInitialized(true);
-            }, 1000);
-        }
 
-        return () => {
-            clearTimeout(timeoutId);
-        };
-    }, [item]);
 
     const [mouseMoveInitialized, setMouseMoveInitialized] = useState(false);
 
@@ -130,6 +129,8 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
 
     const [scrollPosition, setScrollPosition] = useState(0);
     useEffect(() => {
+        let timeoutId;
+
         // Cleanup function to reset transformation when component unmounts or item becomes null
         const image = imageRef.current;
         const metaThemeColor = document.querySelector("meta[name='theme-color']");
@@ -138,6 +139,15 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
 
 
         if (item) {
+            setAnimationKey(prevKey => prevKey + 1);
+            setVariantsScale(prevVariantsScale => ({
+                ...prevVariantsScale,
+                animate: 'open'
+            }));
+
+            timeoutId = setTimeout(() => {
+                setMouseMoveInitialized(true);
+            }, 1000);
             setScrollPosition(window.scrollY);
             document.body.style.position = 'fixed';
             document.body.style.top = `-${scrollPosition}px`;
@@ -150,7 +160,9 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
             metaThemeColor.setAttribute('content', '#0d0d0d');
         }
 
-
+        return () => {
+            clearTimeout(timeoutId);
+        };
 
     }, [item]);
 
@@ -205,6 +217,7 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
             </motion.div>}
 
             <motion.img
+                key={animationKey}
                 draggable={false}
                 ref={imageRef}
                 initial={"closed"}
@@ -215,7 +228,7 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
 
             />
 
-            <motion.div ref={infoRef} initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} >
+            <motion.div key={`info-${animationKey}`} ref={infoRef} initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop} >
                 <Grid container spacing={0}>
                     <Grid style={{ textTransform: 'uppercase' }} item container xs={12} spacing={1}>
                         <Grid style={{ textAlign: 'right' }} item xs={6}>
@@ -286,7 +299,7 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex
 
             </motion.div>
 
-            <motion.div style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', bottom: '24px', right: '24px', border: '1px solid #2D2D2D', backgroundColor: '#272727', padding: '4px', borderRadius: '50px', display: 'flex', flexDirection: 'column', gap: '8px' }} initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTop}>
+            <motion.div style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', bottom: '24px', right: isMobile ? '50%' : '24px', transform: isMobile ? 'translateX(-50%)' : '', border: '1px solid #2D2D2D', backgroundColor: '#272727', padding: '4px', borderRadius: '50px', display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: '8px' }} initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTopIcons}>
                 {item && <div className='close-circle-div' onClick={showPrevious} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', height: '64px', width: '64px' }}>
                     <img draggable={false} src={arrowUp} />
                 </div>}

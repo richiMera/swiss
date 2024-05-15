@@ -9,6 +9,10 @@
   background-color: #E72A00;
 }
 
+img::selection {
+  background-color: transparent;
+}
+
 
 #root {
   position: relative;
