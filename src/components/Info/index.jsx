@@ -83,7 +83,7 @@ const Info = ({ isMobile, isOpen }) => {
 
     return (
         <div data-lenis-prevent="true">
-            <Grid style={{ opacity: isOpen ? 0 : 1, color: '#ECECEC', paddingTop: !isOpen ? isMobile ? '48px' : '16px' : '', paddingLeft: !isOpen ? isMobile ? '16px' : '' : '', paddingBottom: isMobile ? '56px' : '' }} container>
+            <Grid style={{ opacity: isOpen ? 0 : 1, color: '#ECECEC', paddingTop: !isOpen ? isMobile ? '48px' : '16px' : '', paddingLeft: !isOpen ? isMobile ? '16px' : '' : '', paddingBottom: isMobile ? '56px' : '', paddingRight: !isOpen ? isMobile ? '16px' : '' : '', }} container>
                 <Grid item xs={isMobile ? 0 : 4}>
                 </Grid>
                 <Grid item xs={isMobile ? 12 : 7}>
@@ -91,6 +91,7 @@ const Info = ({ isMobile, isOpen }) => {
                         variants={variantsL}
                         style={{
                             opacity: '0.64',
+                            lineHeight: '130%'
 
                         }}
                         className='p-regular'

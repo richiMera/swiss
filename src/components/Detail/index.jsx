@@ -50,7 +50,7 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
 
     const variantsYTop = {
         open: {
-            y: '0', transition: {
+            y: '0', opacity: '1', transition: {
                 delay: 0.1,
                 ease: [0, 0.71, 0.2, 1.01],
                 duration: 0.7,
@@ -58,6 +58,7 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
         },
         closed: {
             y: '100px',
+            opacity: '0',
 
         },
     }

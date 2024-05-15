@@ -39,6 +39,8 @@ import hotSvg from '../assets/hot.svg';
 import nuoviSvg from '../assets/nuovi.svg';
 import shutSvg from '../assets/shut.svg';
 import comiziSvg from '../assets/comizi.svg';
+import oldboySvg from '../assets/oldboy.svg';
+import sonatineSvg from '../assets/sonatine.svg';
 
 
 
@@ -142,6 +144,20 @@ export default [
         country: ['USA'],
     },
     {
+        title: 'Sonatine',
+        img: sonatineSvg,
+        filter: 'brightness(0) saturate(100%) invert(22%) sepia(42%) saturate(3519%) hue-rotate(344deg) brightness(104%) contrast(93%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'American Text',
+        fontStyle: ['Blackletter'],
+        designer: 'Uncredited',
+        film_director: 'Takeshi Kitano',
+        year: '1993',
+        genre: ['Thriller', 'Action', 'Crime',],
+        country: ['Japan'],
+    },
+    {
         title: 'Crimes of the Future',
         img: futureSvg,
         filter: 'brightness(0) saturate(100%) invert(57%) sepia(81%) saturate(1752%) hue-rotate(174deg) brightness(96%) contrast(95%)',
@@ -238,6 +254,20 @@ export default [
         year: '2003',
         genre: ['Drama', 'Romance'],
         country: ['USA', 'Japan'],
+    },
+    {
+        title: '올드보이 (Oldboy)',
+        img: oldboySvg,
+        filter: 'brightness(0) saturate(100%) invert(99%) sepia(66%) saturate(253%) hue-rotate(350deg) brightness(107%) contrast(103%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Univers',
+        fontStyle: ['Sans Serif'],
+        designer: 'C. Jin Im',
+        film_director: 'Park Chan-wook',
+        year: '2003',
+        genre: ['Thriller', 'Mystery', 'Drama', 'Action'],
+        country: ['South Korea'],
     },
     {
         title: 'Il conformista',

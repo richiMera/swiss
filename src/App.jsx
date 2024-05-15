@@ -138,7 +138,7 @@ const App = () => {
 
 
           <FixedFilters isMobile={isMobile}>
-            <Input scrollDirection={scrollDirection} numberOfFilters={numberOfFilters} isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '100%' }} placeholder={isMobile ? 'movies, font, director...' : 'Search for movies, font, director ...'} />
+            <Input scrollDirection={scrollDirection} numberOfFilters={numberOfFilters} isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '100%' }} placeholder={isMobile ? 'Movies, font, director...' : 'Search for movies, font, director ...'} />
 
             <div style={{ width: isMobile ? numberOfFilters > 0 ? '35%' : '20%' : '', }}>
               <div style={{ width: isMobile ? 'fit-content' : '', backgroundColor: numberOfFilters > 0 ? '#E72A00' : '', border: numberOfFilters > 0 ? '1px solid #E72A00' : '', }} onClick={() => { setOpenFilters(true) }} className="input-box">
