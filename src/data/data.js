@@ -41,7 +41,15 @@ import shutSvg from '../assets/shut.svg';
 import comiziSvg from '../assets/comizi.svg';
 import oldboySvg from '../assets/oldboy.svg';
 import sonatineSvg from '../assets/sonatine.svg';
-
+import houseSvg from '../assets/house.svg';
+import breakfastSvg from '../assets/breakfast.svg';
+import brancaleoneSvg from '../assets/brancaleone.svg';
+import carnageSvg from '../assets/carnage.svg';
+import bagsSvg from '../assets/bags.svg';
+import nikitaSvg from '../assets/nikita.svg';
+import warriorsSvg from '../assets/warriors.svg';
+import samouraiSvg from '../assets/samourai.svg';
+import deadmanSvg from '../assets/deadman.svg';
 
 
 export default [
@@ -128,6 +136,20 @@ export default [
         year: '1920',
         genre: ['Crime', 'Drama', 'Thriller', 'Horror'],
         country: ['Germany'],
+    },
+    {
+        title: 'Le Samouraï',
+        img: samouraiSvg,
+        filter: 'brightness(0) saturate(100%) invert(91%) sepia(4%) saturate(678%) hue-rotate(61deg) brightness(106%) contrast(107%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Hand-drawn',
+        fontStyle: ['Handwritten'],
+        designer: 'CTR',
+        film_director: 'Jean-Pierre Melville',
+        year: '1967',
+        genre: ['Crime', 'Thriller'],
+        country: ['France'],
     },
     {
         title: 'Night of the Living Dead',
@@ -340,6 +362,20 @@ export default [
         country: ['USA'],
     },
     {
+        title: 'The Warriors',
+        img: warriorsSvg,
+        filter: 'brightness(0) saturate(100%) invert(18%) sepia(78%) saturate(3938%) hue-rotate(350deg) brightness(84%) contrast(124%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Hand-drawn',
+        fontStyle: ['Handwritten'],
+        designer: 'Uncredited',
+        film_director: 'Walter Hill',
+        year: '1979',
+        genre: ['Thriller', 'Action'],
+        country: ['USA'],
+    },
+    {
         title: 'Un homme qui dort',
         img: hommeSvg,
         filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
@@ -482,7 +518,7 @@ export default [
     {
         title: 'Some Like it Hot',
         img: hotSvg,
-        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%) drop-shadow(2px 2px 2px #07080A)',
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%) drop-shadow(2px 2px 1px #07080A)',
         bgColor: '#3D3D3D',
         textColor: '#FFFFFF',
         typeface: 'Hand-drawn',
@@ -634,6 +670,20 @@ export default [
         country: ['Australia'],
     },
     {
+        title: 'Nikita',
+        img: nikitaSvg,
+        filter: 'brightness(0) saturate(100%) invert(15%) sepia(89%) saturate(2923%) hue-rotate(347deg) brightness(92%) contrast(104%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Albertus',
+        fontStyle: ['Serif'],
+        designer: 'Uncredited',
+        film_director: 'Luc Besson',
+        year: '1990',
+        genre: ['Thriller', 'Action'],
+        country: ['France'],
+    },
+    {
         title: 'Faust - Eine deutsche Volkssage',
         img: faustSvg,
         filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
@@ -647,5 +697,90 @@ export default [
         genre: ['Fantasy', 'Drama', 'Horror'],
         country: ['Germany'],
     },
+    {
+        title: 'House of 1000 Corpses',
+        img: houseSvg,
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Attic Antique',
+        fontStyle: ['Serif'],
+        designer: 'Uncredited',
+        film_director: 'Rob Zombie',
+        year: '2003',
+        genre: ['Horror', 'Comedy'],
+        country: ['USA'],
+    },
+    {
+        title: 'The Breakfast Club',
+        img: breakfastSvg,
+        filter: 'brightness(0) saturate(100%) invert(82%) sepia(44%) saturate(3948%) hue-rotate(6deg) brightness(103%) contrast(98%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Bernhard Gothic',
+        fontStyle: ['Sans Serif'],
+        designer: 'Uncredited',
+        film_director: 'John Hughes',
+        year: '1985',
+        genre: ['Drama', 'Comedy'],
+        country: ['USA'],
+    },
+    {
+        title: 'Dead Man',
+        img: deadmanSvg,
+        filter: 'brightness(0) saturate(100%) invert(93%) sepia(1%) saturate(1%) hue-rotate(190deg) brightness(95%) contrast(90%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Headhunter (Customized)',
+        fontStyle: ['Handwritten'],
+        designer: 'Balsmeyer & Everett, Inc',
+        film_director: 'Jim Jarmusch',
+        year: '1995',
+        genre: ['Drama', 'Western', 'Fantasy'],
+        country: ['USA'],
+    },
+    {
+        title: 'L\' armata brancaleone',
+        img: brancaleoneSvg,
+        filter: 'brightness(0) saturate(100%) invert(98%) sepia(4%) saturate(3098%) hue-rotate(27deg) brightness(87%) contrast(89%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Hand-drawn',
+        fontStyle: ['Handwritten'],
+        designer: 'Uncredited',
+        film_director: 'Mario Monicelli',
+        year: '1962',
+        genre: ['Comedy', 'Adventure'],
+        country: ['Italy'],
+    },
+    {
+        title: 'Carnage',
+        img: carnageSvg,
+        filter: 'brightness(0) saturate(100%) invert(85%) sepia(3%) saturate(253%) hue-rotate(274deg) brightness(110%) contrast(94%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Copperplate',
+        fontStyle: ['Serif'],
+        designer: 'Uncredited',
+        film_director: 'Roman Polanski',
+        year: '2011',
+        genre: ['Comedy', 'Drama'],
+        country: ['France', 'Germany', 'Poland', 'Spain'],
+    },
+    {
+        title: 'Body Bags',
+        img: bagsSvg,
+        filter: 'brightness(0) saturate(100%) invert(18%) sepia(89%) saturate(2875%) hue-rotate(348deg) brightness(86%) contrast(102%)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'ITC Friz Quadrata',
+        fontStyle: ['Serif'],
+        designer: 'Uncredited',
+        film_director: 'John Carpenter, Tobe Hooper',
+        year: '1993',
+        genre: ['Comedy', 'Horror'],
+        country: ['USA'],
+    },
+
 
 ]
