@@ -184,6 +184,7 @@ const App = () => {
           </div>
 
           <CardContainer font={font} isHovered={isHovered}>
+            <div className="moon"></div>
             <Grid style={{ height: realData.length === 0 ? '100px' : 'auto', paddingBottom: '100px' }} container >
               {realData?.map((card, index) => {
                 return (
