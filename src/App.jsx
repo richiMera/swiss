@@ -133,9 +133,18 @@ const App = () => {
         }}>
 
           <Detail index={index} setIndex={setIndex} data={realData} setItem={setCardItem} isMobile={isMobile} item={cardItem} />
-          <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} />
-          <Info isMobile={isMobile} isOpen={isOpenInfo} />
-
+          {/* <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} /> */}
+          {/* <Info isMobile={isMobile} isOpen={isOpenInfo} /> */}
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '60vh', textAlign: 'center' }}>
+            <h1 style={{ color: '#ececec', fontSize: '160px', lineHeight: '75%', marginBottom: '62px' }}>Cinema <br />Typography</h1>
+            <p style={{
+              opacity: '0.64',
+              lineHeight: '130%',
+              color: '#ECECEC',
+              width: '30%'
+            }} className="p-regular">An independent archive to celebrate typography
+              and its starring role in cinema opening titles.</p>
+          </div>
 
           <FixedFilters isMobile={isMobile}>
             <Input scrollDirection={scrollDirection} numberOfFilters={numberOfFilters} isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '100%' }} placeholder={isMobile ? 'Movies, font, director...' : 'Search for movies, font, director ...'} />
@@ -168,7 +177,7 @@ const App = () => {
               </div>}
 
           </FixedFilters>
-          <div style={{ padding: isMobile ? ' 32px 16px 16px 16px' : '160px 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ padding: isMobile ? ' 32px 16px 16px 16px' : '0 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
             <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} realData={realData} style={{ width: '320px' }} />
 

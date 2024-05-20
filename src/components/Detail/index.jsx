@@ -189,7 +189,6 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
 
                 sessionStorage.setItem('scrollPosition', window.scrollY)
                 setScrollPosition(sessionStorage.getItem('scrollPosition'))
-
             }
 
 
