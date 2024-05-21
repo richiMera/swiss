@@ -18,6 +18,7 @@ import Lottie from 'lottie-react';
 import animation from './loader.json'
 import Info from "./components/Info/index.jsx";
 import CardContainer from "./components/CardsContainer/index.jsx";
+import glare from './assets/glare.png'
 
 
 
@@ -129,20 +130,21 @@ const App = () => {
           backgroundColor: '#0D0D0D',
 
         }}>
-          <div className="moon-up"></div>
+          {/* <div className="moon-up"></div> */}
+          <img src={glare} style={{ width: '100%', position: 'absolute' }} />
           <Detail index={index} setIndex={setIndex} data={realData} setItem={setCardItem} isMobile={isMobile} item={cardItem} />
           {/* <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} /> */}
           {/* <Info isMobile={isMobile} isOpen={isOpenInfo} /> */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '60vh', textAlign: 'center' }}>
             {/* <h1 style={{ color: '#ececec', fontSize: '160px', lineHeight: '75%', marginBottom: '62px' }}>Cinema <br />Typography</h1> */}
-            <img style={{ padding: '0 47px 31px 47px', maxWidth: '100%' }} src={heroImg} />
+            <img style={{ padding: '0 47px 31px 47px', maxWidth: '100%', position: 'relative', zIndex: '20' }} src={heroImg} />
             <p style={{
               opacity: '0.64',
               lineHeight: '130%',
               color: '#ECECEC',
-              width: isMobile ? '100%' : '30%',
+              width: isMobile ? '100%' : '100%',
               padding: isMobile ? '0 16px' : '0'
-            }} className="p-regular">An independent archive to celebrate typography
+            }} className="p-regular">An independent archive to celebrate typography  {!isMobile && <br />}
               and its starring role in cinema opening titles.</p>
           </div>
 

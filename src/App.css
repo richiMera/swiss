@@ -286,7 +286,7 @@ h1.title,
   top: -80%;
   left: -50px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  filter: blur(30px);
+  filter: blur(100px);
   /* Aggiunge l'effetto blur */
   transform: translateX(-50%);
   left: 50%;
