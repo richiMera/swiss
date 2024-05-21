@@ -133,9 +133,9 @@ const App = () => {
           {/* <div className="moon-up"></div> */}
           <img src={glare} style={{ width: '100%', position: 'absolute' }} />
           <Detail index={index} setIndex={setIndex} data={realData} setItem={setCardItem} isMobile={isMobile} item={cardItem} />
-          {/* <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} /> */}
-          {/* <Info isMobile={isMobile} isOpen={isOpenInfo} /> */}
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '60vh', textAlign: 'center' }}>
+          <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} />
+          <Info isMobile={isMobile} isOpen={isOpenInfo} />
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: isMobile ? '40vh' : '60vh', textAlign: 'center' }}>
             {/* <h1 style={{ color: '#ececec', fontSize: '160px', lineHeight: '75%', marginBottom: '62px' }}>Cinema <br />Typography</h1> */}
             <img style={{ padding: '0 24px 24px 24px', width: isMobile ? '100%' : '65vw', position: 'relative', zIndex: '20' }} src={heroImg} />
             <p style={{

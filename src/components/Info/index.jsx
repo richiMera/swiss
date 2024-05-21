@@ -83,7 +83,7 @@ const Info = ({ isMobile, isOpen }) => {
 
     return (
         <div data-lenis-prevent="true">
-            <Grid style={{ opacity: isOpen ? 0 : 1, color: '#ECECEC', paddingTop: !isOpen ? isMobile ? '48px' : '16px' : '', paddingLeft: !isOpen ? isMobile ? '16px' : '' : '', paddingBottom: isMobile ? '56px' : '', paddingRight: !isOpen ? isMobile ? '16px' : '' : '', }} container>
+            {/* <Grid style={{ opacity: isOpen ? 0 : 1, color: '#ECECEC', paddingTop: !isOpen ? isMobile ? '48px' : '16px' : '', paddingLeft: !isOpen ? isMobile ? '16px' : '' : '', paddingBottom: isMobile ? '56px' : '', paddingRight: !isOpen ? isMobile ? '16px' : '' : '', }} container>
                 <Grid item xs={isMobile ? 0 : 4}>
                 </Grid>
                 <Grid item xs={isMobile ? 12 : 7}>
@@ -104,7 +104,7 @@ const Info = ({ isMobile, isOpen }) => {
                     </motion.p>
                 </Grid>
 
-            </Grid >
+            </Grid > */}
             <motion.div style={{
                 position: 'fixed',
                 top: '0',
@@ -164,7 +164,7 @@ const Info = ({ isMobile, isOpen }) => {
 
                     </Grid>
                     <motion.div style={{ position: 'fixed', bottom: '16px', right: '16px', left: '16px', color: 'black' }} className='isChildren' variants={variantsItem}>
-                        <p style={{ fontSize: isMobile ? '12px' : '14px' }}>All material for informational, entertainment and non-profit purposes only. Works appearing on this site are the property of their respective owners and may not be saved, re-transmitted, republished, or reformatted by any means, electronic or mechanical. This site offers broad public access to these materials exclusively for the private, informational and non-commercial use.</p>
+                        <p style={{ fontSize: isMobile ? '12px' : '14px', paddingRight: '50px' }}>All material for informational, entertainment and non-profit purposes only. Works appearing on this site are the property of their respective owners and may not be saved, re-transmitted, republished, or reformatted by any means, electronic or mechanical. This site offers broad public access to these materials exclusively for the private, informational and non-commercial use.</p>
                     </motion.div>
                 </motion.div>
 
