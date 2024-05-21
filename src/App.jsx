@@ -137,7 +137,7 @@ const App = () => {
           {/* <Info isMobile={isMobile} isOpen={isOpenInfo} /> */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '60vh', textAlign: 'center' }}>
             {/* <h1 style={{ color: '#ececec', fontSize: '160px', lineHeight: '75%', marginBottom: '62px' }}>Cinema <br />Typography</h1> */}
-            <img style={{ padding: '0 47px 31px 47px', maxWidth: '100%', position: 'relative', zIndex: '20' }} src={heroImg} />
+            <img style={{ padding: '0 24px 24px 24px', width: isMobile ? '100%' : '65vw', position: 'relative', zIndex: '20' }} src={heroImg} />
             <p style={{
               opacity: '0.64',
               lineHeight: '130%',
@@ -180,7 +180,7 @@ const App = () => {
 
           </FixedFilters>
           <div style={{ padding: isMobile ? ' 32px 16px 16px 16px' : '0 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <p style={{ color: '#404040' }} className="p-regular">Entries ({realData.length})</p>
+            <p style={{ color: '#bbbbbb' }} className="p-regular">Entries ({realData.length})</p>
             <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} realData={realData} style={{ width: '320px' }} />
 
           </div>

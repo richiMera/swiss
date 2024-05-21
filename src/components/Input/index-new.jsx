@@ -128,7 +128,7 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData, nu
 
 
                         <div id='sort-toggle-button' style={{ display: 'flex', alignItems: 'center', position: 'realtive', cursor: 'pointer' }} onClick={() => { setOpenSort(!openSort) }} >
-                            <p className='p-regular' style={{ color: '#ececec', marginRight: '8px' }}>{sort}</p>
+                            <p className='p-regular' style={{ color: '#bbbbbb', marginRight: '8px' }}>{sort}</p>
                             <img draggable={false} id={'arrow-sort'} style={{ transition: ' all 0.3s ease-out', transform: openSort ? 'rotate(180deg)' : '' }} src={arrowRed} />
                         </div>
                     </div>

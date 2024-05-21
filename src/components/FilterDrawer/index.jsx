@@ -253,12 +253,24 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
             <Drawer style={{ width: '100%' }} sx={{
                 '& .MuiDrawer-paper': drawerPaperStyle,
             }} anchor={'bottom'} onClose={() => { setOpenFilters(false) }} open={open}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: isMobile ? '24px' : '24px', position: 'sticky', top: '0', backgroundColor: '#1e1e1e', color: '#ececec' }}>
+
+                    <div style={{ display: 'flex', gap: '24px', }}>
+                        <p style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} className='p-regular'>Filter {numberOfFilters > 0 && '(' + numberOfFilters + ')'}</p>
+                        {numberOfFilters > 0 && <p className='p-regular' onClick={() => { clearFilter() }} style={{ cursor: 'pointer' }}>Reset</p>}
+                    </div>
+                    <div style={{ display: 'flex', gap: '24px' }}>
+                        <p className='p-regular' style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} > Close</p>
+                    </div>
+
+                </div>
                 <div style={{ backgroundColor: '#1E1E1E', overflow: 'hidden', width: '100%', height: '100%', padding: isMobile ? '0' : '24px 24px 160px 24px', color: '#ECECEC' }}>
 
                     <div style={{ overflowY: 'auto', height: 'calc(100% - 1px)', padding: isMobile ? '24px' : '0' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: isMobile ? '24px' : '40px' }}>
 
-                            <div style={{ display: 'flex', gap: '24px' }}>
+                        {/* <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: isMobile ? '24px' : '40px', position: 'sticky', top: '0', backgroundColor: '#1e1e1e' }}>
+
+                            <div style={{ display: 'flex', gap: '24px', }}>
                                 <p style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} className='p-regular'>Filter {numberOfFilters > 0 && '(' + numberOfFilters + ')'}</p>
                                 {numberOfFilters > 0 && <p className='p-regular' onClick={() => { clearFilter() }} style={{ cursor: 'pointer' }}>Reset</p>}
                             </div>
@@ -266,59 +278,60 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
                                 <p className='p-regular' style={{ cursor: 'pointer' }} onClick={() => { setOpenFilters(false) }} > Close</p>
                             </div>
 
-                        </div>
-                        <div style={{ overflowY: isMobile ? 'auto' : '', height: isMobile ? 'calc(100% - 80px)' : 'auto' }}>
-                            <Grid container>
-                                <Grid xs={12} md={6} item>
-                                    <div style={{ marginBottom: '40px' }} >
-                                        <p style={{ marginBottom: '16px' }} className='p-regular'>Font style</p>
-                                        <div className='chip-container'>
-                                            {(filtersData.classifications) && Object.entries(filtersData.classifications).map(([font, count]) => {
-                                                return (
-                                                    <Chip isSelected={arrayFontStyle.includes(font)} onClick={() => { fillMyFilter('fontStyle', font) }} key={font} text={font} />
-                                                )
-                                            })}
+                        </div> */}
 
-
-                                        </div>
-
-
-                                    </div>
-                                </Grid>
-                                <Grid xs={12} md={6} item>
-                                    <div style={{ marginBottom: '40px' }} >
-                                        <p style={{ marginBottom: '16px' }} className='p-regular'>Film genre</p>
-                                        <div className='chip-container'>
-                                            {filtersData.genres && Object.entries(filtersData.genres).map(([genre, count]) => (
-                                                <Chip isSelected={arrayGenres.includes(genre)} onClick={() => { fillMyFilter('genre', genre) }} key={genre} text={genre} />
-                                            ))}
-                                        </div>
-
-
-                                    </div>
-                                </Grid>
-                            </Grid>
-                            <Grid container>
-                                <Grid xs={12} md={6} item>
-                                    <div style={{ marginBottom: '40px' }} >
-                                        <p style={{ marginBottom: '16px' }} className='p-regular'>Film period</p>
-                                        <div className='chip-container'>
-                                            {filtersData.decade && Object.entries(filtersData.decade).map(([year, count]) => (
-                                                <Chip isSelected={selectedDecades.includes(year)} onClick={() => fillMyFilter('decade', year)} key={year} text={year + 's'} />
-                                            ))}
-                                        </div>
-                                    </div>
-                                </Grid>
-                                <Grid xs={12} md={6} item>
-                                    <p style={{ marginBottom: '16px' }} className='p-regular'>Country</p>
+                        <Grid container>
+                            <Grid xs={12} md={6} item>
+                                <div style={{ marginBottom: '40px' }} >
+                                    <p style={{ marginBottom: '16px' }} className='p-regular'>Font style</p>
                                     <div className='chip-container'>
-                                        {filtersData.countries && Object.entries(filtersData.countries).map(([country, count]) => (
-                                            <Chip isSelected={arrayCountry.includes(country)} onClick={() => { fillMyFilter('country', country) }} key={country} text={country} />
+                                        {(filtersData.classifications) && Object.entries(filtersData.classifications).map(([font, count]) => {
+                                            return (
+                                                <Chip isSelected={arrayFontStyle.includes(font)} onClick={() => { fillMyFilter('fontStyle', font) }} key={font} text={font} />
+                                            )
+                                        })}
+
+
+                                    </div>
+
+
+                                </div>
+                            </Grid>
+                            <Grid xs={12} md={6} item>
+                                <div style={{ marginBottom: '40px' }} >
+                                    <p style={{ marginBottom: '16px' }} className='p-regular'>Film genre</p>
+                                    <div className='chip-container'>
+                                        {filtersData.genres && Object.entries(filtersData.genres).map(([genre, count]) => (
+                                            <Chip isSelected={arrayGenres.includes(genre)} onClick={() => { fillMyFilter('genre', genre) }} key={genre} text={genre} />
                                         ))}
                                     </div>
-                                </Grid>
+
+
+                                </div>
                             </Grid>
-                        </div>
+                        </Grid>
+                        <Grid container>
+                            <Grid xs={12} md={6} item>
+                                <div style={{ marginBottom: '40px' }} >
+                                    <p style={{ marginBottom: '16px' }} className='p-regular'>Film period</p>
+                                    <div className='chip-container'>
+                                        {filtersData.decade && Object.entries(filtersData.decade).map(([year, count]) => (
+                                            <Chip isSelected={selectedDecades.includes(year)} onClick={() => fillMyFilter('decade', year)} key={year} text={year + 's'} />
+                                        ))}
+                                    </div>
+                                </div>
+                            </Grid>
+                            <Grid xs={12} md={6} item>
+                                <p style={{ marginBottom: '16px' }} className='p-regular'>Country</p>
+                                <div className='chip-container'>
+                                    {filtersData.countries && Object.entries(filtersData.countries).map(([country, count]) => (
+                                        <Chip isSelected={arrayCountry.includes(country)} onClick={() => { fillMyFilter('country', country) }} key={country} text={country} />
+                                    ))}
+                                </div>
+                            </Grid>
+                        </Grid>
+
+
                         {/* <div style={{ width: isMobile ? '100%' : '50%' }}>
                             <div style={{ marginBottom: '40px' }} >
                                 <p style={{ marginBottom: '16px' }} className='p-regular'>Font style</p>

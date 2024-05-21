@@ -18,6 +18,7 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
 }) => {
 
 
+
     const audioRef = React.createRef();
 
     const [animationKey, setAnimationKey] = useState(0);
@@ -370,7 +371,7 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
 
             </motion.div>
 
-            <motion.div onMouseEnter={() => { if (!isMobile) { setIsHovered(true); } }}
+            {data.length > 1 && <motion.div onMouseEnter={() => { if (!isMobile) { setIsHovered(true); } }}
                 onMouseLeave={() => { if (!isMobile) { setIsHovered(false); } }} style={{ zIndex: '6000', position: isMobile ? 'fixed' : 'absolute', bottom: '24px', right: isMobile ? '50%' : '24px', border: '1px solid #2D2D2D', backgroundColor: '#272727', padding: '4px', borderRadius: '50px', display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: '8px', opacity: '1' }} initial={"closed"} animate={item ? "open" : "closed"} variants={variantsYTopIcons}>
                 {item && <div className='close-circle-div' onClick={showPrevious} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', height: '64px', width: '64px' }}>
                     <img draggable={false} src={arrowUp} />
@@ -378,7 +379,7 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
                 {item && <div className='close-circle-div' onClick={showNext} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', height: '64px', width: '64px' }}>
                     <img draggable={false} src={arrowDown} />
                 </div>}
-            </motion.div>
+            </motion.div>}
 
 
         </motion.div >
