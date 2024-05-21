@@ -2,20 +2,7 @@ import { useState, useEffect } from "react";
 // import ScrollSmoother from 'gsap/ScrollSmoother'
 import './App.css';
 import { useMediaQuery } from '@react-hook/media-query'
-// import drSvg from './assets/dr.svg';
-// import coffeeSvg from './assets/coffee.svg';
-// import uccelloSvg from './assets/uccello.svg';
-// import nakedSvg from './assets/naked.svg';
-// import midnightSvg from './assets/midnight.svg';
-// import videodromeSvg from './assets/videodrome.svg';
-// import febbreSvg from './assets/febbre.svg';
-// import halloweenSvg from './assets/halloween.svg';
-// import dollariSvg from './assets/dollari.svg';
-// import goodbyeSvg from './assets/goodbye.svg';
-// import cabinetSvg from './assets/cabinet.svg';
-// import futureSvg from './assets/future.svg';
-// import shiningSvg from './assets/shining.svg';
-// import producersSvg from './assets/producers.svg';
+import heroImg from './assets/hero.svg'
 import Card from "./components/Card";
 import { Grid } from "@mui/material";
 import Header from "./components/Header";
@@ -61,7 +48,18 @@ const App = () => {
   };
 
 
-
+  const variantsBlur = {
+    close: { opacity: 0, width: '0px' },
+    open: {
+      opacity: 1,
+      width: '80%',
+      transition: {
+        delay: 1,
+        ease: [0, 0.71, 0.2, 1.01],
+        duration: 1
+      }
+    }
+  }
 
 
   useEffect(() => {
@@ -131,17 +129,19 @@ const App = () => {
           backgroundColor: '#0D0D0D',
 
         }}>
-
+          <div className="moon-up"></div>
           <Detail index={index} setIndex={setIndex} data={realData} setItem={setCardItem} isMobile={isMobile} item={cardItem} />
           {/* <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} /> */}
           {/* <Info isMobile={isMobile} isOpen={isOpenInfo} /> */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '60vh', textAlign: 'center' }}>
-            <h1 style={{ color: '#ececec', fontSize: '160px', lineHeight: '75%', marginBottom: '62px' }}>Cinema <br />Typography</h1>
+            {/* <h1 style={{ color: '#ececec', fontSize: '160px', lineHeight: '75%', marginBottom: '62px' }}>Cinema <br />Typography</h1> */}
+            <img style={{ padding: '0 47px 31px 47px', maxWidth: '100%' }} src={heroImg} />
             <p style={{
               opacity: '0.64',
               lineHeight: '130%',
               color: '#ECECEC',
-              width: '30%'
+              width: isMobile ? '100%' : '30%',
+              padding: isMobile ? '0 16px' : '0'
             }} className="p-regular">An independent archive to celebrate typography
               and its starring role in cinema opening titles.</p>
           </div>
@@ -184,7 +184,8 @@ const App = () => {
           </div>
 
           <CardContainer font={font} isHovered={isHovered}>
-            <div className="moon"></div>
+            {/* <motion.div initial={{ opacity: '0', width: '0px' }} animate={"open"}
+              variants={variantsBlur} className="moon"></motion.div> */}
             <Grid style={{ height: realData.length === 0 ? '100px' : 'auto', paddingBottom: '100px' }} container >
               {realData?.map((card, index) => {
                 return (

@@ -17,7 +17,7 @@ const CardContainer = ({ children, isHovered, font }) => {
 
 
     return (
-        <div style={{ height: '100%', position: 'relative' }} onMouseMove={handleMouseMove}>
+        <div style={{ height: '100%' }} onMouseMove={handleMouseMove}>
             {isHovered && <div
                 style={{
                     position: 'absolute',

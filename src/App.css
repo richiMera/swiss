@@ -273,3 +273,21 @@ h1.title,
   transform: translateX(-50%);
   left: 50%;
 }
+
+.moon-up {
+  position: fixed;
+  width: 80%;
+  /* padding-top: 80%; */
+  height: 100%;
+  background-color: red;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  z-index: 0;
+  top: -80%;
+  left: -50px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  filter: blur(30px);
+  /* Aggiunge l'effetto blur */
+  transform: translateX(-50%);
+  left: 50%;
+}
