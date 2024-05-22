@@ -49,18 +49,20 @@ const App = () => {
   };
 
 
-  const variantsBlur = {
-    close: { opacity: 0, width: '0px' },
+  const variantsContainer = {
+    close: { opacity: 0 },
     open: {
       opacity: 1,
-      width: '80%',
       transition: {
-        delay: 1,
-        ease: [0, 0.71, 0.2, 1.01],
-        duration: 1
+        staggerChildren: 0.5
       }
     }
-  }
+  };
+
+  const variantsItem = {
+    close: { opacity: 0, y: '50px' },
+    open: { opacity: 1, y: '0', transition: { duration: 0.5 } }
+  };
 
 
   useEffect(() => {
@@ -131,22 +133,26 @@ const App = () => {
 
         }}>
           {/* <div className="moon-up"></div> */}
-          <img src={glare} style={{ width: '100%', position: 'absolute' }} />
+          <img draggable={false} src={glare} style={{ width: '100%', position: 'absolute' }} />
           <Detail index={index} setIndex={setIndex} data={realData} setItem={setCardItem} isMobile={isMobile} item={cardItem} />
           <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} />
           <Info isMobile={isMobile} isOpen={isOpenInfo} />
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: isMobile ? '40vh' : '60vh', textAlign: 'center' }}>
+          <motion.div
+            variants={variantsContainer} initial={'close'} animate={'open'} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: isMobile ? '40vh' : '60vh', textAlign: 'center' }}>
             {/* <h1 style={{ color: '#ececec', fontSize: '160px', lineHeight: '75%', marginBottom: '62px' }}>Cinema <br />Typography</h1> */}
-            <img style={{ padding: '0 24px 24px 24px', width: isMobile ? '100%' : '65vw', position: 'relative', zIndex: '20' }} src={heroImg} />
-            <p style={{
+
+            <motion.img variants={variantsItem} draggable={false} style={{ padding: '0 24px 24px 24px', width: isMobile ? '100%' : '62vw', position: 'relative', zIndex: '20' }} src={heroImg} />
+            <motion.p variants={variantsItem} style={{
               opacity: '0.64',
               lineHeight: '130%',
               color: '#ECECEC',
               width: isMobile ? '100%' : '100%',
-              padding: isMobile ? '0 16px' : '0'
+              padding: isMobile ? '0 16px' : '0',
+              fontSize: !isMobile ? '.88vw' : ''
             }} className="p-regular">An independent archive to celebrate typography  {!isMobile && <br />}
-              and its starring role in cinema opening titles.</p>
-          </div>
+              and its starring role in cinema opening titles.</motion.p>
+
+          </motion.div>
 
           <FixedFilters isMobile={isMobile}>
             <Input scrollDirection={scrollDirection} numberOfFilters={numberOfFilters} isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '100%' }} placeholder={isMobile ? 'Movies, font, director...' : 'Search for movies, font, director ...'} />

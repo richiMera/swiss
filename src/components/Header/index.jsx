@@ -43,10 +43,10 @@ const Header = ({ isMobile, openFilters, scrollDirection, setIsOpenInfo, isOpenI
         //     </motion.div>
         // </div>
         <div style={{ width: '100%', marginTop: '0', marginLeft: '0', zIndex: openFilters ? '' : '9001', display: 'flex', justifyContent: !isMobile ? 'center' : 'start', color: ' #ECECEC' }}>
-            {isOpenInfo && <motion.div initial="hidden" animate={"visible"} variants={variants} style={{ position: 'absolute', left: '16px', zIndex: '9001' }}>
+            {/* {isOpenInfo && <motion.div initial="hidden" animate={"visible"} variants={variants} style={{ position: 'absolute', left: '16px', zIndex: '9001' }}>
                 <h1 style={{ fontWeight: '200' }} onClick={() => { window.location.reload(); }} className='p-regular pointer'>Cinema<span style={{ color: isOpenInfo ? '#0D0D0D' : '#E72A00', fontWeight: '400' }}>Typography</span></h1>
-            </motion.div>}
-            <motion.div onClick={() => { setIsOpenInfo(!isOpenInfo) }} className='input-box' initial="hidden" animate={"visible"} variants={variantsInfo} style={{ position: 'fixed', right: '16px', bottom: '24px', zIndex: isOpenInfo ? '9000' : '1000', width: '50px', paddingLeft: '0', paddingRight: '0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            </motion.div>} */}
+            <motion.div onClick={() => { setIsOpenInfo(!isOpenInfo) }} className='input-box' initial="hidden" animate={"visible"} variants={variantsInfo} style={{ position: 'fixed', right: '16px', bottom: '24px', width: '64px', height: '64px', zIndex: isOpenInfo ? '9000' : '1000', padding: '0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <p style={{ opacity: isOpenInfo ? '' : ' 0.64', }} className='p-regular pointer hover-transition'>{isOpenInfo ? 'X' : '?'}</p>
             </motion.div>
         </div>

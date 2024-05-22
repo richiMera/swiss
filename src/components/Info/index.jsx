@@ -10,7 +10,7 @@ const Info = ({ isMobile, isOpen }) => {
 
     const variantsC = {
         open: {
-            height: isMobile ? '100svh' : '100vh',
+            height: isMobile ? '100dvh' : '100vh',
             transition: {
                 ease: [0.5, 0.4, 0.2, 0.2], // Funzione di easing personalizzata
                 duration: 0.3, // Durata dell'animazione in secondi
@@ -114,7 +114,7 @@ const Info = ({ isMobile, isOpen }) => {
                 zIndex: '6000',
                 overflow: 'hidden',
                 color: '#ECECEC',
-                paddingTop: isMobile && isOpen ? '56px' : ''
+                paddingTop: isMobile && isOpen ? '16px' : ''
             }}
                 initial={{ height: '0px' }}
                 animate={isOpen ? "open" : "closed"}
@@ -127,13 +127,12 @@ const Info = ({ isMobile, isOpen }) => {
                 >
                     {/* //Titolo */}
                     <Grid style={{ paddingBottom: '56px', }} container>
-                        <Grid item xs={isMobile ? 0 : 4}>
-                        </Grid>
-                        <Grid item xs={isMobile ? 12 : 7}>
+
+                        <Grid item xs={12}>
                             <motion.p
                                 variants={variantsItem}
                                 style={{
-                                    fontSize: isMobile ? '24px' : '40px',
+                                    fontSize: isMobile ? '24px' : '56px',
                                     lineHeight: '120%',
                                     padding: '15px'
                                 }}
@@ -146,9 +145,9 @@ const Info = ({ isMobile, isOpen }) => {
                     </Grid>
                     {/* Creators */}
                     <Grid style={{ marginBottom: '56px', }} container>
-                        <Grid item xs={isMobile ? 0 : 4}>
+                        <Grid item xs={isMobile ? 0 : 7}>
                         </Grid>
-                        <Grid item xs={isMobile ? 12 : 7}>
+                        <Grid item xs={isMobile ? 12 : 5}>
                             <motion.div variants={variantsItem} style={{ display: 'flex', width: isMobile ? '100%' : '60%', padding: '16px' }}>
                                 <div style={{ marginRight: isMobile ? '36px' : '125px' }}>
                                     <p style={{ opacity: '0.8' }} className='p-small'>Design</p>
@@ -163,8 +162,8 @@ const Info = ({ isMobile, isOpen }) => {
                         </Grid>
 
                     </Grid>
-                    <motion.div style={{ position: 'fixed', bottom: '16px', right: '16px', left: '16px', color: 'black' }} className='isChildren' variants={variantsItem}>
-                        <p style={{ fontSize: isMobile ? '12px' : '14px', paddingRight: '50px' }}>All material for informational, entertainment and non-profit purposes only. Works appearing on this site are the property of their respective owners and may not be saved, re-transmitted, republished, or reformatted by any means, electronic or mechanical. This site offers broad public access to these materials exclusively for the private, informational and non-commercial use.</p>
+                    <motion.div style={{ position: 'fixed', width: isMobile ? '75%' : '95%', bottom: '16px', right: '16px', left: '16px', color: 'black' }} className='isChildren' variants={variantsItem}>
+                        <p style={{ fontSize: isMobile ? '12px' : '14px' }}>All material for informational, entertainment and non-profit purposes only. Works appearing on this site are the property of their respective owners and may not be saved, re-transmitted, republished, or reformatted by any means, electronic or mechanical. This site offers broad public access to these materials exclusively for the private, informational and non-commercial use.</p>
                     </motion.div>
                 </motion.div>
 
