@@ -152,12 +152,27 @@ const Info = ({ isMobile, isOpen }) => {
                                 <div style={{ marginRight: isMobile ? '36px' : '125px' }}>
                                     <p style={{ opacity: '0.8' }} className='p-small'>Design</p>
                                     <p className='p-big'>andrea dominici</p>
-                                    <p className='p-big'>andreadominici.com</p>
+                                    <a style={{
+                                        fontSize: '18px',
+                                        fontWeight: '200',
+                                        color: '#ececec', textDecoration: 'none'
+                                    }} href='https://www.andreadominici.com' target='blank' className='p-big'>andreadominici.com</a>
                                 </div>
                                 <div>
                                     <p style={{ opacity: '0.8' }} className='p-small'>Web development</p>
                                     <p className='p-big'>riccardo ferrari</p>
                                 </div>
+                            </motion.div>
+                            <motion.div variants={variantsItem} style={{ display: 'flex', width: isMobile ? '100%' : '60%', padding: '16px' }}>
+                                <div style={{ marginRight: isMobile ? '36px' : '125px' }}>
+                                    <p style={{ opacity: '0.8' }} className='p-small'>Contact</p>
+                                    <a style={{
+                                        fontSize: '18px',
+                                        fontWeight: '200',
+                                        color: '#ececec', textDecoration: 'none'
+                                    }} href='mailto:hello@andreadominici.com' className='p-big'>hello@andreadominici.com</a>
+                                </div>
+
                             </motion.div>
                         </Grid>
 

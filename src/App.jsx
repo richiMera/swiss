@@ -54,13 +54,14 @@ const App = () => {
     open: {
       opacity: 1,
       transition: {
+        ease: [0, 0.71, 0.2, 1.01],
         staggerChildren: 0.5
       }
     }
   };
 
   const variantsItem = {
-    close: { opacity: 0, y: '50px' },
+    close: { opacity: 0, y: '30px' },
     open: { opacity: 1, y: '0', transition: { duration: 0.5 } }
   };
 
