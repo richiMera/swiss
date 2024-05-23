@@ -121,15 +121,15 @@ const App = () => {
 
     <>
       {!animationComplete && (
-        // <Lottie
-        //   animationData={animation}
-        //   rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
-        //   loop={false}
-        //   autoplay
-        //   id="loader"
-        //   onComplete={handleAnimationComplete}
-        // /> 
-        <></>
+        <Lottie
+          animationData={animation}
+          rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
+          loop={false}
+          autoplay
+          id="loader"
+          onComplete={handleAnimationComplete}
+        />
+
       )}
       {(!animationComplete && realData.length > 0) && (
         <div style={{
