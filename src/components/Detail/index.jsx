@@ -19,7 +19,8 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
 
 
 
-    const audioRef = React.createRef();
+
+    const audioRef = useRef(new Audio(clickSound));
 
     const [animationKey, setAnimationKey] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
@@ -45,7 +46,9 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
 
 
     const playSound = () => {
-        audioRef.current.play();
+        if (audioRef.current) {
+            audioRef.current.play();
+        }
     };
 
 
@@ -127,12 +130,12 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
             if (event.key === 'ArrowUp') {
                 // Freccia su
 
-                showPrevious(false)
+                showPrevious(true)
                 console.log('Freccia su premuta');
             }
             if (event.key === 'ArrowDown') {
                 // Freccia giù
-                showNext(false)
+                showNext(true)
                 console.log('Freccia giù premuta');
             }
         };

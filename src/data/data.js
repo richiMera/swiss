@@ -617,7 +617,7 @@ export default [
     {
         title: 'Pulp Fiction',
         img: pulpSvg,
-        filter: 'brightness(0) saturate(100%) invert(54%) sepia(100%) saturate(423%) hue-rotate(355deg) brightness(104%) contrast(105%) drop-shadow(rgb(253, 10, 6) 0px 16px 1px)',
+        filter: 'brightness(0) saturate(100%) invert(54%) sepia(100%) saturate(423%) hue-rotate(355deg) brightness(104%) contrast(105%) drop-shadow(rgb(253, 10, 6) 0px 10px 1px)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
         typeface: 'Aachen Bold',
