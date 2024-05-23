@@ -129,15 +129,18 @@ const Card = ({ item, width, isMobile, setItem, index, setIsHovered, setFont, se
                 <motion.div initial={"hidden"}
                     animate={"visible"}
                     transition={{
-                        opacity: {
-                            delay: 0.1,
-                            duration: 0.5,
-                        },
-                        y: {
-                            delay: index === 0 || index === 3 || index === 6 ? 0.1 : index === 1 || index === 4 || index === 7 ? 0.2 : 0.3,
-                            duration: 0.5,
-                            type: "tween",
-                        },
+                        delay: 0.25,
+                        duration: 1.5,
+                        ease: [0, 0, 0, 1],
+                        // opacity: {
+                        //     delay: 0.1,
+                        //     duration: 0.5,
+                        // },
+                        // y: {
+                        //     delay: index === 0 || index === 3 || index === 6 ? 0.1 : index === 1 || index === 4 || index === 7 ? 0.2 : 0.3,
+                        //     duration: 0.5,
+                        //     type: "tween",
+                        // },
                     }}
                     variants={variantsCardsContainer} style={{ outline: '1px solid #272727', backgroundColor: innerIsHovered ? item.bgColor : '#0D0D0D', height: divWidthPx / 1.85 + 'px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10% 12%', position: 'relative', overflow: 'hidden' }} >
 

@@ -19,6 +19,7 @@ import animation from './loader.json'
 import Info from "./components/Info/index.jsx";
 import CardContainer from "./components/CardsContainer/index.jsx";
 import glare from './assets/glare.png'
+import Reveal from "./components/Reveal/index.jsx";
 
 
 
@@ -42,7 +43,7 @@ const App = () => {
   const [isHovered, setIsHovered] = useState('')
   const [index, setIndex] = useState(0)
 
-  const [realData, setRealData] = useState([])
+  const [realData, setRealData] = useState(data)
   const [animationComplete, setAnimationComplete] = useState(false);
   const handleAnimationComplete = () => {
     setAnimationComplete(true);
@@ -50,19 +51,19 @@ const App = () => {
 
 
   const variantsContainer = {
-    close: { opacity: 0 },
+    close: { opacity: 1 },
     open: {
       opacity: 1,
       transition: {
-        ease: [0, 0.71, 0.2, 1.01],
-        staggerChildren: 0.5
+        type: 'tween',
+        staggerChildren: 1
       }
     }
   };
 
   const variantsItem = {
-    close: { opacity: 0, y: '30px' },
-    open: { opacity: 1, y: '0', transition: { duration: 0.5 } }
+    close: { opacity: 0, y: '40px' },
+    open: { opacity: 1, y: '0', transition: { duration: 0.7 } }
   };
 
 
@@ -74,7 +75,7 @@ const App = () => {
 
   useEffect(() => {
 
-
+    setRealData(data)
 
     function raf(time) {
       lenis.raf(time)
@@ -112,6 +113,7 @@ const App = () => {
   }, []);
 
 
+  console.log(realData);
 
 
 
@@ -119,28 +121,31 @@ const App = () => {
 
     <>
       {!animationComplete && (
-        <Lottie
-          animationData={animation}
-          rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
-          loop={false}
-          autoplay
-          id="loader"
-          onComplete={handleAnimationComplete}
-        />
+        // <Lottie
+        //   animationData={animation}
+        //   rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
+        //   loop={false}
+        //   autoplay
+        //   id="loader"
+        //   onComplete={handleAnimationComplete}
+        // /> 
+        <></>
       )}
-      {animationComplete && (
+      {(!animationComplete && realData.length > 0) && (
         <div style={{
           backgroundColor: '#0D0D0D',
 
         }}>
           {/* <div className="moon-up"></div> */}
-          <img draggable={false} src={glare} style={{ width: '100%', position: 'absolute' }} />
+          <motion.img variants={{
+            hidden: { opacity: 0, y: -32 },
+            visible: { opacity: 1, y: 0 }
+          }} initial={'hidden'} animate={'visible'} transition={{ duration: 1.5, ease: [0, 0, 0, 1], delay: 0.25 }} draggable={false} src={glare} style={{ width: '100%', position: 'absolute' }} />
           <Detail index={index} setIndex={setIndex} data={realData} setItem={setCardItem} isMobile={isMobile} item={cardItem} />
           <Header isOpenInfo={isOpenInfo} scrollDirection={scrollDirection} isMobile={isMobile} openFilters={openFilters} setIsOpenInfo={setIsOpenInfo} />
           <Info isMobile={isMobile} isOpen={isOpenInfo} />
-          <motion.div
+          {/* <motion.div
             variants={variantsContainer} initial={'close'} animate={'open'} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: isMobile ? '40vh' : '60vh', textAlign: 'center' }}>
-            {/* <h1 style={{ color: '#ececec', fontSize: '160px', lineHeight: '75%', marginBottom: '62px' }}>Cinema <br />Typography</h1> */}
 
             <motion.img variants={variantsItem} draggable={false} style={{ padding: '0 24px 24px 24px', width: isMobile ? '100%' : '62vw', position: 'relative', zIndex: '20' }} src={heroImg} />
             <motion.p variants={variantsItem} style={{
@@ -153,7 +158,23 @@ const App = () => {
             }} className="p-regular">An independent archive to celebrate typography  {!isMobile && <br />}
               and its starring role in cinema opening titles.</motion.p>
 
-          </motion.div>
+          </motion.div> */}
+
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: isMobile ? '40vh' : '60vh', textAlign: 'center' }}>
+            <Reveal>
+              <img draggable={false} style={{ padding: '0 24px 24px 24px', width: isMobile ? '100%' : '62vw', position: 'relative', zIndex: '20' }} src={heroImg} />
+              <p style={{
+                opacity: '0.64',
+                lineHeight: '130%',
+                color: '#ECECEC',
+                width: isMobile ? '100%' : '100%',
+                padding: isMobile ? '0 16px' : '0',
+                fontSize: !isMobile ? '.88vw' : ''
+              }} className="p-regular">An independent archive to celebrate typography  {!isMobile && <br />}
+                and its starring role in cinema opening titles.</p>
+            </Reveal>
+          </div>
+
 
           <FixedFilters isMobile={isMobile}>
             <Input scrollDirection={scrollDirection} numberOfFilters={numberOfFilters} isMobile={isMobile} type={'search'} setData={setRealData} data={data} style={{ width: isMobile ? '100%' : '100%' }} placeholder={isMobile ? 'Movies, font, director...' : 'Search for movies, font, director ...'} />
@@ -186,11 +207,14 @@ const App = () => {
               </div>}
 
           </FixedFilters>
-          <div style={{ padding: isMobile ? ' 32px 16px 16px 16px' : '0 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          < motion.div variants={{
+            hidden: { opacity: 0, y: 32 },
+            visible: { opacity: 1, y: 0 }
+          }} initial={'hidden'} animate={'visible'} transition={{ duration: 1.5, ease: [0, 0, 0, 1], delay: 0.25 }} style={{ padding: isMobile ? ' 32px 16px 16px 16px' : '0 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <p style={{ color: '#bbbbbb' }} className="p-regular">Entries ({realData.length})</p>
             <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} realData={realData} style={{ width: '320px' }} />
 
-          </div>
+          </motion.div>
 
           <CardContainer font={font} isHovered={isHovered}>
             {/* <motion.div initial={{ opacity: '0', width: '0px' }} animate={"open"}
@@ -211,7 +235,7 @@ const App = () => {
 
 
 
-        </div>
+        </div >
       )}
 
     </>

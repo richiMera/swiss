@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState, useRef } from 'react';
+import Reveal from '../Reveal';
 
 
 
@@ -37,7 +38,10 @@ const CardContainer = ({ children, isHovered, font }) => {
             >
                 Font: <span style={{ fontWeight: 'bold' }}>{font}</span>
             </div >}
+
             {children}
+
+
 
         </div>
     );

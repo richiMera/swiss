@@ -50,6 +50,7 @@ import nikitaSvg from '../assets/nikita.svg';
 import warriorsSvg from '../assets/warriors.svg';
 import samouraiSvg from '../assets/samourai.svg';
 import deadmanSvg from '../assets/deadman.svg';
+import pulpSvg from '../assets/pulp.svg';
 
 
 export default [
@@ -474,20 +475,6 @@ export default [
         country: ['Italy'],
     },
     {
-        title: 'Per un pugno di dollari',
-        img: dollariSvg,
-        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
-        bgColor: '#BB1F01',
-        textColor: '#FFFFFF',
-        typeface: 'Hand-drawn',
-        fontStyle: ['Handwritten'],
-        designer: 'Iginio Lardani',
-        film_director: 'Sergio Leone',
-        year: '1964',
-        genre: ['Western'],
-        country: ['Italy'],
-    },
-    {
         title: 'Midnight Cowboy',
         img: midnightSvg,
         filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(328deg) brightness(104%) contrast(103%)',
@@ -625,6 +612,20 @@ export default [
         film_director: 'Sidney Lumet',
         year: '1957',
         genre: ['Drama'],
+        country: ['USA'],
+    },
+    {
+        title: 'Pulp Fiction',
+        img: pulpSvg,
+        filter: 'brightness(0) saturate(100%) invert(54%) sepia(100%) saturate(423%) hue-rotate(355deg) brightness(104%) contrast(105%) drop-shadow(rgb(253, 10, 6) 0px 16px 1px)',
+        bgColor: '#000000',
+        textColor: '#FFFFFF',
+        typeface: 'Aachen Bold',
+        fontStyle: ['Serif'],
+        designer: 'Pacific Title',
+        film_director: 'Quentin Tarantino',
+        year: '1994',
+        genre: ['Crime', 'Thriller'],
         country: ['USA'],
     },
     {
@@ -770,7 +771,7 @@ export default [
     {
         title: 'Carnage',
         img: carnageSvg,
-        filter: 'brightness(0) saturate(100%) invert(90%) sepia(15%) saturate(0%) hue-rotate(99deg) brightness(100%) contrast(98%)',
+        filter: 'brightness(0) saturate(100%) invert(91%) sepia(13%) saturate(269%) hue-rotate(343deg) brightness(106%) contrast(87%)',
         bgColor: '#000000',
         textColor: '#FFFFFF',
         typeface: 'Copperplate',

@@ -148,7 +148,7 @@ const Info = ({ isMobile, isOpen }) => {
                         <Grid item xs={isMobile ? 0 : 7}>
                         </Grid>
                         <Grid item xs={isMobile ? 12 : 5}>
-                            <motion.div variants={variantsItem} style={{ display: 'flex', width: isMobile ? '100%' : '60%', padding: '16px' }}>
+                            <motion.div variants={variantsItem} style={{ display: 'flex', width: '100%', padding: '16px' }}>
                                 <div style={{ marginRight: isMobile ? '36px' : '125px' }}>
                                     <p style={{ opacity: '0.8' }} className='p-small'>Design</p>
                                     <p className='p-big'>andrea dominici</p>
