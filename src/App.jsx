@@ -131,7 +131,7 @@ const App = () => {
         />
 
       )}
-      {(!animationComplete && realData.length > 0) && (
+      {(animationComplete && realData.length > 0) && (
         <div style={{
           backgroundColor: '#0D0D0D',
 
