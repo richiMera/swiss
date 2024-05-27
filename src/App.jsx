@@ -113,7 +113,6 @@ const App = () => {
   }, []);
 
 
-  console.log(realData);
 
 
 

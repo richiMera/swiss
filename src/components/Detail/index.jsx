@@ -25,7 +25,6 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
     const [animationKey, setAnimationKey] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(index);
-    console.log('diooo', item, index, currentIndex);
     const [variantsScale, setVariantsScale] = useState({
         open: {
             scale: '1',
@@ -131,12 +130,10 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
                 // Freccia su
 
                 showPrevious(true)
-                console.log('Freccia su premuta');
             }
             if (event.key === 'ArrowDown') {
                 // Freccia giù
                 showNext(true)
-                console.log('Freccia giù premuta');
             }
         };
 
@@ -165,7 +162,6 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
     }
 
     const [scrollPosition, setScrollPosition] = useState(sessionStorage.getItem('scrollPosition') | 0);
-    console.log('scrollPosition', scrollPosition);
     useEffect(() => {
         let timeoutId;
 
@@ -200,7 +196,6 @@ const Detail = ({ isMobile, item, setItem, data, index, setIndex,
             document.body.style.top = `-${scrollPosition}px`;
             metaThemeColor.setAttribute('content', item.bgColor);
         } else {
-            console.log('deidara');
             document.body.style.position = '';
             document.body.style.top = '';
             window.scrollTo(0, scrollPosition);
