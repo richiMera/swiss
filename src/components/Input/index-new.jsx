@@ -9,36 +9,42 @@ import { motion } from 'framer-motion';
 
 
 
-const Input = ({ isMobile, placeholder, style, data, setData, type, realData, numberOfFilters, scrollDirection }) => {
+const Input = ({ isMobile, placeholder, style, data, setData, type, realData, numberOfFilters, setSortedBy }) => {
 
 
-
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
 
     const [value, setValue] = useState('');
-    const [sort, setSort] = useState('Featured');
+    const [sort, setSort] = useState('Unsorted');
     const [openSort, setOpenSort] = useState(false)
 
     const dataSort = [
         {
-            text: 'Featured',
-            onClick: () => { setData(data) }
+            text: 'Unsorted',
+            onClick: () => { setData(shuffleArray(realData)); setSortedBy('Unsorted') }
 
         },
         {
             text: 'Year (ASC)',
-            onClick: () => { setData(realData.slice().sort((a, b) => parseInt(a.year) - parseInt(b.year))) }
+            onClick: () => { setData(realData.slice().sort((a, b) => parseInt(a.year) - parseInt(b.year))); setSortedBy('Year (ASC)') }
         },
         {
             text: 'Year (DESC)',
-            onClick: () => { setData(realData.slice().sort((a, b) => parseInt(b.year) - parseInt(a.year))) }
+            onClick: () => { setData(realData.slice().sort((a, b) => parseInt(b.year) - parseInt(a.year))); setSortedBy('Year (DESC)') }
         },
         {
             text: 'Movie title (A-Z)',
-            onClick: () => { setData(realData.slice().sort((a, b) => a.title.localeCompare(b.title))) }
+            onClick: () => { setData(realData.slice().sort((a, b) => a.title.localeCompare(b.title))); setSortedBy('Movie title (A-Z)') }
         },
         {
             text: 'Movie title (Z-A)',
-            onClick: () => { setData(realData.slice().sort((a, b) => b.title.localeCompare(a.title))) }
+            onClick: () => { setData(realData.slice().sort((a, b) => b.title.localeCompare(a.title))); setSortedBy('Movie title (Z-A)') }
         }
     ]
 

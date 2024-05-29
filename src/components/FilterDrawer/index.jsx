@@ -13,7 +13,7 @@ import Chip from '../Chip';
 //seleziono e filtra, deseleziono e resetta, riseleziono e aggiunge i filtri a quelli prima
 
 
-const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, setNumberOfFilter, numberOfFilters }) => {
+const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, setNumberOfFilter, numberOfFilters, sortedBy }) => {
 
     const [filtersData, setFiltersData] = useState({});
     const [innerFilters, setInnerFilters] = useState({});
@@ -22,6 +22,14 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
     const [arrayCountry, setArrayCountry] = useState([]);
     const [arrayGenres, setArrayGenres] = useState([]);
     const [selectedDecades, setSelectedDecades] = useState([]);
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
 
     function filterFilmsByAttributes(fontStyles, countries, genres, decades) {
         // Inizializza la lista filtrata con tutti i film
@@ -199,7 +207,22 @@ const FilterDrawer = ({ open, setOpenFilters, data, setFilteredData, isMobile, s
 
         // Applica il filtro
         const filteredArray = filterFilmsByAttributes(updatedFontStyle, updatedCountry, updatedGenres, updatedDecades);
-        setFilteredData(filteredArray);
+        if (sortedBy === 'Unsorted') {
+            setFilteredData(shuffleArray(filteredArray));
+        }
+        if (sortedBy === 'Year (ASC)') {
+            setFilteredData(filteredArray.slice().sort((a, b) => parseInt(a.year) - parseInt(b.year)));
+        }
+        if (sortedBy === 'Year (DESC)') {
+            setFilteredData(filteredArray.slice().sort((a, b) => parseInt(b.year) - parseInt(a.year)));
+        }
+        if (sortedBy === 'Movie title (A-Z)') {
+            setFilteredData(filteredArray.slice().sort((a, b) => a.title.localeCompare(b.title)));
+        }
+        if (sortedBy === 'Movie title (Z-A)') {
+            setFilteredData(filteredArray.slice().sort((a, b) => b.title.localeCompare(a.title)));
+        }
+
 
     }
     const clearFilter = () => {

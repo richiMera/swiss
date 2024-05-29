@@ -42,6 +42,7 @@ const App = () => {
   const [font, setFont] = useState('')
   const [isHovered, setIsHovered] = useState('')
   const [index, setIndex] = useState(0)
+  const [sortedBy, setSortedBy] = useState('Unsorted')
 
   const [realData, setRealData] = useState(data)
   const [animationComplete, setAnimationComplete] = useState(false);
@@ -211,7 +212,7 @@ const App = () => {
             visible: { opacity: 1, y: 0 }
           }} initial={'hidden'} animate={'visible'} transition={{ duration: 1.5, ease: [0, 0, 0, 1], delay: 0.25 }} style={{ padding: isMobile ? ' 32px 16px 16px 16px' : '0 16px 16px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <p style={{ color: '#bbbbbb' }} className="p-regular">Entries ({realData.length})</p>
-            <Input isMobile={isMobile} type={'sort'} setData={setRealData} data={data} realData={realData} style={{ width: '320px' }} />
+            <Input setSortedBy={setSortedBy} isMobile={isMobile} type={'sort'} setData={setRealData} data={data} realData={realData} style={{ width: '320px' }} />
 
           </motion.div>
 
@@ -228,7 +229,7 @@ const App = () => {
           </CardContainer>
 
 
-          <FilterDrawer numberOfFilters={numberOfFilters} setNumberOfFilter={setNumberOfFilter} isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
+          <FilterDrawer sortedBy={sortedBy} numberOfFilters={numberOfFilters} setNumberOfFilter={setNumberOfFilter} isMobile={isMobile} data={data} setFilteredData={setFilteredData} setOpenFilters={setOpenFilters} open={openFilters} />
 
 
 

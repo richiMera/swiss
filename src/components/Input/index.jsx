@@ -43,7 +43,7 @@ const Input = ({ isMobile, placeholder, style, data, setData, type, realData }) 
 
     const dataSort = [
         {
-            text: 'Featured',
+            text: 'Unsorted',
             onClick: () => { setData(data) }
 
         },
